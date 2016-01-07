@@ -1,0 +1,15 @@
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/nodo.css" rel="stylesheet" />
+
+<div class="alert alert-info" role="alert" id="alertaSuccess">
+      <strong> <span class="glyphicon glyphicon-floppy-disk" id="iconSuccess"></span> <span id="nombreDocumento"></span> !</strong> Se ha cargado correctamente a digitalización.
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready( function() {
+
+	$('#nombreDocumento').text(parent.getName());
+	parent.refresh();
+});
+</script>

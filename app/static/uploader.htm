@@ -1,0 +1,73 @@
+<!-- <form id        =  "uploadForm"
+     enctype   =  "multipart/form-data"
+     action    =  "/profile"
+     method    =  "post"
+>
+<input type="file" name="avatar" />
+<input type="submit" value="Upload Image" name="submit">
+</form> -->
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/nodo.css" rel="stylesheet" />
+<form 
+id        =  "uploadForm"
+enctype   =  "multipart/form-data"
+action    =  "/profile"
+method    =  "post">
+
+<div class="row">
+	<input class="form-control" type="text" id="labelArchivo" placeholder="Seleccione un archivo…" readonly>
+</div>
+<div class="row">
+	<div class="col-md-6">
+	</div>
+	<div class="col-md-6">
+		<span class="btn btn-primary btn-file">
+			Elegir Archivo <input type="file" id="fileDoc" name="avatar">
+		</span>
+		<button class="btn btn-info" type="submit" onclick="IniciaCarga()">Cargar</button>
+	</div>
+</div>
+<div class="row">
+	<div class="progress" id="progressDiv">
+  		 <div class="progress-bar progress-bar-success progress-bar-striped active" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+        
+    		</div>
+	</div>
+</div>
+</form>
+
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+ <script type="text/javascript">
+$(document).on('change', '.btn-file :file', function() {
+	var input = $(this),
+	numFiles = input.get(0).files ? input.get(0).files.length : 1,
+	label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+	input.trigger('fileselect', [numFiles, label]);
+});
+
+$(document).ready( function() {
+	$('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+		//console.log(numFiles);
+		console.log(label);
+		$('#labelArchivo').val(label);
+		parent.setName(label);
+	});
+
+});
+
+var IniciaCarga = function(){
+	var x = $("#fileDoc")[0].files[0];
+	  var value = 0;
+	  var interval = setInterval(function() {
+	      value += 1;
+	      $("#progress-bar")
+	      .css("width", value + "%")
+	      .attr("aria-valuenow", value)
+	      .text(value + "%");
+	      if (value >= 99)
+	          clearInterval(interval);
+	  }, $("#fileDoc")[0].files[0].size / 1000000 );
+};
+
+</script>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="es"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Libreria de Google Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900italic' rel='stylesheet' type='text/css'>
+
+  <!--Hojas de estilos-->
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  <link href="css/main.css" rel="stylesheet" />
+  <link href="css/roundabout.css" rel="stylesheet" />
+  <link href="css/nodo.css" rel="stylesheet" />
+  <link href="css/search.css" rel="stylesheet" />
+  <link href="css/windows8.css" rel="stylesheet" />
+
+  <!--Loading-->
+  <link href="css/toastr.css" rel="stylesheet" />
+  <link href="css/angular-busy.css" rel="stylesheet" />
+
+  <!--Librearias JQuery y Bootstrap-->
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/jquery.roundabout.js"></script>
+
+  <!-- Sidebar -->
+  <link rel="stylesheet" type="text/css" href="css/sidebar/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="css/sidebar/component.css" />
+  <link rel="stylesheet" type="text/css" href="css/sidebar/body.css" />
+  <script src="js/sidebar/modernizr.custom.js"></script>
+
+  <base href='/'>
+</head>
+<body ng-app="registrationModule">
+  <!-- Contenedor de información -->
+  <div id="st-container" ng-controller="searchController" ng-init="init()">
+    <!-- content push wrapper -->
+    <div class="st-pusher">
+      <nav class="st-menu st-effect-3" id="menu-3">
+        <h2 class="icon h2extends"><span class="glyphicon glyphicon-search headSearch" aria-hidden="true"></span> Nueva Búsqueda</h2>
+        <ul>
+          <li>
+            <div class="labely">División</div>
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="division.nombre" readonly>
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="ClearDivision()">
+                  <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li ng-repeat="division in listaDivisiones" class="seleccionable"><a ng-click="SetDivision(division)">{{ division.nombre }}</a></li>
+                </ul>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+          </li>
+          <li>
+            <div class="labely">Empresa</div>
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="empresa.nombre" readonly>
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="ClearEmpresa()" ng-class="{ 'disabled': searchlevel < 2 }">
+                  <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-class="{ 'disabled': searchlevel < 2 }"><span class="glyphicon glyphicon-menu-down" aria-hidden="true" ></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li ng-repeat="empresa in listaEmpresas" class="seleccionable"<a ng-click="SetEmpresa(empresa)">{{ empresa.nombre }}</a></li>
+                </ul>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+          </li>
+          <li>
+            <div class="labely">Agencia</div>
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="agencia.nombre" readonly>
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="ClearAgencia()" ng-class="{ 'disabled': searchlevel < 3 }">
+                  <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-class="{ 'disabled': searchlevel < 3 }"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li ng-repeat="agencia in listaAgencias" class="seleccionable"<a ng-click="SetAgencia(agencia)">{{ agencia.nombre }}</a></li>
+                </ul>
+              </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+          </li>
+          <li>
+            <div class="labely">Departamento</div>
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="departamento.nombre" disabled>
+              <div class="input-group-btn">
+               <button type="button" class="btn btn-default" ng-click="ClearDepartamento()" ng-class="{ 'disabled': searchlevel < 4 }">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-class="{ 'disabled': searchlevel < 4 }"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li ng-repeat="departamento in listaDepartamentos" class="seleccionable"<a ng-click="SetDepartamento(departamento)">{{ departamento.nombre }}</a></li>
+              </ul>
+            </div><!-- /btn-group -->
+          </div><!-- /input-group -->
+        </li>
+        <li>
+          <div class="labely" href="#">Fecha Desde</div>
+          <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt1" is-open="opened1" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open1($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div class="labely" href="#">Fecha Hasta</div>
+          <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt2" is-open="opened2" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div class="labely" href="#">Proveedor</div>
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="proveedor.Nombre" disabled>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="ClearProveedor()">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default" ng-click="ShowSearchProveedor()"><span class="glyphicon glyphicon-briefcase"></span></button>
+            </div>
+          </div><!-- /input-group -->
+        </li>
+        <li>
+          <div class="labely" href="#">Tipo Orden</div>
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="tipo.nombre" disabled>
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="ClearTipo()">
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li ng-repeat="tipo in listaTipos" class="seleccionable"<a ng-click="SetTipo(tipo)">{{ tipo.nombre }}</a></li>
+              </ul>
+            </div><!-- /btn-group -->
+          </div><!-- /input-group -->
+        </li>
+        <li>
+          <div class="labely" href="#">Folio</div>
+          <input type="text" class="form-control" >
+        </li>
+        <button type="button" class="btn btn-primary btnSearch" ng-click="Search()"><span class="glyphicon glyphicon-play " aria-hidden="true"></span> Buscar</button>
+        <button type="button" class="btn btn-default btnSearch" id="closeMenu" ng-click="CloseGrid()"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span> Cancelar</button>
+      </ul>
+    </nav>
+    <div id="st-trigger-effects" class="column">
+      <nav class="navbar navbar-default navHeader"> <!-- Inicia NAV bar -->
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Navegador</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" id="slide" data-effect="st-effect-3" ng-click="HideView()">
+              <span class="glyphicon glyphicon-th blanco" id="menu" aria-hidden="true"></span>
+            </a>
+            <a class="navbar-brand" href="#"><span class="blanco">Digitalización</span></a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown" id="mnuAvatar">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span class="blanco">{{ empleado.nombre }}</span>  
+                  <img src="image/profile/man.jpg" id="avatar">
+                  <span class="caret blanco"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="seleccionable"><a ng-click="Salir()">Salir</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+
+      </nav>
+
+      <div ng-view></div>
+    </div>
+
+  </div><!-- /st-pusher -->
+</div><!-- /st-container -->
+
+<script type="text/javascript">
+var nameDocument = '';
+function refresh() {
+  var scope = angular.element($("#modalUpload")).scope();
+  scope.$apply(function(){
+    scope.FinishUpload(nameDocument);
+  })
+}
+function setName(name){
+  nameDocument = name; 
+}
+function getName(){
+  return nameDocument;
+}
+</script>
+
+
+<div class="modal fade" id="searchProveedor" ng-controller="searchController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Búsqueda de proveedores</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group searchinResults">
+          <input type="text" class="form-control" placeholder="Introduzca un nombre o RFC..." ng-model="textProveedor">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="BuscarProveedor()">Buscar</button>
+          </span>
+        </div><!-- /input-group -->
+        <div class="tableContent">
+          <table class="table table-striped table-condensed table-hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>RFC</th>
+                <th>Tipo</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="proveedor in listaProveedores">
+                <td> {{ proveedor.idProveedor }} </td>
+                <td> {{ proveedor.Nombre }} </td>
+                <td> {{ proveedor.RFC }} </td>
+                <td> {{ proveedor.Tipo }} </td>
+                <td> <button type="button" class="btn btn-default glyphicon glyphicon-hand-left" data-toggle="tooltip" data-placement="top" title="Seleccionar" ng-click="SetProveedor(proveedor);"></button> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="searchResults" ng-controller="searchController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Resultados de la búsqueda</h4>
+      </div>
+      <div class="modal-body">
+        <div id="finder">
+         <div class="input-group" id="searchResults">
+          <span class="input-group-addon" id="basic-addon1">@</span>
+          <input type="text" class="form-control" placeholder="Introduzca una palabra clave para filtrar">
+        </div>
+        <div class="tableContent">
+          <table class="table table-striped table-condensed table-hover">
+            <thead>
+              <tr>
+                <th>Operación</th>
+                <th>Tipo</th>
+                <th>Fecha</th>
+                <th>Estatus</th>
+                <th>Proveedor</th>
+                <th>Descripción</th>
+                <th>Importe</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> DIV2-SDM-SDM-SIST-PE1</td>
+                <td> 1 </td>
+                <td> 28/09/15 </td>
+                <td> 1</td>
+                <td> ESPERANZA ARGUETA HERNANDEZ </td>
+                <td> 14575 </td>
+                <td> $1500.00 </td>
+                <td> <button type="button" class="btn btn-default glyphicon glyphicon-hand-left" data-toggle="tooltip" data-placement="top" title="Cancelar" ng-click="EstableceSucursal('Corporativo');"></button> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Ventana modal de carga -->
+<!-- Modal -->
+<div class="modal fade" id="modalUpload" ng-controller="documentoController">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cargar Documento</h4>
+      </div>
+      <div class="modal-body">
+        <iframe id="frameUpload" frameborder="0"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de envío -->
+<!-- Modal -->
+<div class="modal fade" id="modalSend" ng-controller="documentoController">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Enviar documento</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Destinatario</label>
+            <div class="col-sm-12">
+              <input type="email" class="form-control" placeholder="Introduzca el correo del destinatario" ng-model="correoDestinatario">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" ng-click="EnviarDocumento()" id="btnEnviar" data-loading-text="Enviando...">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Interface de usuario-->
+<script src="js/toastr.min.js"></script>
+
+<!-- Librerias Angular-->
+<script src="js/angular.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-ui/ui-bootstrap-tpls.min.js"></script>
+<script src="js/angular-local-storage.min.js"></script>
+
+<!--Funciones Comunes-->
+<script src="confront.js"></script>
+
+<!--<script src="~/AngularJS/common.js"></script>-->
+<!--Angular NG-Grid-->
+<script src="js/ng-grid.js"></script>
+
+<!--Angular Busy-->
+<script src="js/angular-busy.js"></script>
+
+<!--Librería para realizar querys-->
+<script src="js/linq.js"></script>
+
+<!--Librerias de aplicación angular-->
+<script src="AngularJS/RegistrationModule.js"></script>
+
+<!--librerias de componenetes-->
+<script src="AngularJS/alertFactory.js"></script>
+
+<!--Quitar-->
+<script src="tempData.js"></script>
+
+<!--Quitar-->
+<script src="helpers.js"></script>
+
+<!--Controllers-->
+<script src="AngularJS/Empleado/empleadoRepository.js"></script>
+<script src="AngularJS/Alerta/alertaRepository.js"></script>
+<script src="AngularJS/Documento/documentoRepository.js"></script>
+<script src="AngularJS/Documento/documentoController.js"></script>
+<script src="AngularJS/Nodo/nodoRepository.js"></script>
+<script src="AngularJS/Nodo/nodoController.js"></script>
+<script src="AngularJS/Search/searchRepository.js"></script>
+<script src="AngularJS/Search/searchController.js"></script>
+
+<!--Sidebars-->
+<script src="js/sidebar/classie.js"></script>
+<script src="js/sidebar/sidebarEffects.js"></script>
+
+</body>
+</html>
