@@ -2,6 +2,11 @@
 .config(function ($routeProvider, $locationProvider) {
 
     $routeProvider.when('/', {
+        templateUrl: '/AngularJS/Templates/Login.html',
+        controller: 'loginController'
+    });
+
+    $routeProvider.when('/unidad', {
         templateUrl: '/AngularJS/Templates/Nodo.html',
         controller: 'nodoController'
     });
