@@ -48,3 +48,7 @@ Temporary Items
 app/static/AngularJS/Login/loginController.js
 app/static/AngularJS/Login/loginController.js
 app/static/confront.js
+
+*.codekit
+
+app/static/config.codekit
