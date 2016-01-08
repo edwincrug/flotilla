@@ -37,7 +37,10 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
 
     var loginSuccessCallback = function (data, status, headers, config) {
         alertFactory.success('Bienvenido Usuario');
-        location.href = '/busqueda';
+        setTimeout(function(){
+            location.href = '/busqueda';
+        }, 3000);
+        
     };
 
     $scope.Registro = function () {
@@ -47,7 +50,8 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
     };
 
     var addRegisterSuccessCallback = function (data, status, headers, config) {
-        $scope.listaRoles = data;
+        alertFactory.info('Hemos registrado su información con éxito.');
+        alertFactory.info('Para completar el registro verifique el correo electrónico que le hemos enviado.');
     };
 
     //Asigna el rol actual seleccionado
