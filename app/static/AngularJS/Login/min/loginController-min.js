@@ -1,1 +1,1 @@
-registrationModule.controller("loginController",function(e,r,o,n,t,i,l,a){e.isLoading=!1,e.idProceso=1,e.perfil=1;var c=function(e,r,o,t){$("#btnEnviar").button("reset"),n.error("Ocurrio un problema")};e.init=function(){a.get(getParameterByName("employee")).success(getEmpleadoSuccessCallback).error(c)}});
+registrationModule.controller("loginController",function(o,r,n,i,t){o.isLoading=!1,o.idProceso=1,o.perfil=1;var e=function(o,r,n,t){$("#btnEnviar").button("reset"),i.error("Ocurrio un problema")};o.init=function(){}});

@@ -1,4 +1,4 @@
-registrationModule.controller("loginController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, documentoRepository, alertaRepository, empleadoRepository) {
+registrationModule.controller("loginController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository) {
 
     //Propiedades
     $scope.isLoading = false;
@@ -17,9 +17,9 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
     //Grupo de funciones de inicio
     $scope.init = function () {
         //Obtengo los datos del empleado loguado
-        empleadoRepository.get(getParameterByName('employee'))
-            .success(getEmpleadoSuccessCallback)
-            .error(errorCallBack);
+        // empleadoRepository.get(getParameterByName('employee'))
+        //     .success(getEmpleadoSuccessCallback)
+        //     .error(errorCallBack);
     };
 
   
