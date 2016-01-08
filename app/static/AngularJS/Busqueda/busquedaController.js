@@ -1,8 +1,8 @@
 ﻿registrationModule.controller("busquedaController", function ($scope, $rootScope, localStorageService, alertFactory, busquedaRepository) {
     
     //Valores default
-    $scope.factura = "";
-    $scope.vin = "";
+    $scope.factura = '';
+    $scope.vin = '';
 
     //Grupo de funciones de inicio
     $scope.init = function () {
@@ -35,4 +35,7 @@
         alertFactory.error('No se encuentran flotillas con los datos de busqueda: ' + data);
     };
 
+    $scope.EnviarUnidad = function(){
+        location.href = '/unidad';
+    }
 });
