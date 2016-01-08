@@ -1,0 +1,44 @@
+<div cg-busy="myPromise">
+    <div id="contenedor">
+        <h1>Busqueda de Flotilla</h1>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="factura" class="col-lg-2 control-label">Factura</label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="factura">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vin" class="col-lg-2 control-label">VIN</label>
+            <div class="col-lg-2">
+              <input type="text" class="form-control" id="vin">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-2">
+              <button type="submit" class="btn btn-default" ng-click="buscarFlotilla(factura,vin)">Buscar</button>
+            </div>
+          </div>
+        </form>
+        <table class="table table-condensed"> 
+            <thead> 
+                <tr> 
+                    <th>ID</th> 
+                    <th>VIN</th> 
+                    <th>Factura</th>                        
+                    <th>Descripcion</th>  
+                    <th>Estatus</th>
+                </tr> 
+            </thead> 
+            <tbody> 
+                <tr ng-repeat="flotilla in listaFlotillas"> 
+                    <td >{{ flotilla.idLicitacion }}</td> 
+                    <td >{{ flotilla.vin }}</td> 
+                    <td >{{ flotilla.factura }}</td>
+                    <td >{{ flotilla.descripcion }}</td>  
+                    <td >{{ flotilla.status }}</td> 
+                </tr> 
+            </tbody> 
+        </table>          
+    </div>
+</div>
