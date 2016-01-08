@@ -12,10 +12,10 @@ registrationModule.factory('unidadRepository', function ($http) {
             return $http.get(unidadUrl + '3|' + idUsuario + '|'+ idFase);
         },
         insertUnidad: function(unidad){
-            return $http.post(unidadUrl + '1|', unidad);
+            return $http.post(unidadUrl, unidad);
         },
         updatetUnidad: function(unidad){
-            return $http.put(unidadUrl + '1|', unidad);
+            return $http.put(unidadUrl, unidad);
         }
     };
 });
