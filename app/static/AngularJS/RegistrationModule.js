@@ -16,6 +16,11 @@
         controller: 'busquedaController'
     });
 
+    $routeProvider.when('/activacion', {
+        templateUrl: '/AngularJS/Templates/Activacion.html',
+        controller: 'activacionController'
+    });
+
     $locationProvider.html5Mode(true);
 });
 

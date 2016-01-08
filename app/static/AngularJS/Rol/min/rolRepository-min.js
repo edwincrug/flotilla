@@ -1,0 +1,1 @@
+var rolUrl=global_settings.urlCORS+"/api/rolapi/";registrationModule.factory("rolRepository",function(r){return{getAll:function(){return r.get(rolUrl+"1|0")}}});

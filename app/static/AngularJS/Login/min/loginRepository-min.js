@@ -1,0 +1,1 @@
+var loginUrl=global_settings.urlCORS+"/api/usuarioapi/";registrationModule.factory("loginRepository",function(r){return{add:function(i,o,n,l){return r({url:loginUrl,method:"POST",params:{id:"1|"+i+"|"+o+"|"+n+"|"+l}})},login:function(i,o){return r({url:loginUrl,method:"POST",params:{id:"3|"+i+"|"+o}})}}});

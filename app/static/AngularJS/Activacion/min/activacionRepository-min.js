@@ -1,0 +1,1 @@
+var activacionUrl=global_settings.urlCORS+"/api/usuarioapi/";registrationModule.factory("activacionRepository",function(r){return{activar:function(i){return r.post(rolUrl+"2|"+i)}}});
