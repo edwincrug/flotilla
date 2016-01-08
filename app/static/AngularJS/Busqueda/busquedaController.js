@@ -1,4 +1,8 @@
 ﻿registrationModule.controller("busquedaController", function ($scope, $rootScope, localStorageService, alertFactory, busquedaRepository) {
+    
+    //Valores default
+    $scope.factura = "";
+    $scope.vin = "";
 
     //Grupo de funciones de inicio
     $scope.init = function () {
@@ -6,10 +10,18 @@
     };
 
     //Botón obtener la flotilla dependiendo de la factura o vin
-    $scope.buscarFlotilla = function(factura,vin){
-        busquedaRepository.getFlotilla(factura,vin)
+    $scope.BuscarFlotilla = function(factura,vin){
+        if(factura != null || vin != null)
+        {
+            busquedaRepository.getFlotilla(factura, vin)
             .success(getFlotillaSuccessCallback)
             .error(errorCallBack);
+        } else
+        {
+            busquedaRepository.getFlotilla($scope.factura,$scope.vin)
+            .success(getFlotillaSuccessCallback)
+            .error(errorCallBack);
+        }        
     };
 
     //Succes obtiene lista de objetos de las flotillas

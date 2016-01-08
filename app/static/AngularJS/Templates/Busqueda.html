@@ -1,22 +1,22 @@
 <div cg-busy="myPromise">
     <div id="contenedor">
         <h1>Busqueda de Flotilla</h1>
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" ng-controller="busquedaController">
           <div class="form-group">
-            <label for="factura" class="col-lg-2 control-label">Factura</label>
+            <label for="facturaL" class="col-lg-2 control-label">Factura</label>
             <div class="col-lg-2">
-              <input type="text" class="form-control" id="factura">
+              <input type="text" class="form-control" ng-model="factura" id="factura">
             </div>
           </div>
           <div class="form-group">
-            <label for="vin" class="col-lg-2 control-label">VIN</label>
+            <label for="vinL" class="col-lg-2 control-label">VIN</label>
             <div class="col-lg-2">
-              <input type="text" class="form-control" id="vin">
+              <input type="text" class="form-control" ng-model="vin" id="vin">
             </div>
           </div>
           <div class="form-group">
             <div class="col-lg-offset-2 col-lg-2">
-              <button type="submit" class="btn btn-default" ng-click="buscarFlotilla(factura,vin)">Buscar</button>
+              <button type="button" class="btn btn-default" ng-click="BuscarFlotilla(factura,vin)">Buscar</button>
             </div>
           </div>
         </form>
@@ -28,6 +28,8 @@
                     <th>Factura</th>                        
                     <th>Descripcion</th>  
                     <th>Estatus</th>
+                    <th>Ver</th>
+
                 </tr> 
             </thead> 
             <tbody> 
@@ -37,7 +39,13 @@
                     <td >{{ flotilla.factura }}</td>
                     <td >{{ flotilla.descripcion }}</td>  
                     <td >{{ flotilla.status }}</td> 
-                </tr> 
+                    <td >
+                      <button class="btn btn-primary" type="button" id="btnEnviar">
+                        <span class="glyphicon glyphicon-hand-left" aria-hidden="true" ng-route="/unidad"></span>
+                      </button>
+                    </td>  
+                </tr>
+                
             </tbody> 
         </table>          
     </div>
