@@ -11,6 +11,11 @@
         controller: 'nodoController'
     });
 
+    $routeProvider.when('/busqueda', {
+        templateUrl: '/AngularJS/Templates/Busqueda.html',
+        controller: 'busquedaController'
+    });
+
     $locationProvider.html5Mode(true);
 });
 
