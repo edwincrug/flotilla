@@ -1,0 +1,1 @@
+registrationModule.controller("activacionController",function(r,e,o,i,a){r.isLoading=!1,r.idProceso=1,r.perfil=1;var c=function(r,e,o,a){i.error("Ocurrio un problema")};r.init=function(){a.activar(getParameterByName("id")).success(n).error(c)};var n=function(r,e,o,a){i.success("Cuenta activada correctamente")}});

@@ -2,10 +2,9 @@
 <link rel="stylesheet" type="text/css" href="../../css/logintrans.css" />
 <link rel="stylesheet" type="text/css" href="../../css/animate-custom.css" />
 
-<div class="container">
+<div class="container" ng-init="init()">
     <header>
         <h1>Sistema de Administración de <span> flotillas </span></h1>
-
     </header>
     <section>				
         <div id="container_demo" >
@@ -14,27 +13,27 @@
             <a class="hiddenanchor" id="tologin"></a>
             <div id="wrapper">
                 <div id="login" class="animate form">
-                    <form autocomplete="on"> 
-                        <h1>Iniciar Sesión</h1> 
+                    <form autocomplete="on">
+                        <h1>Iniciar Sesión</h1>
                         <p> 
                             <label for="username" class="uname" data-icon="u" > Usuario </label>
-                            <input id="username" name="username" required="required" type="text" placeholder="mi correo electrónico: mimail@mail.com"/>
+                            <input id="username" name="username" required="required" type="text" placeholder="mi correo electrónico: mimail@mail.com" ng-model="usuario"/>
                         </p>
                         <p> 
-                            <label for="password" class="youpasswd" data-icon="p"> Contraseña </label>
-                            <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+                            <label for="password" class="youpasswd" data-icon="p"> Contraseña</label>
+                            <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" ng-model="password" /> 
                         </p>
                         <p class="keeplogin"> 
-                         <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+                         <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping"/> 
                          <label for="loginkeeping">Mantener la sesión iniciada</label>
                      </p>
                      <p class="login button"> 
                         <!-- <input type="submit" value="Ingresar" />  -->
-                        <button class="btn btn-primary" type="submit">Ingresar</button>
+                        <button class="btn btn-primary" type="submit" ng-click="IniciarSesion()">Ingresar</button>
                     </p>
                     <p class="change_link">
-                     ¿ Aún no tiene una cuenta ?
-                     <a class="btn btn-default" href="#toregister" role="button">Registrarse</a>
+                     ¿Aún no tiene una cuenta?
+                     <a class="to_register"  href="#toregister" target="_self">Registrarse</a>
                     <!--  <a href="#toregister" class="to_register">Registrarse</a> -->
                  </p>
              </form>
@@ -45,30 +44,42 @@
                 <h1> Registrarse </h1> 
                 <p> 
                     <label class="uname" data-icon="u">Nombre Completo</label>
-                    <input required="required" type="text" placeholder="Nombre(s) y Apellidos" />
+                    <input required="required" type="text" placeholder="Nombre(s) y Apellidos" ng-model="nombre" />
                 </p>
                 <p> 
-                    <label for="usernamesignup" class="uname" data-icon="u">Rol</label>
-                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+                 <!-- Single button -->
+                 <label for="trol" class="uname">Rol</label>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ currentRol.descripcion }} <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat=" rol in listaRoles">
+                        <a ng-click="SetCurrentRol(rol)">{{ rol.descripcion }}</a>
+                    </li>
+                  </ul>
+                </div>
+
                 </p>
                 <p> 
                     <label for="emailsignup" class="youmail" data-icon="e" > Correo electrónico</label>
-                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/> 
+                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com" ng-model="correo"/> 
                 </p>
                 <p> 
                     <label for="passwordsignup" class="youpasswd" data-icon="p"> Contraseña</label>
-                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO" ng-model="contrasena1"/>
                 </p>
                 <p> 
                     <label for="passwordsignup_confirm" class="youpasswd" data-icon="p"> Confirme contraseña </label>
-                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO" ng-model="contrasena2"/>
                 </p>
                 <p class="signin button"> 
-                 <input type="submit" value="Sign up"/> 
+                 <!-- <input type="submit" value="Sign up"/>  -->
+                 <button class="btn btn-primary" type="button" ng-click="Registro()">Registrarse</button>
              </p>
              <p class="change_link">  
                  ¿ Ya tiene cuenta de usuario ?
-                 <a href="#tologin" class="to_register"> Ir a Iniciar Sesión </a>
+                 <a href="#tologin" class="to_register" target="_self"> Ir a Iniciar Sesión </a>
              </p>
          </form>
      </div>

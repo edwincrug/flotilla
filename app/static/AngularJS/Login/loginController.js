@@ -1,4 +1,4 @@
-registrationModule.controller("loginController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository) {
+registrationModule.controller("loginController", function ($scope, $rootScope, localStorageService, alertFactory, loginRepository, rolRepository) {
 
     //Propiedades
     $scope.isLoading = false;
@@ -16,12 +16,48 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
 
     //Grupo de funciones de inicio
     $scope.init = function () {
-        //Obtengo los datos del empleado loguado
-        // empleadoRepository.get(getParameterByName('employee'))
-        //     .success(getEmpleadoSuccessCallback)
-        //     .error(errorCallBack);
+        //Obtengo la lista de roles
+        rolRepository.getAll()
+            .success(getAllRolSuccessCallback)
+            .error(errorCallBack);
     };
 
+    //Obtiene todos los roles
+    var getAllRolSuccessCallback = function (data, status, headers, config) {
+        $scope.listaRoles = data;
+    };
+
+    $scope.IniciarSesion = function () {
+        //Loguea al usuario
+        loginRepository.login($scope.usuario, $scope.password)
+            .success(loginSuccessCallback)
+            .error(errorCallBack);
+    };
+
+
+    var loginSuccessCallback = function (data, status, headers, config) {
+        alertFactory.success('Bienvenido Usuario');
+        setTimeout(function(){
+            location.href = '/busqueda';
+        }, 3000);
+        
+    };
+
+    $scope.Registro = function () {
+        loginRepository.add($scope.currentRol.idRol,$scope.nombre,$scope.correo,$scope.contrasena1)
+            .success(addRegisterSuccessCallback)
+            .error(errorCallBack);
+    };
+
+    var addRegisterSuccessCallback = function (data, status, headers, config) {
+        alertFactory.info('Hemos registrado su información con éxito.');
+        alertFactory.info('Para completar el registro verifique el correo electrónico que le hemos enviado.');
+    };
+
+    //Asigna el rol actual seleccionado
+    $scope.SetCurrentRol = function(rol) {
+        $scope.currentRol = rol;
+    };
   
 
 });
