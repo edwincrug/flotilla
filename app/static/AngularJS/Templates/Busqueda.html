@@ -1,9 +1,9 @@
 <link rel="stylesheet" type="text/css" href="../../css/busqueda.css" />
 
 <div cg-busy="myPromise" class="container">
-    <header>
+     <header> 
       <h1>Búsqueda de <span> Unidad </span></h1>
-    </header>
+    </header> 
     <div id="contenedor">
         <form class="form-horizontal" role="form" ng-controller="busquedaController">
           <div class="form-group">
@@ -33,15 +33,15 @@
                 </tr> 
             </thead> 
             <tbody> 
-                <tr ng-repeat="flotilla in listaFlotillas"> 
-                    <td >{{ flotilla.idLicitacion }}</td> 
-                    <td >{{ flotilla.vin }}</td> 
-                    <td >{{ flotilla.factura }}</td>
-                    <td >{{ flotilla.descripcion }}</td>  
-                    <td >{{ flotilla.status }}</td> 
+                <tr ng-repeat="unidad in listaUnidades"> 
+                    <td >{{ unidad.idLicitacion }}</td> 
+                    <td >{{ unidad.vin }}</td> 
+                    <td >{{ unidad.factura }}</td>
+                    <td >{{ unidad.descripcion }}</td>  
+                    <td >{{ unidad.status }}</td> 
                     <td >
                       <button class="btn btn-primary" type="button" id="btnEnviar">
-                        <span class="glyphicon glyphicon-hand-left" aria-hidden="true" ng-click="EnviarUnidad()"></span>
+                        <span class="glyphicon glyphicon-hand-left" aria-hidden="true" ng-click="EnviarUnidad(unidad)"></span>
                       </button>
                     </td>  
                 </tr>                

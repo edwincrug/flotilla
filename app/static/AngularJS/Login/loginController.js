@@ -20,6 +20,12 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
         rolRepository.getAll()
             .success(getAllRolSuccessCallback)
             .error(errorCallBack);
+
+        //Obtener empleado logueado
+        $scope.empleado = localStorageService.get('employeeLogged');
+        // if($scope.empleado != null){
+        //     location.href = '/busqueda'; 
+        // }
     };
 
     //Obtiene todos los roles
@@ -28,6 +34,7 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
     };
 
     $scope.IniciarSesion = function () {
+        $('#btnIngresar').button('loading');
         //Loguea al usuario
         loginRepository.login($scope.usuario, $scope.password)
             .success(loginSuccessCallback)
@@ -36,11 +43,21 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
 
 
     var loginSuccessCallback = function (data, status, headers, config) {
-        alertFactory.success('Bienvenido Usuario');
-        setTimeout(function(){
-            location.href = '/busqueda';
-        }, 3000);
-        
+        if(data != null){
+            //Guardo empleado logueado
+            $scope.empleado = data;
+
+            localStorageService.set('employeeLogged', $scope.empleado);
+            alertFactory.success('Bienvenido ' + $scope.empleado.nombreCompleto );
+            setTimeout(function(){
+                location.href = '/busqueda';
+            }, 3000);
+        }
+        else{
+            alertFactory.warning('Usuario y/o password incorrecto.');
+        }
+        //regreso el objeto a su estado original
+        $('#btnIngresar').button('reset');
     };
 
     $scope.Registro = function () {
