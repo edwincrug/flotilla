@@ -11,6 +11,9 @@ registrationModule.factory('unidadRepository', function ($http) {
         getDocFasePermiso: function (idUsuario, idFase) {
             return $http.get(unidadUrl + '3|' + idUsuario + '|'+ idFase);
         },
+        getHeader: function (idUsuario, idFase) {
+            return $http.get(unidadUrl + '4|' + idUsuario + '|'+ idFase);
+        },
         insertUnidad: function(unidad){
             return $http.post(unidadUrl, unidad);
         },
