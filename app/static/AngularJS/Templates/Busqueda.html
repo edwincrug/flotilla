@@ -2,7 +2,7 @@
 
 <div cg-busy="myPromise" class="container">
     <header>
-      <h1>Sistema de Administración de <span> Flotillas </span></h1>
+      <h1>Búsqueda de <span> Unidad </span></h1>
     </header>
     <div id="contenedor">
         <form class="form-horizontal" role="form" ng-controller="busquedaController">
@@ -18,7 +18,7 @@
               <input type="text" class="form-control" ng-model="vin" id="vin">
             </div>
           </div>
-              <button type="button" class="btn btn-default btnBuscar" ng-click="BuscarFlotilla(factura,vin)">Buscar</button>
+              <button type="button" class="btn btn-info btnBuscar" ng-click="BuscarFlotilla(factura,vin)">Buscar</button>
         </form>
         <div class="row tablaBusqueda tablaAlign">
           <table class="table table-condensed" > 
