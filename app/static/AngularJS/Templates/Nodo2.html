@@ -1,37 +1,41 @@
-<div id="st-trigger-effects" class="column">
-  <nav class="navbar navbar-default navHeader"> <!-- Inicia NAV bar -->
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Navegador</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#"><span class="blanco">Digitalización</span></a>
-      </div>
+    <div id="st-trigger-effects" class="column">
+      <nav class="navbar navbar-default navHeader"> <!-- Inicia NAV bar -->
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Navegador</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span class="blanco">Digitalización</span></a>
+          </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown" id="mnuAvatar">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="blanco">{{ empleado.nombre }}</span>  
-              <img src="image/profile/man.jpg" id="avatar">
-              <span class="caret blanco"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="seleccionable"><a ng-click="Salir()">Salir</a></li>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
             </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-</div>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown" id="mnuAvatar">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span class="blanco">{{ empleado.nombre }}</span>  
+                  <img src="image/profile/man.jpg" id="avatar">
+                  <span class="caret blanco"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="seleccionable"><a ng-click="Salir()">Salir</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+
+      </nav>
+
+     
+    </div>
 
 <div cg-busy="myPromise" ng-init="init()" resize>
   <div id="contenedor">
@@ -89,13 +93,13 @@
   <ul id="standard">
     <li ng-repeat="nodo in listaNodos">
       <img src="{{ 'image/icons/' + nodo.imagen }}" class="logotipo"/>
-      <h4 class="nombre" tooltip="{{ nodo.descripcionFase }}"> {{ nodo.nombreFase }}</h4>
+      <h4 class="nombre" tooltip="{{ nodo.descripcion }}"> {{ nodo.nombre }}</h4>
       <h5 class="descripcion"> {{ }}</h4>
         <div class="alerta" ng-hide="{{ nodo.alertas == 0 }}">
           {{ nodo.alertas }}
         </div>
         <div class="numero">
-          {{ nodo.idFase }}
+          {{ nodo.id }}
         </div>
         <div class="cerradoLabel" ng-class="{ 'oculto': nodo.estatus == 2, 'cerradoCompletado': nodo.estatus == 3, 'cerradoPendiente': nodo.estatus == 1}">
           {{ ( nodo.estatus == 3 ? 'Completado' : 'Pendiente' ) }}
@@ -144,72 +148,10 @@
 </section>
 
 <section id="detail" ng-show="!isLoading" ng-hide="currentNode.estatus == 1">
-  <div class="form-group">         
-    <form name="infoGralForm">    
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Información General</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <label for="numEconomico1">Num. Económico 1: </label>                               
-              <input type="text" id="txtnumEconomico1" class="form-control"> 
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="numEconomico2">Num. Económico 2: </label>
-              <input type="text" id="txtnumEconomico2" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="vin">VIN Vehicular: </label>
-              <input type="text" id="txtVIN" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="marca">Marca: </label>
-              <input type="text" id="txtMarca" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="modelo">Modelo: </label>
-              <input type="text" id="txtModelo" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="accesorios">Accesorios: </label>
-              <input type="text" id="txtAccesorios" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="tipo">Tipo: </label>
-              <input type="text" id="txtTipo" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="dirEntrega">Dirección de Entrega: </label>
-              <input type="text" id="txtDirEntrega" class="form-control">
-            </td>
-          </tr>
-        </tbody>        
-      </table> 
-    </form>
-     
-  </div>
   <div class="row linea">
     <div class="col-sm-6">
-      <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4>
-      <div class="list-group" id="viewerDos" >
+      <h4>Contenido del NODO {{ currentNode.id }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4>
+      <div class="list-group" id="viewerDocs" ng-controller="documentoController">
         <div class="list-group-item" ng-repeat="documento in listaDocumentos" ng-class="{ 'disabled':  documento.consultar == 0 }" tooltip="{{( documento.consultar == 0 ? 'No disponible para su perfil' : '' )}}">
           <strong> {{ documento.nombreDocumento }}</strong> {{ documento.descripcion }}
           <div class="botoneraDocumento" ng-hide="documento.cargar != 0 || documento.consultar == 0">

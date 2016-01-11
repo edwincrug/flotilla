@@ -13,12 +13,6 @@ registrationModule.factory('nodoRepository', function ($http) {
         },
         update: function (id) {
             return $http.post(nodoUrl + '2|' + id);
-        },
-        getFasePermiso: function (idUsuario) {
-            return $http.get(nodoUrl + '1|' + idUsuario);
-        },
-        getDocFasePermiso: function (idUsuario, idFase) {
-            return $http.get(nodoUrl + '2|' + idUsuario + '|'+ idFase);
         }
     };
 });
