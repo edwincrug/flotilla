@@ -6,14 +6,15 @@
 
     //Grupo de funciones de inicio
     $scope.init = function () {
-
+        //Obtengo los datos del empleado loguado
+        $rootScope.empleado = localStorageService.get('employeeLogged');
     };
 
     //Botón obtener la flotilla dependiendo de la factura o vin
     $scope.BuscarFlotilla = function(factura,vin){
         if(factura == '' && vin == '')
         {
-            alertFactory.error('Seleccione al menos un criterio de búsqueda');
+            alertFactory.warning('Seleccione al menos un criterio de búsqueda');
         }
         else if(factura != '' || vin != '')
         {
@@ -31,16 +32,17 @@
 
     //Succes obtiene lista de objetos de las flotillas
     var getFlotillaSuccessCallback = function (data, status, headers, config) {
-        $rootScope.listaFlotillas = data;
+        $rootScope.listaUnidades = data;
         alertFactory.success('Datos de flotillas cargados.');
     };
     
     //Mensajes en caso de error
     var errorCallBack = function (data, status, headers, config) {
-        alertFactory.error('No se encuentran flotillas con los criterios de búsqueda: ' + data);
+        alertFactory.info('No se encuentran flotillas con los criterios de búsqueda: ' + data);
     };
 
-    $scope.EnviarUnidad = function(){
+    $scope.EnviarUnidad = function(uni){
+        localStorageService.set('currentVIN', uni);
         location.href = '/unidad';
     }
 });

@@ -20,6 +20,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //Grupo de funciones de inicio
     $scope.init = function () {
         //Obtengo los datos del empleado loguado
+        $scope.empleado = localStorageService.get('employeeLogged');
+        
         nodoRepository.getFasePermiso($scope.idUsuario)
                 .success(obtieneNodosSuccessCallback)
                 .error(errorCallBack);
