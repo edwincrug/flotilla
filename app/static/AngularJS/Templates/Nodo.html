@@ -3,10 +3,10 @@
 
     <section id="header">
       <div class="col-xs-9" id="folio">
-        {{ 'Orden de Compra: ' + expediente.folio }}
+        {{ 'Serie: ' + unidadHeader.vin }}
       </div>
       <div class="col-xs-3 estatus" id="estatus">
-        {{ expediente.estatusExpediente }}
+        {{ unidadHeader.estatus }}
       </div>
     </section>
     <section id="depends" tooltip="Orden padre" ng-click="VerOrdenPadre(expediente)" ng-hide=" expediente.folioPadre == '' ">  
@@ -18,44 +18,55 @@
    <section id="details">
     <div id="row data"> 
       <div class="etiqueta">
-        Solicitante
+        Factura
       </div>
       <div class="texto">
-       {{ expediente.nombreUsuario }}
+       {{ unidadHeader.factura }}
+      </div>
+      <div class="etiqueta">
+      Tipo
      </div>
-     <div class="etiqueta">
-      Empresa
-    </div>
     <div class="texto">
-     {{ expediente.empresa }}
+     {{ unidadHeader.tipo }}
    </div>
    <div class="etiqueta">
-    Agencia
+    Marca
   </div>
   <div class="texto">
-   {{ expediente.agencia }}
+   {{ unidadHeader.marca }}
  </div>
  <div class="etiqueta">
-  Departamento
+  Modelo
 </div>
 <div class="texto">
- {{ expediente.departamento }}
+ {{ unidadHeader.modelo }}
+</div>
+<div class="etiqueta">
+  Motor
+</div>
+<div class="texto">
+ {{ unidadHeader.motor }}
+</div>
+<div class="etiqueta">
+  Color
+</div>
+<div class="texto">
+ {{ unidadHeader.color }}
 </div>
 <!--  <hr> -->
 <div class="etiqueta">
   Ult. Modificación
 </div>
 <div class="texto">
- {{ expediente.fechaUltimoMovimiento }}
+ {{ unidadHeader.ultimaModificacion }}
 </div>
 </div>
 </section>
 <section id="navigator">
   <ul id="standard">
     <li ng-repeat="nodo in listaNodos">
-      <img src="{{ 'image/icons/' + nodo.imagen }}" class="logotipo"/>
+      <img src=" {{ 'image/icons/' + nodo.imagenFase }} " class="logotipo"/>
       <h4 class="nombre" tooltip="{{ nodo.descripcionFase }}"> {{ nodo.nombreFase }}</h4>
-      <h5 class="descripcion"> {{ }}</h4>
         <div class="alerta" ng-hide="{{ nodo.alertas == 0 }}">
           {{ nodo.alertas }}
         </div>
@@ -65,12 +76,12 @@
         <div class="cerradoLabel" ng-class="{ 'oculto': nodo.estatus == 2, 'cerradoCompletado': nodo.estatus == 3, 'cerradoPendiente': nodo.estatus == 1}">
           {{ ( nodo.estatus == 3 ? 'Completado' : 'Pendiente' ) }}
         </div>
-        <div class="desdeLabel" tooltip="Inicio" ng-hide=" nodo.fechaInicio == null ">
+<!--         <div class="desdeLabel" tooltip="Inicio" ng-hide=" nodo.fechaInicio == null ">
          <div class="glyphicon glyphicon-time desdeTexto" aria-hidden="true"></div><div class="desdeTexto">{{ nodo.fechaInicio | date:'MM/dd/yy @ h:mma'}}</div> 
        </div>
        <div class="hastaLabel" tooltip="Término" ng-hide=" nodo.fechaFin == null ">
         <div class="glyphicon glyphicon-time desdeTexto" aria-hidden="true"></div><div class="desdeTexto">{{ nodo.fechaFin | date:'MM/dd/yy @ h:mma' }}</div>
-      </div>
+      </div> -->
     </li>
   </ul>
 </section>
@@ -79,7 +90,7 @@
     <nav id="navigate">
       <ul class="pagination">
         <li><a class="prev anavigatorNode" tooltip="Nodo Anterior"><span aria-hidden="true">«</span></a></li>
-        <li ng-repeat="nodo in listaNodos" ng-class="{ 'active': nodo.active == 1, 'disabled': nodo.enabled == 0 }"><a ng-click="setPage(nodo)" tooltip="{{ nodo.nombre + ( nodo.enabled == 0 ? ' (No disponible para su perfil)' : '') }}" ng-class="{ 'cerrado': nodo.estatus != 1 && nodo.active != 1, 'nodoDisabled': nodo.enabled == 0 }" class="anavigatorNode">{{ nodo.id }}</a></li>
+        <li ng-repeat="nodo in listaNodos" ng-class="{ 'active': nodo.activo == 1 }"><a ng-click="setPage(nodo)" tooltip="{{ nodo.nombreFase }}" ng-class="{ 'cerrado': nodo.estatus != 1 && nodo.activo != 1 }" class="anavigatorNode">{{ nodo.idFase }}</a></li>
         <li><a class="next anavigatorNode" tooltip="Siguiente Nodo"><span aria-hidden="true">»</span></a></li>
       </ul>
     </nav>
@@ -169,7 +180,7 @@
         </tbody>        
       </table> 
     </form>
-     
+
   </div>
   <div class="row linea">
     <div class="col-sm-6">

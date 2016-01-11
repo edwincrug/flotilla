@@ -1,4 +1,4 @@
-registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository) {
+registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository) {
 
     //Propiedades
     $scope.isLoading = false;
@@ -21,14 +21,27 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.init = function () {
         //Obtengo los datos del empleado loguado
         $scope.empleado = localStorageService.get('employeeLogged');
-        
-        nodoRepository.getFasePermiso($scope.idUsuario)
-                .success(obtieneNodosSuccessCallback)
-                .error(errorCallBack);
+        //Obtenfo los datos del VIN
+        $scope.unidad = localStorageService.get('currentVIN');
 
+        unidadRepository.getHeader($scope.unidad.vin)
+            .success(obtieneHeaderSuccessCallback)
+            .error(errorCallBack);
     };
 
+    /////////////////////
+    ///Header
+    ////////////////////
 
+    var obtieneHeaderSuccessCallback = function (data, status, headers, config) {
+       $scope.unidadHeader = data;
+       $scope.currentPage = $scope.unidadHeader.faseActual;
+       alertFactory.info('Header cargado.');
+       //Obtengo la lista de fases
+       nodoRepository.getFasePermiso($scope.empleado.idUsuario)
+                .success(obtieneNodosSuccessCallback)
+                .error(errorCallBack);
+    };
 
 /*    var getEmpleadoSuccessCallback = function (data, status, headers, config) {
         $rootScope.empleado = data;
@@ -100,14 +113,11 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
                     goToPageTrigger('.next');
                 }
             });
-            //Voy a la página actual
+            //Voy a la página actual 
+            //Siempre es 1
             goToPage($scope.currentPage);
 
         },1);
-    };
-
-    var GetCurrentPage = function(){
-        $scope.currentPage = $scope.expediente.nodoActual;
     };
 
     ////////////////////////////////////////////////////////////////////////////
