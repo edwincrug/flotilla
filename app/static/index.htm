@@ -42,7 +42,7 @@
 </head>
 <body ng-app="registrationModule">
 
-<div id="st-trigger-effects" class="column" ng-hide="empleado == null">
+<div id="st-trigger-effects" class="column" ng-hide="empleado == null" ng-controller="headerController" ng-init="init()">
   <nav class="navbar navbar-default navHeader"> <!-- Inicia NAV bar -->
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -157,6 +157,7 @@ function getName(){
 <script src="AngularJS/Rol/rolRepository.js"></script>
 <script src="AngularJS/Login/loginRepository.js"></script>
 <script src="AngularJS/Login/loginController.js"></script>
+<script src="AngularJS/Header/headerController.js"></script>
 <script src="AngularJS/Activacion/activacionRepository.js"></script>
 <script src="AngularJS/Activacion/activacionController.js"></script>
 <script src="AngularJS/Busqueda/busquedaController.js"></script>

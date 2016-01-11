@@ -34,6 +34,7 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
     };
 
     $scope.IniciarSesion = function () {
+        $('#btnIngresar').button('loading');
         //Loguea al usuario
         loginRepository.login($scope.usuario, $scope.password)
             .success(loginSuccessCallback)
@@ -55,7 +56,8 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
         else{
             alertFactory.warning('Usuario y/o password incorrecto.');
         }
-        
+        //regreso el objeto a su estado original
+        $('#btnIngresar').button('reset');
     };
 
     $scope.Registro = function () {
