@@ -1,26 +1,29 @@
+<link rel="stylesheet" type="text/css" href="../../css/busqueda.css" />
+
 <div cg-busy="myPromise">
     <div id="contenedor">
         <h1>Búsqueda de Flotilla</h1>
         <form class="form-horizontal" role="form" ng-controller="busquedaController">
           <div class="form-group">
-            <label for="facturaL" class="col-lg-2 control-label">Factura</label>
-            <div class="col-lg-2">
+            <label for="facturaL" class="col-md-2 control-label">Factura</label>
+            <div class="col-md-2">
               <input type="text" class="form-control" ng-model="factura" id="factura">
             </div>
           </div>
           <div class="form-group">
-            <label for="vinL" class="col-lg-2 control-label">VIN</label>
-            <div class="col-lg-2">
+            <label for="vinL" class="col-md-2 control-label">VIN</label>
+            <div class="col-md-2">
               <input type="text" class="form-control" ng-model="vin" id="vin">
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-2">
-              <button type="button" class="btn btn-default" ng-click="BuscarFlotilla(factura,vin)">Buscar</button>
-            </div>
-          </div>
+  
+            
+              <button type="button" class="btn btn-default btnBuscar" ng-click="BuscarFlotilla(factura,vin)">Buscar</button>
+           
+       
         </form>
-        <table class="table table-condensed"> 
+        <div class="row tablaBusqueda">
+          <table class="table table-condensed " > 
             <thead> 
                 <tr> 
                     <th>ID</th> 
@@ -47,6 +50,8 @@
                 </tr>
                 
             </tbody> 
-        </table>          
+        </table> 
+        </div>
+                 
     </div>
 </div>
