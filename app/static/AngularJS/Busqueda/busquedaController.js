@@ -11,12 +11,17 @@
 
     //Botón obtener la flotilla dependiendo de la factura o vin
     $scope.BuscarFlotilla = function(factura,vin){
-        if(factura != null || vin != null)
+        if(factura == '' && vin == '')
+        {
+            alertFactory.error('Seleccione al menos un criterio de búsqueda');
+        }
+        else if(factura != '' || vin != '')
         {
             busquedaRepository.getFlotilla(factura, vin)
             .success(getFlotillaSuccessCallback)
             .error(errorCallBack);
-        } else
+        } 
+        else
         {
             busquedaRepository.getFlotilla($scope.factura,$scope.vin)
             .success(getFlotillaSuccessCallback)
@@ -32,7 +37,7 @@
     
     //Mensajes en caso de error
     var errorCallBack = function (data, status, headers, config) {
-        alertFactory.error('No se encuentran flotillas con los datos de busqueda: ' + data);
+        alertFactory.error('No se encuentran flotillas con los criterios de búsqueda: ' + data);
     };
 
     $scope.EnviarUnidad = function(){
