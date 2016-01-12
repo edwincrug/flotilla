@@ -15,7 +15,7 @@
         $('#btnBuscar').button('loading');
         if(factura == '' && vin == '')
         {
-            alertFactory.warning('Seleccione al menos un criterio de búsqueda');
+            alertFactory.warning('Seleccione al menos un criterio de búsqueda') ;
         }
         else if(factura != '' || vin != '')
         {
