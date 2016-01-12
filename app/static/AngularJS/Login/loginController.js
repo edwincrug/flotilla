@@ -23,9 +23,9 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
 
         //Obtener empleado logueado
         $scope.empleado = localStorageService.get('employeeLogged');
-        // if($scope.empleado != null){
-        //     location.href = '/busqueda'; 
-        // }
+        if($scope.empleado != null){
+            location.href = '/busqueda'; 
+        }
     };
 
     //Obtiene todos los roles
