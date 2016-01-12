@@ -41,7 +41,7 @@
     
     //Mensajes en caso de error
     var errorCallBack = function (data, status, headers, config) {
-        alertFactory.info('No se encuentran flotillas con los criterios de búsqueda: ' + data);
+        alertFactory.info('No se encuentran flotillas con los criterios de búsqueda');
     };
 
     $scope.EnviarUnidad = function(uni){
