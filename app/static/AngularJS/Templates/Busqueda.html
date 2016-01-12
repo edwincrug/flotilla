@@ -18,7 +18,7 @@
               <input type="text" class="form-control" ng-model="vin" id="vin">
             </div>
           </div>
-              <button type="button" class="btn btn-info btnBuscar" ng-click="BuscarFlotilla(factura,vin)">Buscar</button>
+              <button type="button" class="btn btn-info btnBuscar" ng-click="BuscarFlotilla(factura,vin)" id="btnBuscar" data-loading-text="Buscando...">Buscar</button>
         </form>
         <div class="row tablaBusqueda tablaAlign">
           <table class="table table-condensed" > 
@@ -38,7 +38,7 @@
                     <td >{{ unidad.vin }}</td> 
                     <td >{{ unidad.factura }}</td>
                     <td >{{ unidad.descripcion }}</td>  
-                    <td >{{ unidad.status }}</td> 
+                    <td >{{ unidad.estatus }}</td> 
                     <td >
                       <button class="btn btn-primary" type="button" id="btnEnviar">
                         <span class="glyphicon glyphicon-hand-left" aria-hidden="true" ng-click="EnviarUnidad(unidad)"></span>
