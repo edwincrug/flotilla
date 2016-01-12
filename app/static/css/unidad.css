@@ -1,0 +1,16 @@
+.autoCuadro {
+  width: 80px;
+  margin-left: 80px;
+  cursor: pointer; }
+
+.autoRectangulo {
+  width: 150px;
+  margin-left: 90px;
+  cursor: pointer; }
+
+.flecha {
+  font-size: 20px;
+  padding-left: 30px; }
+
+.btnGuardar {
+  float: left; }

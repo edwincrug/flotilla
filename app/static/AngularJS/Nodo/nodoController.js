@@ -36,7 +36,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var obtieneHeaderSuccessCallback = function (data, status, headers, config) {
        $scope.unidadHeader = data;
        $scope.currentPage = $scope.unidadHeader.faseActual;
-       alertFactory.info('Header cargado.');
+      
        //Obtengo la lista de fases
        nodoRepository.getFasePermiso($scope.empleado.idUsuario)
                 .success(obtieneNodosSuccessCallback)
@@ -118,6 +118,16 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             goToPage($scope.currentPage);
 
         },1);
+
+        unidadRepository.getUnidad($scope.unidadHeader.vin)
+            .success(getUnidadSuccessCallback)
+            .error(errorCallBack);
+    };
+
+    //Succes obtiene lista de documetos por fase y por perfil
+    var getUnidadSuccessCallback = function (data, status, headers, config) {
+        $scope.unidad = data;
+        alertFactory.success('Datos de la unidad cargados.');
     };
 
     ////////////////////////////////////////////////////////////////////////////
@@ -203,6 +213,11 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $scope.$apply();
     };
 
-    ///
+    ///Carga dauto
+    $scope.Cargar = function(){
+        $('#frameUpload').attr('src', '/uploader')
+        $('#modalUpload').modal('show');
+        $rootScope.currentUpload = doc;
+    };
 
 });

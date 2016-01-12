@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="../../css/unidad.css" />
 <div cg-busy="myPromise" ng-init="init()" resize>
   <div id="contenedor">
 
@@ -22,10 +23,10 @@
       </div>
       <div class="texto">
        {{ unidadHeader.factura }}
-      </div>
-      <div class="etiqueta">
-      Tipo
      </div>
+     <div class="etiqueta">
+      Tipo
+    </div>
     <div class="texto">
      {{ unidadHeader.tipo }}
    </div>
@@ -45,7 +46,7 @@
   Motor
 </div>
 <div class="texto">
- {{ unidadHeader.motor }}
+ {{ unidadHeader.numeroMotor }}
 </div>
 <div class="etiqueta">
   Color
@@ -68,12 +69,12 @@
       <img src=" {{ 'image/icons/' + nodo.imagenFase }} " class="logotipo"/>
       <h4 class="nombre" tooltip="{{ nodo.descripcionFase }}"> {{ nodo.nombreFase }}</h4>
       <h5 class="nombre" ng-hide="nodo.active != 1"> {{ nodo.descripcionFase }}</h5>
-        <div class="alerta" ng-hide="{{ nodo.alertas == 0 }}">
-          {{ nodo.alertas }}
-        </div>
-        <div class="numero">
-          {{ nodo.idFase }}
-        </div>
+      <div class="alerta" ng-hide="{{ nodo.alertas == 0 }}">
+        {{ nodo.alertas }}
+      </div>
+      <div class="numero">
+        {{ nodo.idFase }}
+      </div>
 <!--         <div class="cerradoLabel" ng-class="{ 'oculto': nodo.estatus == 2, 'cerradoCompletado': nodo.estatus == 3, 'cerradoPendiente': nodo.estatus == 1}">
           {{ ( nodo.estatus == 3 ? 'Completado' : 'Pendiente' ) }}
         </div> -->
@@ -121,9 +122,9 @@
 </section>
 
 <section id="detail" ng-show="!isLoading" ng-hide="currentNode.estatus == 1">
-   <!--  <div class="row linea"> -->
-    <!-- <div class="col-sm-6"> -->
-     <!--  <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4> -->
+ <!--  <div class="row linea"> -->
+ <!-- <div class="col-sm-6"> -->
+ <!--  <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4> -->
 <!--       <div class="list-group" id="viewerDos" >
         <div class="list-group-item" ng-repeat="documento in listaDocumentos" ng-class="{ 'disabled':  documento.consultar == 0 }" tooltip="{{( documento.consultar == 0 ? 'No disponible para su perfil' : '' )}}">
           <strong> {{ documento.nombreDocumento }}</strong> {{ documento.descripcion }}
@@ -145,7 +146,7 @@
           </div> 
         </div>
       </div> -->
-    <!-- </div> -->
+      <!-- </div> -->
 <!--     <div class="col-sm-6">
       <h4>Alertas <span class="label label-default">{{ listaAlertas.length }}</span></h4>
       <div class="alert alert-warning alert-dismissible" role="alert"  ng-repeat="alerta in listaAlertas">
@@ -153,132 +154,177 @@
         <strong>{{ alerta.nombre + '!  '}}</strong> {{ alerta.descripcion }}
       </div>
     </div> -->
-  <!-- </div> -->
-  <div id="infoGral" class="container-fluid"  
-ng-show="currentNode.idFase == 1" ng-hide="currentNode.idFase != 1">
-       <h4 align="center">Información General <span class="label label-default">1</span></h4>
-       <hr>
-       <form class="form-horizontal">
-           <div class="form-group">
-               <label for="numEconomico1" class="control-label col-md-2"> #Econ Int: </label>
-               <div class="col-md-2">
-                <input type="text" id="txtnumEconomico1" class="form-control">
-               </div>
-               <label for="numEconomico2" class="control-label col-md-2"> #Econ Ext: </label>
-               <div class="col-md-2">
-                <input type="text" id="txtnumEconomico2" class="form-control">
-               </div>
-               <label for="marca" class="control-label col-md-2">Marca: </label>
-               <div class="col-md-2">
-                <input type="text" id="txtMarca" class="form-control">
-               </div></br>
-           </div>
-             <label for="modelo" class="control-label
-col-sm-1">Modelo: </label>
-             <div class="col-md-2">
-              <input type="text" id="txtModelo" class="form-control">
-             </div>
-             <label for="accesorios" class="control-label
-col-sm-1">Accesorios: </label>
-             <div class="col-md-2">
-              <input type="text" id="txtAccesorios" class="form-control">
-             </div>
-             <label for="tipo" class="control-label col-sm-1">Tipo: </label>
-             <div class="col-md-2">
-              <input type="text" id="txtTipo" class="form-control">
-             </div>
-             <label for="dirEntrega" class="control-label col-sm-1">Dirección de Entrega: </label>
-             <div class="col-md-2">
-              <input type="text" id="txtDirEntrega" class="form-control">
-             </div>
-           <div>
-           </div>
-       </form>
+    <!-- </div> -->
+    <div id="infoGral" class="container-fluid"  
+    ng-show="currentNode.idFase == 1" ng-hide="currentNode.idFase != 1">
+    <h4 align="center">Información General <span class="label label-default">1</span></h4>
+    <hr>
+    <form class="form-horizontal">
+     <div class="form-group">
+       <label for="numEconomico1" class="control-label col-md-2"> #Econ Int: </label>
+       <div class="col-md-2">
+        <input type="text" ng-model="unidad.economicoInt" class="form-control">
+      </div>
+      <label for="numEconomico2" class="control-label col-md-2"> #Econ Ext: </label>
+      <div class="col-md-2">
+        <input type="text" ng-model="unidad.economicoExt" class="form-control">
+      </div>
+      <label for="marca" class="control-label col-md-2">Placa: </label>
+      <div class="col-md-2">
+        <input type="text" ng-model="unidad.placa" class="form-control">
+      </div></br>
+    </div>
+    <label for="modelo" class="control-label
+    col-md-2">GPS: </label>
+    <div class="col-md-2">
+      <input type="text" ng-model="unidad.gps" class="form-control">
+    </div>
+    <label for="dirEntrega" class="control-label col-md-2">Dirección Entrega: </label>
+    <div class="col-md-4">
+     <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="3"></textarea>
    </div>
+       <div class="row">
+        <br>
+      <button type="button" class="btn btn-primary btnGuardar" ng-click="Guardar()">
+      <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Guardar
+      </button>
+   </div>
+ </form>
 
-   <div id="doc" class="container-fluid"  
+
+</div>
+
+<div id="doc" class="container-fluid"  
 ng-show="currentNode.idFase==2" ng-hide="currentNode.idFase!=2">
-     <h4 align="center">Documentación <span class="label label-default">2</span></h4>
-     <hr>
-       <form class="form-horizontal">
-           <div class="form-group">
-               <label for="factura" class="control-label
-col-sm-1">Factura: </label>
-               <div class="col-md-4">
-                <input type="file" id="txtFactura" class="form-control">
-               </div>
-               <label for="poliza" class="control-label col-sm-1">Póliza de Seguros: </label>
-               <div class="col-md-4">
-                <input type="file" id="txtPoliza" class="form-control">
-               </div>
-
-           </div>
-           <div class="form-group">
-               <label for="placas" class="control-label
-col-sm-1">Placas: </label>
-               <div class="col-md-4">
-                <input type="file" id="txtPlacas" class="form-control">
-               </div>
-               <label for="placas" class="control-label col-sm-1">Permiso Especial: </label>
-               <div class="col-md-4">
-                <input type="file" id="txtPlacas" class="form-control">
-               </div>
-           </div>
-           <div class="form-group">
-               <label for="placas" class="control-label col-sm-1">Fecha Técnica: </label>
-               <div class="col-md-4">
-                <input type="file" id="txtPlacas" class="form-control">
-               </div>
-               <label for="placas" class="control-label col-sm-1">Manual de usuario: </label>
-               <div class="col-md-4">
-                <input type="file" id="txtPlacas" class="form-control">
-               </div>
-           </div>
-           <div class="form-group">
-               <label for="placas" class="control-label col-sm-1">Pista Teórica: </label>
-               <div class="col-md-4">
-                <input type="file" id="txtPlacas" class="form-control">
-               </div>
-           </div>
-       </form>
+<h4 align="center">Documentación <span class="label label-default">2</span></h4>
+<hr>
+<form class="form-horizontal">
+ <div class="form-group">
+   <label for="factura" class="control-label
+   col-md-1">Factura: </label>
+   <div class="col-md-1 flecha">
+     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
    </div>
+   <div class="col-md-2">
+    <input type="text" id="txtFactura" class="form-control" />
+  </div>
+  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+  </button>
+  <label for="poliza" class="control-label col-md-1">Póliza de Seguros: </label>
+  <div class="col-md-1 flecha">
+     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+   </div>
+   <div class="col-md-2">
+    <input type="text" id="txtFactura" class="form-control" />
+  </div>
+  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+  </button>
+</div>
+<div class="form-group">
+ <label for="placas" class="control-label
+ col-md-1">Placas: </label>
+   <div class="col-md-1 flecha">
+     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+   </div>
+   <div class="col-md-2">
+    <input type="text" id="txtFactura" class="form-control" />
+  </div>
+  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+  </button>
+<label for="placas" class="control-label col-md-1">Permiso Especial: </label>
+  <div class="col-md-1 flecha">
+     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+   </div>
+   <div class="col-md-2">
+    <input type="text" id="txtFactura" class="form-control" />
+  </div>
+  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+  </button>
+</div>
+<div class="form-group">
+ <label for="placas" class="control-label col-sm-1">Ficha Técnica: </label>
+  <div class="col-md-1 flecha">
+     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+   </div>
+   <div class="col-md-2">
+    <input type="text" id="txtFactura" class="form-control" />
+  </div>
+  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+  </button>
+<label for="placas" class="control-label col-sm-1">Manual de usuario: </label>
+  <div class="col-md-1 flecha">
+     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+   </div>
+   <div class="col-md-2">
+    <input type="text" id="txtFactura" class="form-control" />
+  </div>
+  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+  </button>
+</div>
+<div class="form-group">
+ <label for="placas" class="control-label col-sm-1">Verificación: </label>
+  <div class="col-md-1 flecha">
+     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+   </div>
+   <div class="col-md-2">
+    <input type="text" id="txtFactura" class="form-control" />
+  </div>
+  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+  </button>
+</div>
+</form>
+</div>
 
-   <div is="entrega" class="container-fluid"  
+<div is="entrega" class="container-fluid"  
 ng-show="currentNode.idFase==3" ng-hide="currentNode.idFase!=3">
-     <h4 align="center">Entrega<span class="label label-default">3</span></h4>
-     <hr>
-     <form class="form-horizontal">
-         <div class="form-group">
-             <label for="fecha" class="control-label col-sm-1">Fecha: </label>
-             <div class="col-md-2">
-              <input type="date" class="form-control">
-             </div>
-             <label for="recibido" class="control-label col-sm-2">Recibido por: </label>
-             <div class="col-md-2">
-              <input type="text" id="txtRecibido" class="form-control">
-             </div>
-              <div class="col-md-2">
-               <label class="checkbox-inline"><input type="checkbox" value="">Acuse</label>
-              </div>
-             </br>
-         </div>
-         <div class="col-md-2">
-            <label for="fotoFrente" class="control-label col-sm-1">Fotografia Frente: </label>
-         </div>
-         <div class="col-md-2">
-            <label for="fotoCostado1" class="control-label col-sm-1">Fotografias Costado 1: </label>
-         </div>
-         <div class="col-md-2">
-            <label for="fotoCostado2" class="control-label col-sm-1">Fotografia Costado 2: </label>
-         </div>
-         <div class="col-md-2">
-            <label for="fotoTrasera" class="control-label col-sm-1">Fotografia Trasera: </label>
-         </div>
-       </div>
-     </form>
-   </div>
-  <br>
-  <br>
+<h4 align="center">Entrega<span class="label label-default">3</span></h4>
+<hr>
+<form class="form-horizontal">
+ <div class="form-group row">
+   <label for="fecha" class="control-label col-sm-1">Fecha: </label>
+   <div class="col-md-2">
+    <input type="date" class="form-control">
+  </div>
+  <label for="recibido" class="control-label col-sm-2">Recibido por: </label>
+  <div class="col-md-2">
+    <input type="text" id="txtRecibido" class="form-control">
+  </div>
+  <div class="col-md-2">
+   <label class="checkbox-inline"><input type="checkbox" value="">Acuse</label>
+ </div>
+</br>
+</div>
+<br>
+<br>
+<div class="row">
+ <div class="col-md-3">
+  <label for="fotoFrente" class="control-label col-sm-1"> Frente: </label>
+  <img src="image/car/auto_delantera.jpg" class="autoCuadro" ng-click="Cargar()">
+</div>
+<div class="col-md-3">
+  <label for="fotoCostado1" class="control-label col-sm-1"> Derecha: </label>
+  <img src="image/car/auto_derecha.jpg" class="autoRectangulo" ng-click="Cargar()">
+</div>
+<div class="col-md-3">
+  <label for="fotoCostado2" class="control-label col-sm-1"> Izquierda: </label>
+  <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" ng-click="Cargar()">
+</div>
+<div class="col-md-3">
+  <label for="fotoTrasera" class="control-label col-sm-1"> Trasera: </label>
+  <img src="image/car/auto_trasera.jpg" class="autoCuadro" ng-click="Cargar()">
+</div>
+</div>
+</form>
+</div>
+<br>
+<br>
 </section>
 
 <script type="text/javascript">
