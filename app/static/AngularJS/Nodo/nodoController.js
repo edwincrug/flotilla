@@ -139,14 +139,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //LLeva a un nodo específico desde la navegación
     $scope.setPage = function(nodo) {
-        if(nodo.enabled != 0){
-            $scope.currentPage = nodo.id;
-            goToPage($scope.currentPage);  
-        }
-        else{
-            alertFactory.warning('Nodo ' + $scope.currentPage + ' no disponible para su perfil.');
-        }
-    
+        $scope.currentPage = nodo.idFase;
+        goToPage($scope.currentPage);  
     };
 
     //Ir a una página específica

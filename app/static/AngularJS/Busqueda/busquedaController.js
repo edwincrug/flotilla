@@ -20,21 +20,22 @@
         else if(factura != '' || vin != '')
         {
             busquedaRepository.getFlotilla(factura, vin)
-            .success(getFlotillaSuccessCallback)
-            .error(errorCallBack);
+                .success(getFlotillaSuccessCallback)
+                .error(errorCallBack);
         } 
         else
         {
             busquedaRepository.getFlotilla($scope.factura,$scope.vin)
-            .success(getFlotillaSuccessCallback)
-            .error(errorCallBack);
+                .success(getFlotillaSuccessCallback)
+                .error(errorCallBack);
         }
-        //regreso el objeto a su estado original
-        $('#btnBuscar').button('reset');        
+              
     };
 
     //Succes obtiene lista de objetos de las flotillas
     var getFlotillaSuccessCallback = function (data, status, headers, config) {
+        //regreso el objeto a su estado original
+        $('#btnBuscar').button('reset');  
         $rootScope.listaUnidades = data;
         alertFactory.success('Datos de flotillas cargados.');
     };

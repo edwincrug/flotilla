@@ -9,12 +9,12 @@
         {{ unidadHeader.estatus }}
       </div>
     </section>
-    <section id="depends" tooltip="Orden padre" ng-click="VerOrdenPadre(expediente)" ng-hide=" expediente.folioPadre == '' ">  
+<!--     <section id="depends" tooltip="Orden padre" ng-click="VerOrdenPadre(expediente)" ng-hide=" expediente.folioPadre == '' ">  
      <span class="glyphicon glyphicon-backward" aria-hidden="true"></span> {{ expediente.folioPadre }}
    </section>
    <section id="extends" tooltip="Orden hijo" ng-click="VerOrdenHijo(expediente)" ng-hide=" expediente.folioHijo == null ">  
      <span class="glyphicon glyphicon-forward" aria-hidden="true"></span> {{ expediente.folioHijo }}
-   </section>
+   </section> -->
    <section id="details">
     <div id="row data"> 
       <div class="etiqueta">
@@ -67,15 +67,16 @@
     <li ng-repeat="nodo in listaNodos">
       <img src=" {{ 'image/icons/' + nodo.imagenFase }} " class="logotipo"/>
       <h4 class="nombre" tooltip="{{ nodo.descripcionFase }}"> {{ nodo.nombreFase }}</h4>
+      <h5 class="nombre" ng-hide="nodo.active != 1"> {{ nodo.descripcionFase }}</h5>
         <div class="alerta" ng-hide="{{ nodo.alertas == 0 }}">
           {{ nodo.alertas }}
         </div>
         <div class="numero">
           {{ nodo.idFase }}
         </div>
-        <div class="cerradoLabel" ng-class="{ 'oculto': nodo.estatus == 2, 'cerradoCompletado': nodo.estatus == 3, 'cerradoPendiente': nodo.estatus == 1}">
+<!--         <div class="cerradoLabel" ng-class="{ 'oculto': nodo.estatus == 2, 'cerradoCompletado': nodo.estatus == 3, 'cerradoPendiente': nodo.estatus == 1}">
           {{ ( nodo.estatus == 3 ? 'Completado' : 'Pendiente' ) }}
-        </div>
+        </div> -->
 <!--         <div class="desdeLabel" tooltip="Inicio" ng-hide=" nodo.fechaInicio == null ">
          <div class="glyphicon glyphicon-time desdeTexto" aria-hidden="true"></div><div class="desdeTexto">{{ nodo.fechaInicio | date:'MM/dd/yy @ h:mma'}}</div> 
        </div>
@@ -90,7 +91,7 @@
     <nav id="navigate">
       <ul class="pagination">
         <li><a class="prev anavigatorNode" tooltip="Nodo Anterior"><span aria-hidden="true">«</span></a></li>
-        <li ng-repeat="nodo in listaNodos" ng-class="{ 'active': nodo.activo == 1 }"><a ng-click="setPage(nodo)" tooltip="{{ nodo.nombreFase }}" ng-class="{ 'cerrado': nodo.estatus != 1 && nodo.activo != 1 }" class="anavigatorNode">{{ nodo.idFase }}</a></li>
+        <li ng-repeat="nodo in listaNodos" ng-class="{ 'active': nodo.active == 1 }"><a ng-click="setPage(nodo)" tooltip="{{ nodo.nombreFase }}" class="anavigatorNode">{{ nodo.idFase }}</a></li>
         <li><a class="next anavigatorNode" tooltip="Siguiente Nodo"><span aria-hidden="true">»</span></a></li>
       </ul>
     </nav>
@@ -120,10 +121,10 @@
 </section>
 
 <section id="detail" ng-show="!isLoading" ng-hide="currentNode.estatus == 1">
-    <div class="row linea">
-    <div class="col-sm-6">
-      <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4>
-      <div class="list-group" id="viewerDos" >
+   <!--  <div class="row linea"> -->
+    <!-- <div class="col-sm-6"> -->
+     <!--  <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4> -->
+<!--       <div class="list-group" id="viewerDos" >
         <div class="list-group-item" ng-repeat="documento in listaDocumentos" ng-class="{ 'disabled':  documento.consultar == 0 }" tooltip="{{( documento.consultar == 0 ? 'No disponible para su perfil' : '' )}}">
           <strong> {{ documento.nombreDocumento }}</strong> {{ documento.descripcion }}
           <div class="botoneraDocumento" ng-hide="documento.cargar != 0 || documento.consultar == 0">
@@ -143,37 +144,31 @@
             </button>
           </div> 
         </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
+      </div> -->
+    <!-- </div> -->
+<!--     <div class="col-sm-6">
       <h4>Alertas <span class="label label-default">{{ listaAlertas.length }}</span></h4>
       <div class="alert alert-warning alert-dismissible" role="alert"  ng-repeat="alerta in listaAlertas">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>{{ alerta.nombre + '!  '}}</strong> {{ alerta.descripcion }}
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
   <div id="infoGral" class="container-fluid"  
-ng-show="currentNode.idFase==1" ng-hide="currentNode.idFase!=1">
-       <h4 align="center">Información General</h4>
+ng-show="currentNode.idFase == 1" ng-hide="currentNode.idFase != 1">
+       <h4 align="center">Información General <span class="label label-default">1</span></h4>
        <hr>
        <form class="form-horizontal">
            <div class="form-group">
-               <label for="numEconomico1" class="control-label col-sm-1">Num. Económico 1: </label>
+               <label for="numEconomico1" class="control-label col-md-2"> #Econ Int: </label>
                <div class="col-md-2">
                 <input type="text" id="txtnumEconomico1" class="form-control">
                </div>
-               <label for="numEconomico2" class="control-label col-sm-1">Num. Económico 2: </label>
+               <label for="numEconomico2" class="control-label col-md-2"> #Econ Ext: </label>
                <div class="col-md-2">
                 <input type="text" id="txtnumEconomico2" class="form-control">
                </div>
-               <label for="vin" class="control-label col-sm-1">VIN
-Vehicular: </label>
-               <div class="col-md-2">
-                <input type="text" id="txtVIN" class="form-control">
-               </div>
-               <label for="marca" class="control-label
-col-sm-1">Marca: </label>
+               <label for="marca" class="control-label col-md-2">Marca: </label>
                <div class="col-md-2">
                 <input type="text" id="txtMarca" class="form-control">
                </div></br>
@@ -203,7 +198,7 @@ col-sm-1">Accesorios: </label>
 
    <div id="doc" class="container-fluid"  
 ng-show="currentNode.idFase==2" ng-hide="currentNode.idFase!=2">
-     <h4 align="center">Documentación</h4>
+     <h4 align="center">Documentación <span class="label label-default">2</span></h4>
      <hr>
        <form class="form-horizontal">
            <div class="form-group">
@@ -250,7 +245,7 @@ col-sm-1">Placas: </label>
 
    <div is="entrega" class="container-fluid"  
 ng-show="currentNode.idFase==3" ng-hide="currentNode.idFase!=3">
-     <h4 align="center">Entrega</h4>
+     <h4 align="center">Entrega<span class="label label-default">3</span></h4>
      <hr>
      <form class="form-horizontal">
          <div class="form-group">
