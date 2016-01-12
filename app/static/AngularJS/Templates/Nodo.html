@@ -120,6 +120,39 @@
 </section>
 
 <section id="detail" ng-show="!isLoading" ng-hide="currentNode.estatus == 1">
+    <div class="row linea">
+    <div class="col-sm-6">
+      <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4>
+      <div class="list-group" id="viewerDos" >
+        <div class="list-group-item" ng-repeat="documento in listaDocumentos" ng-class="{ 'disabled':  documento.consultar == 0 }" tooltip="{{( documento.consultar == 0 ? 'No disponible para su perfil' : '' )}}">
+          <strong> {{ documento.nombreDocumento }}</strong> {{ documento.descripcion }}
+          <div class="botoneraDocumento" ng-hide="documento.cargar != 0 || documento.consultar == 0">
+            <button type="button" class="btn btn-primary btn-xs" tooltip="{{ documento.consultar == 1 ? 'Ver documento' : 'No puede realizar está acción' }}" ng-class="{ 'disabled': documento.consultar != 1 }" ng-click="VerDocumento(documento)">
+              <span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
+            </button>
+            <a type="button" class="btn btn-info btn-xs" tooltip="Descargar" href="{{ documento.Ruta }}" ng-class="{ 'disabled': documento.descargar != 1 }" download>
+              <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> 
+            </a>
+            <button type="button" class="btn btn-success btn-xs" tooltip="Enviar" ng-click="ShowEnviar(documento)" ng-class="{ 'disabled': documento.enviarEmail != 1 }">
+              <span class="glyphicon glyphicon-send" aria-hidden="true"></span>  
+            </button>
+          </div>
+          <div class="botoneraDocumento" ng-hide="documento.cargar == 0 || documento.consultar == 0">
+            <button type="button" class="btn btn-warning btn-xs" tooltip="Cargar documento" ng-click="ShowCargar(documento)">
+              <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span>  
+            </button>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h4>Alertas <span class="label label-default">{{ listaAlertas.length }}</span></h4>
+      <div class="alert alert-warning alert-dismissible" role="alert"  ng-repeat="alerta in listaAlertas">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>{{ alerta.nombre + '!  '}}</strong> {{ alerta.descripcion }}
+      </div>
+    </div>
+  </div>
   <div id="infoGral" class="container-fluid"  
 ng-show="currentNode.idFase==1" ng-hide="currentNode.idFase!=1">
        <h4 align="center">Información General</h4>
@@ -223,15 +256,14 @@ ng-show="currentNode.idFase==3" ng-hide="currentNode.idFase!=3">
          <div class="form-group">
              <label for="fecha" class="control-label col-sm-1">Fecha: </label>
              <div class="col-md-2">
-              <input typFecha" class="form-control">
-             </div>e="date" id="txt
+              <input type="date" class="form-control">
+             </div>
              <label for="recibido" class="control-label col-sm-2">Recibido por: </label>
              <div class="col-md-2">
               <input type="text" id="txtRecibido" class="form-control">
              </div>
               <div class="col-md-2">
-               <label class="checkbox-inline"><input type="checkbox"  
-value="">Acuse</label>
+               <label class="checkbox-inline"><input type="checkbox" value="">Acuse</label>
               </div>
              </br>
          </div>
@@ -250,39 +282,6 @@ value="">Acuse</label>
        </div>
      </form>
    </div>
-  <div class="row linea">
-    <div class="col-sm-6">
-      <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4>
-      <div class="list-group" id="viewerDos" >
-        <div class="list-group-item" ng-repeat="documento in listaDocumentos" ng-class="{ 'disabled':  documento.consultar == 0 }" tooltip="{{( documento.consultar == 0 ? 'No disponible para su perfil' : '' )}}">
-          <strong> {{ documento.nombreDocumento }}</strong> {{ documento.descripcion }}
-          <div class="botoneraDocumento" ng-hide="documento.cargar != 0 || documento.consultar == 0">
-            <button type="button" class="btn btn-primary btn-xs" tooltip="{{ documento.consultar == 1 ? 'Ver documento' : 'No puede realizar está acción' }}" ng-class="{ 'disabled': documento.consultar != 1 }" ng-click="VerDocumento(documento)">
-              <span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
-            </button>
-            <a type="button" class="btn btn-info btn-xs" tooltip="Descargar" href="{{ documento.Ruta }}" ng-class="{ 'disabled': documento.descargar != 1 }" download>
-              <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> 
-            </a>
-            <button type="button" class="btn btn-success btn-xs" tooltip="Enviar" ng-click="ShowEnviar(documento)" ng-class="{ 'disabled': documento.enviarEmail != 1 }">
-              <span class="glyphicon glyphicon-send" aria-hidden="true"></span>  
-            </button>
-          </div>
-          <div class="botoneraDocumento" ng-hide="documento.cargar == 0 || documento.consultar == 0">
-            <button type="button" class="btn btn-warning btn-xs" tooltip="Cargar documento" ng-click="ShowCargar(documento)">
-              <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span>  
-            </button>
-          </div> 
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <h4>Alertas <span class="label label-default">{{ listaAlertas.length }}</span></h4>
-      <div class="alert alert-warning alert-dismissible" role="alert"  ng-repeat="alerta in listaAlertas">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>{{ alerta.nombre + '!  '}}</strong> {{ alerta.descripcion }}
-      </div>
-    </div>
-  </div>
   <br>
   <br>
 </section>
