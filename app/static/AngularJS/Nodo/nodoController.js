@@ -5,7 +5,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.idProceso = 1;
     $scope.perfil = 1;
 
-    $scope.idUsuario = 20;
+    $scope.idRol = 20;
     $scope.idFase = 1;
 
     //Deshabilitamos el clic derecho en toda la aplicación
@@ -38,7 +38,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
        $scope.currentPage = $scope.unidadHeader.faseActual;
       
        //Obtengo la lista de fases
-       nodoRepository.getFasePermiso($scope.empleado.idUsuario)
+       nodoRepository.getFasePermiso($scope.empleado.idRol)
                 .success(obtieneNodosSuccessCallback)
                 .error(errorCallBack);
     };
@@ -49,7 +49,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         if($rootScope.empleado != null){
             if(getParameterByName('id')){
                 //Obtengo el encabezado del expediente
-                nodoRepository.getHeader(getParameterByName('id'),$rootScope.empleado.idUsuario)
+                nodoRepository.getHeader(getParameterByName('id'),$rootScope.empleado.idRol)
                     .success(obtieneHeaderSuccessCallback)
                     .error(errorCallBack);
             }
@@ -65,7 +65,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $scope.expediente = data;
         if($scope.expediente != null){
             //Obtengo la información de los nodos
-            nodoRepository.getFasePermiso($rootScope.usuario.idUsuario)
+            nodoRepository.getFasePermiso($rootScope.usuario.idRol)
                 .success(obtieneNodosSuccessCallback)
                 .error(errorCallBack);
         }
@@ -74,8 +74,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };*/
 
     //Muestra los nodos del perfil
-    $scope.mostrarNodos = function(idUsuario){
-        nodoRepository.getFasePermiso($scope.idUsuario)
+    $scope.mostrarNodos = function(idRol){
+        nodoRepository.getFasePermiso($scope.idRol)
                 .success(obtieneNodosSuccessCallback)
                 .error(errorCallBack);
     }
@@ -188,7 +188,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //Success de obtner documentos por nodo
     var getDocumentosSuccessCallback = function (data, status, headers, config) {
         $scope.listaDocumentos = data;
-        nodoRepository.getDocFasePermiso($scope.idUsuario, $scope.idFase)
+        nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
             .success(getAlertasSuccessCallback)
             .error(errorCallBack);
     };
@@ -199,7 +199,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $scope.isLoading = true;
             Apply();
             //Consulta el repositorio
-            nodoRepository.getDocFasePermiso($scope.idUsuario, $scope.idFase)
+            nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
                 .success(getDocumentosSuccessCallback)
                 .error(errorCallBack);
         //}
