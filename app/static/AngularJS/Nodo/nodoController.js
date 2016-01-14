@@ -1,4 +1,4 @@
-registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository) {
+registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository,rolPermisoRepository) {
 
     //Propiedades
     $scope.isLoading = false;
@@ -27,6 +27,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         unidadRepository.getHeader($scope.unidad.vin)
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
+
+        rolPermisoRepository.getRolPermiso($scope.empleado.idRol)
+            .success(obtieneRolPermisoSuccesCallback)
+            .error(errorCallBack);        
     };
 
     /////////////////////
@@ -40,7 +44,11 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
        //Obtengo la lista de fases
        nodoRepository.getFasePermiso($scope.empleado.idRol)
                 .success(obtieneNodosSuccessCallback)
-                .error(errorCallBack);
+                .error(errorCallBack);      
+    };
+
+    var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
+        $scope.rolPermiso = data;        
     };
 
 /*    var getEmpleadoSuccessCallback = function (data, status, headers, config) {
@@ -122,7 +130,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         unidadRepository.getUnidad($scope.unidadHeader.vin)
             .success(getUnidadSuccessCallback)
             .error(errorCallBack);
-    };
+    };    
 
     //Succes obtiene lista de documetos por fase y por perfil
     var getUnidadSuccessCallback = function (data, status, headers, config) {
@@ -220,4 +228,29 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $rootScope.currentUpload = doc;
     };
 
+    $scope.mostrarAccesorio = function(){
+        $('#viewAccesorio').modal('show');
+    }
+
+     $scope.ocultarAccesorio = function(){
+        $('#viewAccesorio').modal('hide');
+    };
+    
+    //animación de switches
+    $("[name='cbxGatoUni']").bootstrapSwitch();
+    $("[name='cbxLlaveTuerca']").bootstrapSwitch();
+    $("[name='cbxManeral']").bootstrapSwitch();
+    $("[name='cbxRefaccion']").bootstrapSwitch();
+    $("[name='cbxTapAlfombra']").bootstrapSwitch();
+    $("[name='cbxTapPlastico']").bootstrapSwitch();
+    $("[name='cbxTriSeguridad']").bootstrapSwitch();
+    $("[name='cbxBirlo']").bootstrapSwitch();
+    $("[name='cbxCable']").bootstrapSwitch();
+    $("[name='cbxExtintor']").bootstrapSwitch();
+    //$("[id='switch-state']").bootstrapSwitch();
+    $("[name='cbxOtro']").bootstrapSwitch();
+    
+    $('#cbxOtroAcc').on('switchChange.bootstrapSwitch', function (){ 
+        $scope.checkboxState  = $("[name='cbxOtro']").bootstrapSwitch('state');                
+    });
 });

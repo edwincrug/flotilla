@@ -122,210 +122,329 @@
 </section>
 
 <section id="detail" ng-show="!isLoading" ng-hide="currentNode.estatus == 1">
- <!--  <div class="row linea"> -->
- <!-- <div class="col-sm-6"> -->
- <!--  <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4> -->
-<!--       <div class="list-group" id="viewerDos" >
-        <div class="list-group-item" ng-repeat="documento in listaDocumentos" ng-class="{ 'disabled':  documento.consultar == 0 }" tooltip="{{( documento.consultar == 0 ? 'No disponible para su perfil' : '' )}}">
-          <strong> {{ documento.nombreDocumento }}</strong> {{ documento.descripcion }}
-          <div class="botoneraDocumento" ng-hide="documento.cargar != 0 || documento.consultar == 0">
-            <button type="button" class="btn btn-primary btn-xs" tooltip="{{ documento.consultar == 1 ? 'Ver documento' : 'No puede realizar está acción' }}" ng-class="{ 'disabled': documento.consultar != 1 }" ng-click="VerDocumento(documento)">
-              <span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
-            </button>
-            <a type="button" class="btn btn-info btn-xs" tooltip="Descargar" href="{{ documento.Ruta }}" ng-class="{ 'disabled': documento.descargar != 1 }" download>
-              <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> 
-            </a>
-            <button type="button" class="btn btn-success btn-xs" tooltip="Enviar" ng-click="ShowEnviar(documento)" ng-class="{ 'disabled': documento.enviarEmail != 1 }">
-              <span class="glyphicon glyphicon-send" aria-hidden="true"></span>  
-            </button>
+   <!--  <div class="row linea"> -->
+   <!-- <div class="col-sm-6"> -->
+   <!--  <h4>Contenido del NODO {{ currentNode.idFase }} <span class="label label-default">{{ listaDocumentos.length }}</span></h4> -->
+  <!--       <div class="list-group" id="viewerDos" >
+          <div class="list-group-item" ng-repeat="documento in listaDocumentos" ng-class="{ 'disabled':  documento.consultar == 0 }" tooltip="{{( documento.consultar == 0 ? 'No disponible para su perfil' : '' )}}">
+            <strong> {{ documento.nombreDocumento }}</strong> {{ documento.descripcion }}
+            <div class="botoneraDocumento" ng-hide="documento.cargar != 0 || documento.consultar == 0">
+              <button type="button" class="btn btn-primary btn-xs" tooltip="{{ documento.consultar == 1 ? 'Ver documento' : 'No puede realizar está acción' }}" ng-class="{ 'disabled': documento.consultar != 1 }" ng-click="VerDocumento(documento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span> 
+              </button>
+              <a type="button" class="btn btn-info btn-xs" tooltip="Descargar" href="{{ documento.Ruta }}" ng-class="{ 'disabled': documento.descargar != 1 }" download>
+                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> 
+              </a>
+              <button type="button" class="btn btn-success btn-xs" tooltip="Enviar" ng-click="ShowEnviar(documento)" ng-class="{ 'disabled': documento.enviarEmail != 1 }">
+                <span class="glyphicon glyphicon-send" aria-hidden="true"></span>  
+              </button>
+            </div>
+            <div class="botoneraDocumento" ng-hide="documento.cargar == 0 || documento.consultar == 0">
+              <button type="button" class="btn btn-warning btn-xs" tooltip="Cargar documento" ng-click="ShowCargar(documento)">
+                <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span>  
+              </button>
+            </div> 
           </div>
-          <div class="botoneraDocumento" ng-hide="documento.cargar == 0 || documento.consultar == 0">
-            <button type="button" class="btn btn-warning btn-xs" tooltip="Cargar documento" ng-click="ShowCargar(documento)">
-              <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span>  
-            </button>
-          </div> 
+        </div> -->
+        <!-- </div> -->
+  <!--     <div class="col-sm-6">
+        <h4>Alertas <span class="label label-default">{{ listaAlertas.length }}</span></h4>
+        <div class="alert alert-warning alert-dismissible" role="alert"  ng-repeat="alerta in listaAlertas">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>{{ alerta.nombre + '!  '}}</strong> {{ alerta.descripcion }}
         </div>
       </div> -->
       <!-- </div> -->
-<!--     <div class="col-sm-6">
-      <h4>Alertas <span class="label label-default">{{ listaAlertas.length }}</span></h4>
-      <div class="alert alert-warning alert-dismissible" role="alert"  ng-repeat="alerta in listaAlertas">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>{{ alerta.nombre + '!  '}}</strong> {{ alerta.descripcion }}
-      </div>
-    </div> -->
-    <!-- </div> -->
-    <div id="infoGral" class="container-fluid"  
-    ng-show="currentNode.idFase == 1" ng-hide="currentNode.idFase != 1">
+  <div id="infoGral" class="container-fluid"ng-show="currentNode.idFase == 1" ng-hide="currentNode.idFase != 1">
     <h4 align="center">Información General <span class="label label-default">1</span></h4>
+    <hr>
+    <form class="form-horizontal">    
+       <div class="form-group">
+         <label for="numEconomico1" class="control-label col-md-2" ng-hide="rolPermiso.EconomicoInt == false" ng-show="rolPermiso.EconomicoInt == true"> #Econ Int: </label>
+         <div class="col-md-2">
+          <input type="text" ng-model="unidad.economicoInt" class="form-control" ng-hide="rolPermiso.EconomicoInt == false" ng-show="rolPermiso.EconomicoInt == true">
+        </div>
+        <label for="numEconomico2" class="control-label col-md-1" ng-hide="rolPermiso.EconomicoExt == false" ng-show="rolPermiso.EconomicoExt == true"> #Econ Ext: </label>
+        <div class="col-md-2">
+          <input type="text" ng-model="unidad.economicoExt" class="form-control" ng-hide="rolPermiso.EconomicoExt == false" ng-show="rolPermiso.EconomicoExt == true">
+        </div>
+        <label for="marca" class="control-label col-md-1" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">Placa: </label>
+        <div class="col-md-2">
+          <input type="text" ng-model="unidad.placa" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
+        </div></br>
+      </div>
+      <div class="form-group">
+        <label for="modelo" class="control-label col-md-2" ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">GPS: </label>
+        <div class="col-md-2">
+          <input type="text" ng-model="unidad.gps" class="form-control" ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">
+        </div>
+        <label for="dirEntrega" class="control-label col-md-1" ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true">Dirección Entrega: </label>
+        <div class="col-md-5">
+         <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="4" ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true"></textarea>
+        </div>
+      </div>    
+      <div class="form-group" style="margin-left:140px">                             
+        <div class="col-md-1">        
+          <button type="button" class="btn btn-primary btnAccesorio" ng-click="mostrarAccesorio()">Accesorios</button>      
+        </div>         
+      </div>      
+   </form>
+  </div>
+
+  <div id="doc" class="container-fluid" ng-show="currentNode.idFase==2" ng-hide="currentNode.idFase!=2">
+    <h4 align="center">Documentación <span class="label label-default">2</span></h4>
     <hr>
     <form class="form-horizontal">
      <div class="form-group">
-       <label for="numEconomico1" class="control-label col-md-2"> #Econ Int: </label>
+        <label for="factura" class="control-label col-md-1" ng-hide="rolPermiso.Factura == false" ng-show="rolPermiso.Factura == true">Factura: </label>
+         <div class="col-md-1 flecha" ng-hide="rolPermiso.Factura == false" ng-show="rolPermiso.Factura == true">
+           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+         </div>
+         <div class="col-md-2">
+          <input type="text" id="txtFactura" class="form-control" ng-hide="rolPermiso.Factura == false" ng-show="rolPermiso.Factura == true"/>
+        </div>
+        <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.Factura == false" ng-show="rolPermiso.Factura == true">
+          <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+        </button>
+     </div>
+     <div class="form-group">     
+      <label for="poliza" class="control-label col-md-1" ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true">Póliza de Seguros: </label>
+      <div class="col-md-1 flecha" ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true">
+         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+       </div>
        <div class="col-md-2">
-        <input type="text" ng-model="unidad.economicoInt" class="form-control">
+        <input type="text" id="txtPolizaSeg" class="form-control"  ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true"/>
       </div>
-      <label for="numEconomico2" class="control-label col-md-2"> #Econ Ext: </label>
-      <div class="col-md-2">
-        <input type="text" ng-model="unidad.economicoExt" class="form-control">
-      </div>
-      <label for="marca" class="control-label col-md-2">Placa: </label>
-      <div class="col-md-2">
-        <input type="text" ng-model="unidad.placa" class="form-control">
-      </div></br>
-    </div>
-    <label for="modelo" class="control-label
-    col-md-2">GPS: </label>
-    <div class="col-md-2">
-      <input type="text" ng-model="unidad.gps" class="form-control">
-    </div>
-    <label for="dirEntrega" class="control-label col-md-2">Dirección Entrega: </label>
-    <div class="col-md-4">
-     <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="3"></textarea>
-   </div>
-       <div class="row">
-        <br>
-      <button type="button" class="btn btn-primary btnGuardar" ng-click="Guardar()">
-      <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Guardar
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true">
+        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
       </button>
-   </div>
- </form>
+      <label for="permisoEsp" class="control-label col-md-1" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true">Permiso Especial: </label>
+       <div class="col-md-1 flecha" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true">
+         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+       </div>
+       <div class="col-md-2">
+        <input type="text" id="txtPermisoEsp" class="form-control" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true"/>
+      </div>
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true">
+        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="form-group">
+     <label for="placas" class="control-label col-md-1" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true">Placas: </label>
+       <div class="col-md-1 flecha" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true">
+         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+       </div>
+       <div class="col-md-2">
+        <input type="text" id="txtPlacas" class="form-control" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true"/>
+      </div>
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true">
+        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+      </button>
+      <label for="equipamiento" class="control-label col-sm-1" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">Equipamiento vehicular: </label>
+      <div class="col-md-1 flecha" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">
+         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+       </div>
+       <div class="col-md-2">
+        <input type="text" id="txtEqupamiento" class="form-control" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true"/>
+      </div>
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">
+        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+      <label for="tarjetaCir" class="control-label col-md-1" ng-hide="rolPermiso.TarjetaCirculacion == false" ng-show="rolPermiso.TarjetaCirculacion == true">Tarjeta de circulación: </label>
+      <div class="col-md-1 flecha" ng-hide="rolPermiso.TarjetaCirculacion == false" ng-show="rolPermiso.TarjetaCirculacion == true">
+         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+       </div>
+       <div class="col-md-2">
+        <input type="text" id="txtTarjetaCir" class="form-control" ng-hide="rolPermiso.TarjetaCirculacion == false" ng-show="rolPermiso.TarjetaCirculacion == true"/>
+      </div>
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.TarjetaCirculacion == false" ng-show="rolPermiso.TarjetaCirculacion == true">
+        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+      </button>
+     <label for="verificacion" class="control-label col-sm-1" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true">Verificación: </label>
+      <div class="col-md-1 flecha" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true">
+         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+       </div>
+       <div class="col-md-2">
+        <input type="text" id="txtVerificacion" class="form-control" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true"/>
+      </div>
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true">
+        <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+      </button>
+    </div>
+    </form>
+  </div>
 
-
-</div>
-
-<div id="doc" class="container-fluid"  
-ng-show="currentNode.idFase==2" ng-hide="currentNode.idFase!=2">
-<h4 align="center">Documentación <span class="label label-default">2</span></h4>
-<hr>
-<form class="form-horizontal">
- <div class="form-group">
-   <label for="factura" class="control-label
-   col-md-1">Factura: </label>
-   <div class="col-md-1 flecha">
-     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-   </div>
-   <div class="col-md-2">
-    <input type="text" id="txtFactura" class="form-control" />
+  <div is="entrega" class="container-fluid" ng-show="currentNode.idFase==3" ng-hide="currentNode.idFase!=3">
+    <h4 align="center">Entrega<span class="label label-default">3</span></h4>
+    <hr>
+    <form class="form-horizontal">
+     <div class="form-group row">
+       <label for="fecha" class="control-label col-md-1" ng-hide="rolPermiso.FechaEntrega == false" ng-show="rolPermiso.FechaEntrega == true">Fecha de entrega: </label>
+       <div class="col-md-2">
+        <input type="date" class="form-control" ng-hide="rolPermiso.FechaEntrega == false" ng-show="rolPermiso.FechaEntrega == true">
+      </div>
+      <label for="recibido" class="control-label col-md-1" ng-hide="rolPermiso.RecibidoPor == false" ng-show="rolPermiso.RecibidoPor == true">Recibido por: </label>
+      <div class="col-md-2">
+        <input type="text" id="txtRecibido" class="form-control" ng-hide="rolPermiso.RecibidoPor == false" ng-show="rolPermiso.RecibidoPor == true">
+      </div>      
+    </br>
+    </div>
+    <div class="form-group">
+        <label for="acuseR" class="control-label col-md-1" ng-hide="rolPermiso.AcuseRecibo == false" ng-show="rolPermiso.AcuseRecibo == true">Acuse de recibo: </label>
+        <div class="col-md-1 flecha" ng-hide="rolPermiso.AcuseRecibo == false" ng-show="rolPermiso.AcuseRecibo == true">
+           <span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>
+         </div>
+         <div class="col-md-2">
+          <input type="text" id="txtAcuseR" class="form-control" ng-hide="rolPermiso.AcuseRecibo == false" ng-show="rolPermiso.AcuseRecibo == true"/>
+        </div>
+        <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.AcuseRecibo == false" ng-show="rolPermiso.AcuseRecibo == true">
+          <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+        </button>
+        <label for="acuseE" class="control-label col-md-1" ng-hide="rolPermiso.AcuseEntrega == false" ng-show="rolPermiso.AcuseEntrega == true">Acuse de entrega: </label>
+        <div class="col-md-1 flecha" ng-hide="rolPermiso.AcuseEntrega == false" ng-show="rolPermiso.AcuseEntrega == true">
+           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+         </div>
+         <div class="col-md-2">
+          <input type="text" id="txtAcuseE" class="form-control" ng-hide="rolPermiso.AcuseEntrega == false" ng-show="rolPermiso.AcuseEntrega == true" />
+        </div>
+        <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.AcuseEntrega == false" ng-show="rolPermiso.AcuseEntrega == true">
+          <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+        </button>
+      </br>
+    </div>
+    <div class="row">
+         <div class="col-md-3" ng-hide="rolPermiso.FotoFrente == false" ng-show="rolPermiso.FotoFrente == true">
+          <label for="fotoFrente" class="control-label col-md-1"> Frente: </label>
+          <img src="image/car/auto_delantera.jpg" class="autoCuadro" ng-click="Cargar()">
+         </div>
+         <div class="col-md-3" ng-hide="rolPermiso.FotoCostadoDerecho == false" ng-show="rolPermiso.FotoCostadoDerecho == true">
+          <label for="fotoCostado1" class="control-label col-md-1"> Derecha: </label>
+          <img src="image/car/auto_derecha.jpg" class="autoRectangulo" ng-click="Cargar()">
+         </div>
+         <div class="col-md-3" ng-hide="rolPermiso.FotoCostadoIzq == false" ng-show="rolPermiso.FotoCostadoIzq == true">
+          <label for="fotoCostado2" class="control-label col-md-1"> Izquierda: </label>
+          <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" ng-click="Cargar()">
+         </div>
+        <div class="col-md-3" ng-hide="rolPermiso.FotoTrasera == false" ng-show="rolPermiso.FotoTrasera == true">
+          <label for="fotoTrasera" class="control-label col-md-1"> Trasera: </label>
+          <img src="image/car/auto_trasera.jpg" class="autoCuadro" ng-click="Cargar()">
+        </div>
+    </div>       
+    </form>
   </div>
-  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-  </button>
-  <label for="poliza" class="control-label col-md-1">Póliza de Seguros: </label>
-  <div class="col-md-1 flecha">
-     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-   </div>
-   <div class="col-md-2">
-    <input type="text" id="txtFactura" class="form-control" />
-  </div>
-  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-  </button>
-</div>
-<div class="form-group">
- <label for="placas" class="control-label
- col-md-1">Placas: </label>
-   <div class="col-md-1 flecha">
-     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-   </div>
-   <div class="col-md-2">
-    <input type="text" id="txtFactura" class="form-control" />
-  </div>
-  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-  </button>
-<label for="placas" class="control-label col-md-1">Permiso Especial: </label>
-  <div class="col-md-1 flecha">
-     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-   </div>
-   <div class="col-md-2">
-    <input type="text" id="txtFactura" class="form-control" />
-  </div>
-  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-  </button>
-</div>
-<div class="form-group">
- <label for="placas" class="control-label col-sm-1">Ficha Técnica: </label>
-  <div class="col-md-1 flecha">
-     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-   </div>
-   <div class="col-md-2">
-    <input type="text" id="txtFactura" class="form-control" />
-  </div>
-  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-  </button>
-<label for="placas" class="control-label col-sm-1">Manual de usuario: </label>
-  <div class="col-md-1 flecha">
-     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-   </div>
-   <div class="col-md-2">
-    <input type="text" id="txtFactura" class="form-control" />
-  </div>
-  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-  </button>
-</div>
-<div class="form-group">
- <label for="placas" class="control-label col-sm-1">Verificación: </label>
-  <div class="col-md-1 flecha">
-     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-   </div>
-   <div class="col-md-2">
-    <input type="text" id="txtFactura" class="form-control" />
-  </div>
-  <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-  </button>
-</div>
-</form>
-</div>
-
-<div is="entrega" class="container-fluid"  
-ng-show="currentNode.idFase==3" ng-hide="currentNode.idFase!=3">
-<h4 align="center">Entrega<span class="label label-default">3</span></h4>
-<hr>
-<form class="form-horizontal">
- <div class="form-group row">
-   <label for="fecha" class="control-label col-sm-1">Fecha: </label>
-   <div class="col-md-2">
-    <input type="date" class="form-control">
-  </div>
-  <label for="recibido" class="control-label col-sm-2">Recibido por: </label>
-  <div class="col-md-2">
-    <input type="text" id="txtRecibido" class="form-control">
-  </div>
-  <div class="col-md-2">
-   <label class="checkbox-inline"><input type="checkbox" value="">Acuse</label>
- </div>
-</br>
-</div>
-<br>
-<br>
-<div class="row">
- <div class="col-md-3">
-  <label for="fotoFrente" class="control-label col-sm-1"> Frente: </label>
-  <img src="image/car/auto_delantera.jpg" class="autoCuadro" ng-click="Cargar()">
-</div>
-<div class="col-md-3">
-  <label for="fotoCostado1" class="control-label col-sm-1"> Derecha: </label>
-  <img src="image/car/auto_derecha.jpg" class="autoRectangulo" ng-click="Cargar()">
-</div>
-<div class="col-md-3">
-  <label for="fotoCostado2" class="control-label col-sm-1"> Izquierda: </label>
-  <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" ng-click="Cargar()">
-</div>
-<div class="col-md-3">
-  <label for="fotoTrasera" class="control-label col-sm-1"> Trasera: </label>
-  <img src="image/car/auto_trasera.jpg" class="autoCuadro" ng-click="Cargar()">
-</div>
-</div>
-</form>
-</div>
-<br>
-<br>
 </section>
+
+<!--Modal Accesorios-->
+<div class="modal fade" tabindex="-1" id="viewAccesorio" ng-init="checkboxState = false">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <h4 class="modal-title">Accesorios</h4>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td>
+              <label for="gatoUni">Gato de unidad: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxGatoUni" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="tuercaUni">Llave de tuercas de unidad: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxLlaveTuerca" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <label for="maneral">Maneral de gato: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxManeral" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <label for="refaccion">Llanta de refacción: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxRefaccion" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <label for="tapAlfombra">Tapetes de alfombra: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxTapAlfombra" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <label for="tapPlastico">Tapetes plástico: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxTapPlastico" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <label for="triSeguridad">Triángulos de seguridad: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxTriSeguridad" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <label for="birlo">Tuerca y/o birlo de seguridad: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxBirlo" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="cable">Cables pasa corriente: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxCable" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="extintor">Extintor: </label>
+            </td>
+            <td>
+              <input type="checkbox" name="cbxExtintor" class="form-control" data-on-text="Si" data-off-text="No">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="otroAccesorio">Otro Accesorio: </label>
+            </td>
+            <td>
+              <input id="cbxOtroAcc" type="checkbox" name="cbxOtro" class="BSswitch" data-on-text="Si" data-off-text="No">              
+              <input type="text" id="txtOtroAcc" ng-hide="checkboxState == false" ng-show="checkboxState == true">                                
+            </td>
+          </tr>            
+        </table>        
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" id="btnCancelarAcc" ng-click="ocultarAccesorio()">Cancelar</button>              
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->  
+
 
 <script type="text/javascript">
 function nodisponible() {

@@ -38,4 +38,4 @@ registrationModule.directive('resize', function ($window) {
 		});  
         changeHeight(); // when page loads          
 	}
-})
+});
