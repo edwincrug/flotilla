@@ -253,4 +253,21 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $('#cbxOtroAcc').on('switchChange.bootstrapSwitch', function (){ 
         $scope.checkboxState  = $("[name='cbxOtro']").bootstrapSwitch('state');                
     });
+
+    $scope.FinishUpload = function(name){
+        alertFactory.success('Cool ' + name);
+        var doc = $rootScope.currentUpload;
+    };
+
+    $scope.Guardar = function(idDocumento, valor){
+        unidadRepository.saveData($scope.unidadHeader.vin,idDocumento,valor)
+            .success(getSaveSuccessCallback)
+            .error(errorCallBack);
+    }
+
+    //Success al hacer update 
+    var getSaveSuccessCallback = function (data, status, headers, config) {
+        alertFactory.success('Datos de la unidad guardados.');
+    };
+
 });
