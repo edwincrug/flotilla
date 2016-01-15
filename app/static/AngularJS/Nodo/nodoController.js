@@ -310,7 +310,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;
         alertFactory.success('Imágen Guardada.');
-
+    }
+    
     $scope.Regresar = function(campo) {
         location.href='/busqueda';
     };
