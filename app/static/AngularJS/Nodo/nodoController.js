@@ -1,4 +1,4 @@
-registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository,rolPermisoRepository, documentoRepository) {
+registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository, documentoRepository) {
 
     //Propiedades
     $scope.isLoading = false;
@@ -28,7 +28,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
 
-        rolPermisoRepository.getRolPermiso($scope.empleado.idRol)
+        nodoRepository.getRolPermiso($scope.empleado.idRol, $scope.unidadHeader.vin)
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack);        
     };
@@ -82,11 +82,11 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };*/
 
     //Muestra los nodos del perfil
-    $scope.mostrarNodos = function(idRol){
+    /*$scope.mostrarNodos = function(idRol){
         nodoRepository.getFasePermiso($scope.idRol)
                 .success(obtieneNodosSuccessCallback)
                 .error(errorCallBack);
-    }
+    }*/
     //Abre una orden padre o hijo
     $scope.VerOrdenPadre = function(exp){
         location.href = '/?id=' + exp.folioPadre + '&employee=1';
@@ -207,9 +207,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $scope.isLoading = true;
             Apply();
             //Consulta el repositorio
-            nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
+            /*nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
                 .success(getDocumentosSuccessCallback)
-                .error(errorCallBack);
+                .error(errorCallBack);*/
         //}
         //else
             //alertFactory.warning('El nodo ' + $scope.currentNode.idFase + ' aún no se activa para el expediente actual. No existen documentos para mostrar.')
@@ -276,24 +276,18 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     
     //insert o actualizar el documento
-    $scope.Guardar = function(idDocumento, valor){
-        if($scope.unidadHeader.vin != null && idDocumento != null &&  valor != ''){
-
-            //busca si existe o no el documento
-            unidadRepository.getExisteDocumento($scope.unidadHeader.vin,idDocumento)
-            .success(getExisteDocumentoSuccessCallback)
-            .error(errorCallBack); 
-
-            if($scope.existeDocumento.Existe == 1){
-                unidadRepository.insertDocumento($scope.unidadHeader.vin,idDocumento,valor)
+    $scope.Guardar = function(idDocumento,valor){
+        if(idDocumento != null &&  valor != ''){                        
+            if(idDocumento != ''){
+                unidadRepository.insertDocumento($scope.unidadHeader.vin, idDocumento, valor, $scope.empleado.idUsuario)
                 .success(getSaveSuccessCallback)
                 .error(errorCallBack);
             }
             else{
-                unidadRepository.updateDocumento($scope.unidadHeader.vin,idDocumento,valor)
+                unidadRepository.updateDocumento($scope.unidadHeader.vin, idDocumento, valor, $scope.empleado.idUsuario)
                 .success(getSaveSuccessCallback)
                 .error(errorCallBack);
-            } 
+            }                                                    
         }        
     }
 

@@ -1,9 +1,9 @@
-var rolPermisoUrl = global_settings.urlCORS + '/api/rolpermisoapi/';
+var rolPermisoUrl = global_settings.urlCORS + '/api/nodoapi/';
 
 registrationModule.factory('rolPermisoRepository', function ($http) {
     return {
-        getRolPermiso: function (idRol) {
-            return $http.get(rolPermisoUrl + '1|' + idRol);
+        getRolPermiso: function (idRol, vin) {
+            return $http.get(rolPermisoUrl + '1|' + idRol + '|' + vin);
         }        
     };
 });
