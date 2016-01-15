@@ -30,7 +30,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'))
             .success(obtieneRolPermisoSuccesCallback)
-            .error(errorCallBack);        
+            .error(errorCallBack);   
+
+        $('#placa').hide();   
     };
 
     /////////////////////
@@ -309,11 +311,30 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //Success de actualizacion de imagen
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;
-        $('#fotoFrente').attr("src",data);
+        var resu = str.substring(str.length-3, str.length)
+        if(resu = 'png')
+        {
+            $('#fotoFrente').attr("src",data);    
+        } 
+        else
+        {
+            $('#placa').show();    
+        }
+        
         alertFactory.success('Imágen Guardada.');
     }
 
     $scope.Regresar = function(campo) {
         location.href='/busqueda';
     };
+
+    //Success de actualizacion de imagen
+    var getSavePdfSuccessCallback = function (data, status, headers, config) {
+        $scope.rutaNueva = data;
+        alertFactory.success('Archivo Guardado.');
+    }
+
+    $scope.verDocumento = function(){
+        
+    }
 });

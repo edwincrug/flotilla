@@ -203,8 +203,11 @@
        <div class="col-md-2">
         <input type="text" id="txtPlacas" class="form-control" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true"/>
       </div>
-      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true">
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true" id="buttonPlacas">
         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" id="placa">
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
       </button>
       <label for="equipamiento" class="control-label col-sm-1" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">Equipamiento vehicular: </label>
       <div class="col-md-1 flecha" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">
