@@ -322,7 +322,8 @@
     <div class="row">
          <div class="col-md-3" ng-hide="rolPermiso.FotoFrente == false" ng-show="rolPermiso.FotoFrente == true">
           <label for="fotoFrente" class="control-label col-md-1"> Frente: </label>
-          <img src="image/car/auto_delantera.jpg" class="autoCuadro" ng-click="Cargar()">
+          <img src="image/car/auto_delantera.jpg" ng-src="{{rutaNueva}}" class="autoCuadro" 
+               ng-click="Cargar()">
          </div>
          <div class="col-md-3" ng-hide="rolPermiso.FotoCostadoDerecho == false" ng-show="rolPermiso.FotoCostadoDerecho == true">
           <label for="fotoCostado1" class="control-label col-md-1"> Derecha: </label>

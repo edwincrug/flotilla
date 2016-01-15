@@ -39,6 +39,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     var obtieneHeaderSuccessCallback = function (data, status, headers, config) {
        $scope.unidadHeader = data;
+       $scope.valVin = $scope.unidadHeader.vin;
+       //Obtengo los datos del empleado logueado
+       localStorageService.set('vin', $scope.valVin);
+       
        $scope.currentPage = $scope.unidadHeader.faseActual;
       
        //Obtengo la lista de fases
@@ -265,12 +269,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     });
 
     $scope.FinishUpload = function(name){
-        alertFactory.success('Imagen ' + name + ' Cargada');
+        alertFactory.success('Imagen ' + name + ' guardada');
         var doc = $rootScope.currentUpload;
-        $scope.vinMio = '1G1YY25R695700001'
+        
         //Se guarda el archivo en el servidor
-        documentoRepository.saveFile($scope.vinMio,40)
-            .success(getSaveSuccessCallback)
+        documentoRepository.saveFile(localStorageService.get('vin'),40, name)
+            .success(getSaveFileSuccessCallback)
             .error(errorCallBack);
     };
 
@@ -308,4 +312,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         alertFactory.success('Datos de la unidad guardados.');
     };
 
+    //Success de actualizacion de imagen
+    var getSaveFileSuccessCallback = function (data, status, headers, config) {
+        $scope.rutaNueva = data;
+        alertFactory.success('Imágen Guardada.');
+    };
 });
