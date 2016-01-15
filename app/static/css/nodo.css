@@ -331,3 +331,12 @@
 
 #btnRegresar {
   color: #003571; }
+
+.ready {
+  color: green; }
+
+.loader {
+  width: 50px; }
+
+.gifLoader {
+  width: 50px; }
