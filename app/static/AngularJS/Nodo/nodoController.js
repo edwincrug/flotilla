@@ -239,6 +239,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
      $scope.ocultarAccesorio = function(){
         $('#viewAccesorio').modal('hide');
     };
+
+     $('[data-toggle="popover"]').popover();
     
     //animación de switches
     $("[name='cbxGatoUni']").bootstrapSwitch();
