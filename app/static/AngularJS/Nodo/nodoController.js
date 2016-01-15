@@ -311,7 +311,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $scope.rutaNueva = data;
         alertFactory.success('Imágen Guardada.');
 
-    $scope.Regresar = function() {
+    $scope.Regresar = function(campo) {
         location.href='/busqueda';
     };
 });

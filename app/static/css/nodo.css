@@ -333,10 +333,15 @@
   color: #003571; }
 
 .ready {
-  color: green; }
+  color: green;
+  font-size: 22px; }
 
 .loader {
-  width: 50px; }
+  width: 50px;
+  position: absolute;
+  right: 0;
+  margin-right: -38px;
+  margin-top: -32px; }
 
 .gifLoader {
-  width: 50px; }
+  width: 30px; }
