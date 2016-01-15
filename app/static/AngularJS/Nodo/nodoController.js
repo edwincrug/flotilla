@@ -275,35 +275,35 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     
-
+    //insert o actualizar el documento
     $scope.Guardar = function(idDocumento, valor){
-        unidadRepository.getExisteDocumento($scope.unidadHeader.vin,idDocumento)
-          .success(getExisteDocumentoSuccessCallback)
-          .error(errorCallBack);  
-        if($scope.existeDocumento.Existe == 1){
-            unidadRepository.insertDocumento($scope.unidadHeader.vin,idDocumento,valor)
-            .success(getSaveSuccessCallback)
-            .error(errorCallBack);
-        }
-        else{
-            unidadRepository.updateDocumento($scope.unidadHeader.vin,idDocumento,valor)
+        if($scope.unidadHeader.vin != null && idDocumento != null &&  valor != ''){
+
+            //busca si existe o no el documento
+            unidadRepository.getExisteDocumento($scope.unidadHeader.vin,idDocumento)
             .success(getExisteDocumentoSuccessCallback)
-            .error(errorCallBack);
-        }
-        
+            .error(errorCallBack); 
+
+            if($scope.existeDocumento.Existe == 1){
+                unidadRepository.insertDocumento($scope.unidadHeader.vin,idDocumento,valor)
+                .success(getSaveSuccessCallback)
+                .error(errorCallBack);
+            }
+            else{
+                unidadRepository.updateDocumento($scope.unidadHeader.vin,idDocumento,valor)
+                .success(getSaveSuccessCallback)
+                .error(errorCallBack);
+            } 
+        }        
     }
 
-<<<<<<< HEAD
-    //Success al hacer update 
+    //success para validar si existe el documento
     var getExisteDocumentoSuccessCallback = function (data, status, headers, config) {
         $scope.existeDocumento = data;
         alertFactory.success('Datos de unidad propiedad cargados.');
     };
 
-    //Success al hacer update 
-=======
-    //Success al hacer update
->>>>>>> a6339a77fefe72d8a251668f9ce2ab0549f57d49
+    //success de insercción y actualización
     var getSaveSuccessCallback = function (data, status, headers, config) {
         alertFactory.success('Datos de la unidad guardados.');
     };
