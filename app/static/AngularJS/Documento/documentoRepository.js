@@ -7,7 +7,7 @@ registrationModule.factory('documentoRepository', function ($http) {
         	return $http({
                 url: documentoUrl,
                 method: "POST",
-                params: { id: '1|' + vin + '|' + idDocumento + '|' + ruta + name }
+                params: { id: '1|' + vin + '|' + idDocumento + '|' + ruta + '/' + name }
             });
         }
     };
