@@ -302,4 +302,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         alertFactory.success('Datos de la unidad guardados.');
     };
 
+
+
+    $scope.Regresar = function() {
+        location.href='/busqueda';
+
+    };
 });
