@@ -309,9 +309,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //Success de actualizacion de imagen
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;
+        $('#fotoFrente').attr("src",data);
         alertFactory.success('Imágen Guardada.');
     }
-    
+
     $scope.Regresar = function(campo) {
         location.href='/busqueda';
     };
