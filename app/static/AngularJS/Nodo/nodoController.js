@@ -1,4 +1,4 @@
-registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository,rolPermisoRepository) {
+registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository,rolPermisoRepository, documentoRepository) {
 
     //Propiedades
     $scope.isLoading = false;
@@ -265,8 +265,13 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     });
 
     $scope.FinishUpload = function(name){
-        alertFactory.success('Cool ' + name);
+        alertFactory.success('Imagen ' + name + ' Cargada');
         var doc = $rootScope.currentUpload;
+        $scope.vinMio = '1G1YY25R695700001'
+        //Se guarda el archivo en el servidor
+        documentoRepository.saveFile($scope.vinMio,40)
+            .success(getSaveSuccessCallback)
+            .error(errorCallBack);
     };
 
     
@@ -288,6 +293,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         
     }
 
+<<<<<<< HEAD
     //Success al hacer update 
     var getExisteDocumentoSuccessCallback = function (data, status, headers, config) {
         $scope.existeDocumento = data;
@@ -295,6 +301,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     //Success al hacer update 
+=======
+    //Success al hacer update
+>>>>>>> a6339a77fefe72d8a251668f9ce2ab0549f57d49
     var getSaveSuccessCallback = function (data, status, headers, config) {
         alertFactory.success('Datos de la unidad guardados.');
     };
