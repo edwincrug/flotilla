@@ -170,7 +170,7 @@
         </div>
         <label for="marca" class="control-label col-md-1" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">Placa: </label>
         <div class="col-md-2">
-          <input type="text" ng-model="unidad.placa" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
+          <input type="text" ng-model="unidad.placa" class="form-control" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
         </div></br>
       </div>
       <div class="form-group">
@@ -180,14 +180,17 @@
         </div>
         <label for="dirEntrega" class="control-label col-md-1" ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true">Dirección Entrega: </label>
         <div class="col-md-5">
-         <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="4" ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true"></textarea>
+         <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="3" ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true"></textarea>
         </div>
-      </div>    
-      <div class="form-group" style="margin-left:140px">                             
-        <div class="col-md-1">        
-          <button type="button" class="btn btn-primary btnAccesorio" ng-click="mostrarAccesorio()">Accesorios</button>      
-        </div>         
-      </div>      
+      </div> 
+      <div class="form-group">
+        <label for="marca" class="control-label col-md-2" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">Accesorios: </label>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="mostrarAccesorio()" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
+           <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+        </button>  
+        </div>        
+      </div> 
    </form>
   </div>
 
@@ -339,7 +342,7 @@
 </section>
 
 <!--Modal Accesorios-->
-<div class="modal fade" tabindex="-1" id="viewAccesorio" ng-init="checkboxState = false">
+<div class="modal fade" tabindex="-1" id="viewAccesorio">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">        
@@ -432,11 +435,14 @@
               <label for="otroAccesorio">Otro Accesorio: </label>
             </td>
             <td>
-              <input id="cbxOtroAcc" type="checkbox" name="cbxOtro" class="BSswitch" data-on-text="Si" data-off-text="No">              
-              <input type="text" id="txtOtroAcc" ng-hide="checkboxState == false" ng-show="checkboxState == true">                                
-            </td>
-          </tr>            
-        </table>        
+              <input id="cbxOtroAcc" type="checkbox" name="cbxOtro" data-on-text="Si" data-off-text="No">
+            </td>            
+          </tr>          
+        </table>
+        </br>
+        <div>
+          <textarea id="txtOtroAcc" class="form-control" rows="2"></textarea> 
+        </div>              
       </div>
       <div class="modal-footer">
         <button class="btn btn-default" type="button" id="btnCancelarAcc" ng-click="ocultarAccesorio()">Cancelar</button>              

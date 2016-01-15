@@ -17,11 +17,15 @@ registrationModule.factory('unidadRepository', function ($http) {
         insertUnidad: function(unidad){
             return $http.post(unidadUrl, unidad);
         },
-        insertData: function (vin, idDocumento , valor) {
+        insertDocumento: function (vin, idDocumento , valor) {
             return $http.post(unidadUrl + '1|' + vin + '|'+ idDocumento + '|' + valor);
         },
-        updateData: function (vin, idDocumento , valor) {
+        updateDocumento: function (vin, idDocumento , valor) {
             return $http.post(unidadUrl + '2|' + vin + '|'+ idDocumento + '|' + valor);
+        },
+        getExisteDocumento: function (vin, idDocumento){
+            return $http.get(unidadUrl + '3|' + vin + '|' +idDocumento);
         }
+
     };
 });

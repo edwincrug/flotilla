@@ -246,12 +246,22 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $("[name='cbxTriSeguridad']").bootstrapSwitch();
     $("[name='cbxBirlo']").bootstrapSwitch();
     $("[name='cbxCable']").bootstrapSwitch();
-    $("[name='cbxExtintor']").bootstrapSwitch();
-    //$("[id='switch-state']").bootstrapSwitch();
+    $("[name='cbxExtintor']").bootstrapSwitch();    
     $("[name='cbxOtro']").bootstrapSwitch();
     
-    $('#cbxOtroAcc').on('switchChange.bootstrapSwitch', function (){ 
-        $scope.checkboxState  = $("[name='cbxOtro']").bootstrapSwitch('state');                
+    
+    $('#txtOtroAcc').hide($('#cbxOtroAcc').bootstrapSwitch('state'));
+    $('#cbxOtroAcc').on('switchChange.bootstrapSwitch', function (event, state){ 
+        if(state == true){
+            $('#txtOtroAcc').show(1000,function(){
+                $('#cbxOtroAcc').bootstrapSwitch('state');
+            });
+        }
+        else{
+            $('#txtOtroAcc').hide(1000,function(){
+                $('#cbxOtroAcc').bootstrapSwitch('state');
+            });
+        }                      
     });
 
     $scope.FinishUpload = function(name){
@@ -259,11 +269,30 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         var doc = $rootScope.currentUpload;
     };
 
+    
+
     $scope.Guardar = function(idDocumento, valor){
-        unidadRepository.saveData($scope.unidadHeader.vin,idDocumento,valor)
+        unidadRepository.getExisteDocumento($scope.unidadHeader.vin,idDocumento)
+          .success(getExisteDocumentoSuccessCallback)
+          .error(errorCallBack);  
+        if($scope.existeDocumento.Existe == 1){
+            unidadRepository.insertDocumento($scope.unidadHeader.vin,idDocumento,valor)
             .success(getSaveSuccessCallback)
             .error(errorCallBack);
+        }
+        else{
+            unidadRepository.updateDocumento($scope.unidadHeader.vin,idDocumento,valor)
+            .success(getExisteDocumentoSuccessCallback)
+            .error(errorCallBack);
+        }
+        
     }
+
+    //Success al hacer update 
+    var getExisteDocumentoSuccessCallback = function (data, status, headers, config) {
+        $scope.existeDocumento = data;
+        alertFactory.success('Datos de unidad propiedad cargados.');
+    };
 
     //Success al hacer update 
     var getSaveSuccessCallback = function (data, status, headers, config) {
