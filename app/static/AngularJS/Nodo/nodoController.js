@@ -28,7 +28,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
 
-        nodoRepository.getRolPermiso($scope.empleado.idRol, $scope.unidadHeader.vin)
+        nodoRepository.getRolPermiso($scope.empleado.idRol, '1G1YY25R695700001')
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack);        
     };
@@ -207,9 +207,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $scope.isLoading = true;
             Apply();
             //Consulta el repositorio
-            /*nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
+            nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
                 .success(getDocumentosSuccessCallback)
-                .error(errorCallBack);*/
+                .error(errorCallBack);
         //}
         //else
             //alertFactory.warning('El nodo ' + $scope.currentNode.idFase + ' aún no se activa para el expediente actual. No existen documentos para mostrar.')
