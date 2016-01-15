@@ -1,4 +1,4 @@
-registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository,rolPermisoRepository, documentoRepository) {
+registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository, documentoRepository) {
 
     //Propiedades
     $scope.isLoading = false;
@@ -28,7 +28,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
 
-        rolPermisoRepository.getRolPermiso($scope.empleado.idRol)
+        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'))
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack);        
     };
@@ -86,11 +86,11 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };*/
 
     //Muestra los nodos del perfil
-    $scope.mostrarNodos = function(idRol){
+    /*$scope.mostrarNodos = function(idRol){
         nodoRepository.getFasePermiso($scope.idRol)
                 .success(obtieneNodosSuccessCallback)
                 .error(errorCallBack);
-    }
+    }*/
     //Abre una orden padre o hijo
     $scope.VerOrdenPadre = function(exp){
         location.href = '/?id=' + exp.folioPadre + '&employee=1';
@@ -280,24 +280,18 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     
     //insert o actualizar el documento
-    $scope.Guardar = function(idDocumento, valor){
-        if($scope.unidadHeader.vin != null && idDocumento != null &&  valor != ''){
-
-            //busca si existe o no el documento
-            unidadRepository.getExisteDocumento($scope.unidadHeader.vin,idDocumento)
-            .success(getExisteDocumentoSuccessCallback)
-            .error(errorCallBack); 
-
-            if($scope.existeDocumento.Existe == 1){
-                unidadRepository.insertDocumento($scope.unidadHeader.vin,idDocumento,valor)
+    $scope.Guardar = function(idDocumento,valor){
+        if(idDocumento != null &&  valor != ''){                        
+            if(idDocumento != ''){
+                unidadRepository.insertDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
                 .success(getSaveSuccessCallback)
                 .error(errorCallBack);
             }
             else{
-                unidadRepository.updateDocumento($scope.unidadHeader.vin,idDocumento,valor)
+                unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
                 .success(getSaveSuccessCallback)
                 .error(errorCallBack);
-            } 
+            }                                                    
         }        
     }
 
@@ -316,5 +310,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;
         alertFactory.success('Imágen Guardada.');
+
+    $scope.Regresar = function() {
+        location.href='/busqueda';
     };
 });
