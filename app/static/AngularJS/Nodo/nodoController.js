@@ -314,7 +314,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;
         var resu = str.substring(str.length-3, str.length)
-        if(resu = 'png')
+        if(resu == 'png')
         {
             $('#fotoFrente').attr("src",data);    
         } 
@@ -337,6 +337,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }
 
     $scope.verDocumento = function(){
-        
+        window.open("http://www.w3schools.com");
     }
 });
