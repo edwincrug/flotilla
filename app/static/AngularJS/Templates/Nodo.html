@@ -123,8 +123,8 @@
           <input type="text" class="form-control" ng-hide="rolPermiso.EconomicoInt == false" ng-show="rolPermiso.EconomicoInt == true" >
        
           <div class="loader">
-            <div id="loading7"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-            <div id="ready7"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
+           <!--  <div id="loading7"><img src="image/gif/arrows.gif" class="gifLoader"></div> -->
+            <div id="ready7"> <a data-placement="right" data-toggle="popover" title="Última modificación" data-content="{{   }}"> <span class="glyphicon glyphicon-ok ready" aria-hidden="true" ></span></a></div>
           </div>
         </div>
         <label for="numEconomico2" class="control-label col-md-1" ng-hide="rolPermiso.EconomicoExt == false" ng-show="rolPermiso.EconomicoExt == true"> #Econ Ext: </label>
