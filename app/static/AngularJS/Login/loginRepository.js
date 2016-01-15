@@ -4,7 +4,7 @@ registrationModule.factory('loginRepository', function ($http) {
     return {
         add: function (rol, nombre, email, password) {
             // return $http.post(loginUrl + '1|' + rol + '|' + nombre + '|' + email + '|' + password);
-        	return $http({
+            return $http({
                 url: loginUrl,
                 method: "POST",
                 params: { id: '1|' + rol + '|' + nombre + '|' + email + '|' + password }
