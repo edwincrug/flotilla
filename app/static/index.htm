@@ -67,7 +67,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown" id="mnuAvatar">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="blanco"> {{ empleado.nombreCompleto }} </span>  
+              <span class="blanco"> {{ empleado.nombreCompleto + ' - ' +  empleado.rol }} </span>  
               <img src="image/profile/man.jpg" id="avatar">
               <span class="caret blanco"></span>
             </a>
@@ -168,6 +168,7 @@ function getName(){
 <script src="AngularJS/Activacion/activacionController.js"></script>
 <script src="AngularJS/Busqueda/busquedaController.js"></script>
 <script src="AngularJS/Busqueda/busquedaRepository.js"></script>
+<script src="AngularJS/Documento/documentoRepository.js"></script>
 
 <!--Sidebars-->
 <script src="js/sidebar/classie.js"></script>

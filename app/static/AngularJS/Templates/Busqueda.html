@@ -40,14 +40,15 @@
                     <td>{{ unidad.factura }}</td>
                     <td>{{ unidad.descripcion }}</td>  
                     <td>{{ unidad.estatus }} </td> 
-                    <td> {{ unidad.subidos }}/{{ unidad.total }} <!-- - {{ unidad.progreso }}% -->
+                    <td>  <!-- - {{ unidad.progreso }}% -->
                     <div class="progress progress-striped active">
                       <div class="progress-bar" role="progressbar" 
                           aria-valuemin="0" aria-valuemax="100"
                            style="width: {{ unidad.progreso }}%">
-                           {{ unidad.progreso }}%
+                          {{ unidad.subidos }}/{{ unidad.total }} - {{ unidad.progreso }}%
                       </div>                      
-                    </div>                   
+                    </div> 
+
                     </td>
                     <td>
                       <button class="btn btn-primary" type="button" id="btnEnviar">
