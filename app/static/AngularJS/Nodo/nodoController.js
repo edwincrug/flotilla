@@ -339,4 +339,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.verDocumento = function(){
         window.open("http://www.w3schools.com");
     }
+
+    $scope.verFactura = function() {
+        window.open('http://192.168.20.9/Documentos/factura.pdf');
+    }
 });
