@@ -30,7 +30,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'))
             .success(obtieneRolPermisoSuccesCallback)
-            .error(errorCallBack);        
+            .error(errorCallBack);   
+
+        $('#placa').hide();   
     };
 
     /////////////////////
@@ -239,6 +241,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
      $scope.ocultarAccesorio = function(){
         $('#viewAccesorio').modal('hide');
     };
+
+     $('[data-toggle="popover"]').popover();
     
     //animación de switches
     $("[name='cbxGatoUni']").bootstrapSwitch();
@@ -308,11 +312,36 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //Success de actualizacion de imagen
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
-        $scope.rutaNueva = data;
+        $scope.rutaNueva = data;        
+        var resu = $scope.rutaNueva.substring($scope.rutaNueva.length-3, $scope.rutaNueva.length)
+        if(resu == 'png')
+        {
+            $('#fotoFrente').attr("src",data);    
+        } 
+        else
+        {
+            $('#placaDoc').show();  
+            $('#poliza').show();     
+        }
+        
         alertFactory.success('Imágen Guardada.');
     }
-    
+
     $scope.Regresar = function(campo) {
         location.href='/busqueda';
     };
+
+    //Success de actualizacion de imagen
+    var getSavePdfSuccessCallback = function (data, status, headers, config) {
+        $scope.rutaNueva = data;
+        alertFactory.success('Archivo Guardado.');
+    }
+
+    $scope.verDocumento = function(){
+        window.open("http://www.w3schools.com");
+    }
+
+    $scope.verFactura = function() {
+        window.open('http://192.168.20.9/Documentos/factura.pdf');
+    }
 });
