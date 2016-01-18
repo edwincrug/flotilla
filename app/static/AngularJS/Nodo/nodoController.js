@@ -34,7 +34,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack);   
 
-        $('#placa').hide();   
+        $('#placaDoc').hide();   
     };
 
     /////////////////////
@@ -327,7 +327,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         } 
         else
         {
-           $scope.ocultarDocumento = false;  
+           $('#placaDoc').show();  
         }
         
         alertFactory.success('Imágen Guardada.');
@@ -344,7 +344,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }
 
     $scope.verDocumento = function(){
-        window.open("http://www.w3schools.com");
+        window.open($scope.rutaNueva);
     }
 
     $scope.verFactura = function() {
