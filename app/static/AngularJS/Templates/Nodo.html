@@ -202,47 +202,57 @@
     <form class="form-horizontal">
      <div class="form-group">
         <label for="factura" class="control-label col-md-2" ng-hide="rolPermiso.Factura == false" ng-show="rolPermiso.Factura == true">Factura: </label>
-        <button type="button" class="btn btn-default col-md-1" ng-click="verFactura()" >
+        <div class="col-md-1">
+        <button type="button" class="btn btn-default" ng-click="verFactura()" >
           <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
         </button>
+        </div>
      </div>
      <div class="form-group">     
       <label for="poliza" class="control-label col-md-2" ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true">Póliza de Seguros: </label>
        <div class="col-md-3">
         <input type="text" id="txtPolizaSeg" class="form-control"  ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true"/>
       </div>
-      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true">
+       <div class="col-md-1">
+      <button type="button" class="btn btn-default" ng-click="Cargar()" ng-hide="rolPermiso.PolizaSeguros == false" ng-show="rolPermiso.PolizaSeguros == true">
         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
       </button>
+      </div>
       <label for="permisoEsp" class="control-label col-md-2" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true">Permiso Especial: </label>
        <div class="col-md-3">
         <input type="text" id="txtPermisoEsp" class="form-control" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true"/>
       </div>
-      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true">
+      <div class="col-md-1">
+      <button type="button" class="btn btn-default" ng-click="Cargar()" ng-hide="rolPermiso.PermisoEspecial == false" ng-show="rolPermiso.PermisoEspecial == true">
         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
       </button>
+      </div>
     </div>
     <div class="form-group">
      <label for="placas" class="control-label col-md-2" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true">Placas: </label>
        <div class="col-md-3">
         <input type="text" id="txtPlacas" class="form-control" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true"/>
       </div>
-      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true" id="buttonPlacas">
+      <div class="col-md-1">
+        <button type="button" class="btn btn-default " ng-click="Cargar()" ng-hide="rolPermiso.PlacaFoto == false" ng-show="rolPermiso.PlacaFoto == true" id="buttonPlacas">
         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="btn btn-default col-md-1" ng-click="verDocumento()" id="placaDoc"> 
+       </button>
+        <button type="button" class="btn btn-default" ng-click="verDocumento()" id="placaDoc"> 
         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-      </button>
+        </button>
+      </div>
       <label for="equipamiento" class="control-label col-sm-2" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">Equipamiento vehicular: </label>
        <div class="col-md-3">
         <input type="text" id="txtEqupamiento" class="form-control" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true"/>
       </div>
-      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">
+      <div class="col-md-1">
+      <button type="button" class="btn btn-default" ng-click="Cargar()" ng-hide="rolPermiso.EquipamientoVehicular == false" ng-show="rolPermiso.EquipamientoVehicular == true">
         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
       </button>
       <button type="button" class="btn btn-default col-md-1" ng-click="verDocumento()" id="equipamientoDoc" ng-hide="true"> 
         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
       </button>
+      </div>
     </div>
     <div class="form-group">
     </div>
@@ -251,16 +261,20 @@
        <div class="col-md-3">
         <input type="text" id="txtTarjetaCir" class="form-control" ng-hide="rolPermiso.TarjetaCirculacion == false" ng-show="rolPermiso.TarjetaCirculacion == true"/>
       </div>
-      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.TarjetaCirculacion == false" ng-show="rolPermiso.TarjetaCirculacion == true">
+      <div class="col-md-1">
+      <button type="button" class="btn btn-default" ng-click="Cargar()" ng-hide="rolPermiso.TarjetaCirculacion == false" ng-show="rolPermiso.TarjetaCirculacion == true">
         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
       </button>
+      </div>
      <label for="verificacion" class="control-label col-sm-2" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true">Verificación: </label>
        <div class="col-md-3">
         <input type="text" id="txtVerificacion" class="form-control" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true"/>
       </div>
-      <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true">
+      <div class="col-md-1">
+      <button type="button" class="btn btn-default" ng-click="Cargar()" ng-hide="rolPermiso.Verificacion == false" ng-show="rolPermiso.Verificacion == true">
         <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
       </button>
+      </div>
     </div>
     </form>
   </div>

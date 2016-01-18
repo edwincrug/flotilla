@@ -51,7 +51,7 @@ registrationModule.controller("loginController", function ($scope, $rootScope, l
             alertFactory.success('Bienvenido ' + $scope.empleado.nombreCompleto );
             setTimeout(function(){
                 location.href = '/busqueda';
-            }, 3000);
+            }, 500);
         }
         else{
             alertFactory.warning('Usuario y/o password incorrecto.');
