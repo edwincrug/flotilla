@@ -159,7 +159,7 @@
         <div ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">
           <label for="modelo" class="control-label col-md-2" ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">GPS: </label>
           <div class="col-md-2">
-            <input type="text" ng-model="rolPermiso.ValGPS" class="form-control" ng-blur="Guardar(rolPermiso.IdGPS, rolPermiso.ValEconomicoInt,4)">
+            <input type="text" ng-model="rolPermiso.ValGPS" class="form-control" ng-blur="Guardar(rolPermiso.IdGPS, rolPermiso.ValGPS,4)">
             <div class="loader">
               <div class="showCtrl" id="loader4"><img src="image/gif/arrows.gif" class="gifLoader"></div>
               <div id="ready4"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
@@ -170,12 +170,12 @@
         <div ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true">
           <label for="dirEntrega" class="control-label col-md-1">Dirección Entrega: </label>
           <div class="col-md-5">
-           <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="3" ng-blur="Guardar(rolPermiso.IdEconomicoInt, rolPermiso.ValEconomicoInt,5)"></textarea>
-          </div>
-          <div class="loader">
+           <textarea class="form-control" ng-model="rolPermiso.ValDomicilioEntrega" rows="3" ng-blur="Guardar(rolPermiso.IdDomicilioEntrega, rolPermiso.ValDomicilioEntrega,5)"></textarea>
+           <div class="loader">
             <div class="showCtrl" id="loader5"><img src="image/gif/arrows.gif" class="gifLoader"></div>
             <div id="ready5"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
           </div>
+          </div>          
         </div>        
       </div> 
 
