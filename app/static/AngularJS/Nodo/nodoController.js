@@ -34,7 +34,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack);   
 
-        $('#placaDoc').hide();   
+        $('#placaDoc').hide(); 
+        $('[data-toggle="popover"]').popover()  
     };
 
     /////////////////////

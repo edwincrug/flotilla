@@ -333,8 +333,9 @@
   color: #003571; }
 
 .ready {
-  color: green;
-  font-size: 22px; }
+  color: rgba(0, 53, 113, 0.62);
+  font-size: 22px; 
+  cursor: pointer;}
 
 .loader {
   width: 50px;
