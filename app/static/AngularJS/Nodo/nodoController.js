@@ -285,20 +285,23 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     
+    $('.showCtrl').hide();  
+    var Control = 0;   
     //insert o actualizar el documento
-    $scope.Guardar = function(idDocumento,valor){
-        if(idDocumento != null &&  valor != ''){                        
-            if(idDocumento != ''){
-                unidadRepository.insertDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
-                .success(getSaveSuccessCallback)
-                .error(errorCallBack);
-            }
-            else{
-                unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
-                .success(getSaveSuccessCallback)
-                .error(errorCallBack);
-            }                                                    
-        }        
+    $scope.Guardar = function(idDocumento, valor, idControl){
+
+        Control = idControl;
+        if(valor == null){
+            valor = '';
+        }
+        if(idDocumento != null && valor != ''){        
+        $('#ready'+Control).hide();                 
+        $('#loader'+Control).show();       
+                                                      
+            unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
+            .success(getSaveSuccessCallback)
+            .error(errorCallBack);         
+        }                                                            
     }
 
     //success para validar si existe el documento
@@ -310,6 +313,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //success de insercción y actualización
     var getSaveSuccessCallback = function (data, status, headers, config) {
         alertFactory.success('Datos de la unidad guardados.');
+        $('#loader'+Control).hide(); 
+        $('#ready'+Control).show();      
     };
 
     //Success de actualizacion de imagen
