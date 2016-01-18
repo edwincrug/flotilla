@@ -8,6 +8,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.idRol = 20;
     $scope.idFase = 1;
 
+    $scope.ocultarDocumento = true;
+
     //Deshabilitamos el clic derecho en toda la aplicación
     //window.frames.document.oncontextmenu = function(){ alertFactory.error('Función deshabilitada en digitalización.'); return false; };
 
@@ -320,8 +322,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         } 
         else
         {
-            $('#placaDoc').show();  
-            $('#poliza').show();     
+           $scope.ocultarDocumento = false;  
         }
         
         alertFactory.success('Imágen Guardada.');
