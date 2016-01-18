@@ -312,15 +312,16 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //Success de actualizacion de imagen
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
-        $scope.rutaNueva = data;
-        var resu = str.substring(str.length-3, str.length)
+        $scope.rutaNueva = data;        
+        var resu = $scope.rutaNueva.substring($scope.rutaNueva.length-3, $scope.rutaNueva.length)
         if(resu == 'png')
         {
             $('#fotoFrente').attr("src",data);    
         } 
         else
         {
-            $('#placa').show();    
+            $('#placaDoc').show();  
+            $('#poliza').show();     
         }
         
         alertFactory.success('Imágen Guardada.');
