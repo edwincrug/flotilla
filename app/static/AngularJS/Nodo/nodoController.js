@@ -278,30 +278,32 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .error(errorCallBack);
     };
 
-    $('.showCtrl').hide();  
-    var Control = 0;   
+    
     //insert o actualizar el documento
-    $scope.Guardar = function(idDocumento, valor, idControl){
-
-        Control = idControl;
-        if(valor == null){
-            valor = '';
-        }
-        if(idDocumento != null && valor != ''){        
-        $('#ready'+Control).hide();                 
-        $('#loader'+Control).show();       
-                                                      
-            unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
-            .success(getSaveSuccessCallback)
-            .error(errorCallBack);         
-        }                                                            
+    $scope.Guardar = function(idDocumento,valor){
+        if(idDocumento != null &&  valor != ''){                        
+            if(idDocumento != ''){
+                unidadRepository.insertDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
+                .success(getSaveSuccessCallback)
+                .error(errorCallBack);
+            }
+            else{
+                unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
+                .success(getSaveSuccessCallback)
+                .error(errorCallBack);
+            }                                                    
+        }        
     }
+
+    //success para validar si existe el documento
+    var getExisteDocumentoSuccessCallback = function (data, status, headers, config) {
+        $scope.existeDocumento = data;
+        alertFactory.success('Datos de unidad propiedad cargados.');
+    };
 
     //success de insercción y actualización
     var getSaveSuccessCallback = function (data, status, headers, config) {
-        alertFactory.success('Campo del documento guardado.');
-        $('#loader'+Control).hide(); 
-        $('#ready'+Control).show();                          
+        alertFactory.success('Datos de la unidad guardados.');
     };
 
     //Success de actualizacion de imagen

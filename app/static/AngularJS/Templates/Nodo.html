@@ -116,82 +116,43 @@
   <div id="infoGral" class="container-fluid"ng-show="currentNode.idFase == 1" ng-hide="currentNode.idFase != 1">
     <h4 align="center">Información General <span class="label label-default">1</span></h4>
     <hr>
-    <form class="form-horizontal">              
+    <form class="form-horizontal">    
        <div class="form-group">
-
-           <div ng-hide="rolPermiso.EconomicoInt == false" ng-show="rolPermiso.EconomicoInt == true">
-              <label for="numEconomico1" class="control-label col-md-2"> #Econ Int: </label>
-             <div class="col-md-2">
-              <input type="text" ng-model="rolPermiso.ValEconomicoInt" class="form-control" ng-blur="Guardar(rolPermiso.IdEconomicoInt, rolPermiso.ValEconomicoInt,1)">
-              
-              <div class="loader">
-                <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-                <div id="ready1"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
-              </div>
-            </div>
-           </div>  
-
-          <div ng-hide="rolPermiso.EconomicoExt == false" ng-show="rolPermiso.EconomicoExt == true">
-            <label for="numEconomico2" class="control-label col-md-1"> #Econ Ext: </label>
-            <div class="col-md-2">
-              <input type="text" ng-model="rolPermiso.ValEconomicoExt" class="form-control" ng-blur="Guardar(rolPermiso.IdEconomicoExt, rolPermiso.ValEconomicoInt,2)">
-               <div class="loader">
-                <div class="showCtrl" id="loader2"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-                <div id="ready2"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
-              </div>
-            </div>
-          </div>  
-
-          <div ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
-            <label for="marca" class="control-label col-md-1" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">Placa: </label>
-            <div class="col-md-2">
-              <input type="text" ng-model="rolPermiso.ValPlacaNumero" class="form-control" ng-blur="Guardar(rolPermiso.IdPlacaNumero, rolPermiso.ValEconomicoInt,3)">
-              <div class="loader">
-                <div class="showCtrl" id="loader3"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-                <div id="ready3"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
-              </div>
-            </div>
-          </div>  
-
-        </br>
-      </div>
-      <div class="form-group">
-        <div ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">
-          <label for="modelo" class="control-label col-md-2" ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">GPS: </label>
-          <div class="col-md-2">
-            <input type="text" ng-model="rolPermiso.ValGPS" class="form-control" ng-blur="Guardar(rolPermiso.IdGPS, rolPermiso.ValEconomicoInt,4)">
-            <div class="loader">
-              <div class="showCtrl" id="loader4"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-              <div id="ready4"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
-            </div>
+         <label for="numEconomico1" class="control-label col-md-2" ng-hide="rolPermiso.EconomicoInt == false" ng-show="rolPermiso.EconomicoInt == true"> #Econ Int: </label>
+         <div class="col-md-2">
+          <input type="text" class="form-control" ng-hide="rolPermiso.EconomicoInt == false" ng-show="rolPermiso.EconomicoInt == true" >
+       
+          <div class="loader">
+            <div id="loading7"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+            <div id="ready7"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
           </div>
         </div>
-
-        <div ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true">
-          <label for="dirEntrega" class="control-label col-md-1">Dirección Entrega: </label>
-          <div class="col-md-5">
-           <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="3" ng-blur="Guardar(rolPermiso.IdEconomicoInt, rolPermiso.ValEconomicoInt,5)"></textarea>
-          </div>
-          <div class="loader">
-            <div class="showCtrl" id="loader5"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-            <div id="ready5"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
-          </div>
-        </div>        
-      </div> 
-
+        <label for="numEconomico2" class="control-label col-md-1" ng-hide="rolPermiso.EconomicoExt == false" ng-show="rolPermiso.EconomicoExt == true"> #Econ Ext: </label>
+        <div class="col-md-2">
+          <input type="text" ng-model="unidad.economicoExt" class="form-control" ng-hide="rolPermiso.EconomicoExt == false" ng-show="rolPermiso.EconomicoExt == true">
+        </div>
+        <label for="marca" class="control-label col-md-1" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">Placa: </label>
+        <div class="col-md-2">
+          <input type="text" ng-model="unidad.placa" class="form-control" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
+        </div></br>
+      </div>
       <div class="form-group">
-        <div ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
-          <label for="marca" class="control-label col-md-2">Accesorios: </label>
-          <div class="col-md-2">
-            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="mostrarAccesorio()">
-               <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-            </button>
-            <div class="loader">
-              <div class="showCtrl" id="loader5"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-              <div id="ready5"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
-            </div>  
-          </div>  
-        </div>              
+        <label for="modelo" class="control-label col-md-2" ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">GPS: </label>
+        <div class="col-md-2">
+          <input type="text" ng-model="unidad.gps" class="form-control" ng-hide="rolPermiso.GPS == false" ng-show="rolPermiso.GPS == true">
+        </div>
+        <label for="dirEntrega" class="control-label col-md-1" ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true">Dirección Entrega: </label>
+        <div class="col-md-5">
+         <textarea class="form-control" ng-model="unidad.domicilioEntrega" rows="3" ng-hide="rolPermiso.DomicilioEntrega == false" ng-show="rolPermiso.DomicilioEntrega == true"></textarea>
+        </div>
+      </div> 
+      <div class="form-group">
+        <label for="marca" class="control-label col-md-2" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">Accesorios: </label>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="mostrarAccesorio()" ng-hide="rolPermiso.PlacaNumero == false" ng-show="rolPermiso.PlacaNumero == true">
+           <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+        </button>  
+        </div>        
       </div> 
    </form>
   </div>
@@ -358,7 +319,7 @@
               <label for="gatoUni">Gato de unidad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxGatoUni" class=".cbx form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxGatoUni" class="form-control" data-on-text="Si" data-off-text="No">
             </td>
           </tr>
           <tr>
@@ -414,7 +375,7 @@
               <label for="birlo">Tuerca y/o birlo de seguridad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxBirlo" class=".cbx form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxBirlo" class="form-control" data-on-text="Si" data-off-text="No">
             </td>
           </tr>
           <tr>
@@ -448,7 +409,7 @@
         </div>              
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default" type="button" id="btnCancelarAcc" ng-click="ocultarAccesorio()">Aceptar</button>              
+        <button class="btn btn-default" type="button" id="btnCancelarAcc" ng-click="ocultarAccesorio()">Cancelar</button>              
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
