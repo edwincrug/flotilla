@@ -319,7 +319,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //Success de actualizacion de imagen
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
-        $scope.rutaNueva = data;        
+        $scope.rutaNueva = data;   
+        localStorageService.set('rutaDoc',$scope.rutaNueva)     
         var resu = $scope.rutaNueva.substring($scope.rutaNueva.length-3, $scope.rutaNueva.length)
         if(resu == 'png')
         {
@@ -344,7 +345,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }
 
     $scope.verDocumento = function(){
-        window.open($scope.rutaNueva);
+        window.open(localStorageService.get('rutaDoc'));
     }
 
     $scope.verFactura = function() {
