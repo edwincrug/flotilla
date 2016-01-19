@@ -52,3 +52,4 @@ app/static/confront.js
 *.codekit
 
 app/static/config.codekit
+*.cfg
