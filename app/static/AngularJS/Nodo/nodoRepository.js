@@ -20,8 +20,8 @@ registrationModule.factory('nodoRepository', function ($http) {
         getDocFasePermiso: function (idUsuario, idFase) {
             return $http.get(nodoUrl + '2|' + idUsuario + '|'+ idFase);
         },
-        getRolPermiso: function (idRol, vin) {
-            return $http.get(nodoUrl + '3|' + idRol + '|' + vin);
+        getRolPermiso: function (idRol, vin, idUsuario) {
+            return $http.get(nodoUrl + '3|' + idRol + '|' + vin + '|' + idUsuario);
         }
     };
 });

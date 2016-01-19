@@ -314,20 +314,19 @@
     <div class="row">
          <div class="col-md-3" ng-hide="rolPermiso.FotoFrente == false" ng-show="rolPermiso.FotoFrente == true">
           <label for="fotoFrente" class="control-label col-md-1"> Frente: </label>
-          <img src="image/car/auto_delantera.jpg" class="autoCuadro" id='fotoFrente'
-               ng-click="Cargar()">
+          <img src="image/car/auto_delantera.jpg" class="autoCuadro" id='fotoFrente' ng-click="Cargar(rolPermiso[27].idDocumento)">
          </div>
          <div class="col-md-3" ng-hide="rolPermiso.FotoCostadoDerecho == false" ng-show="rolPermiso.FotoCostadoDerecho == true">
           <label for="fotoCostado1" class="control-label col-md-1"> Derecha: </label>
-          <img src="image/car/auto_derecha.jpg" class="autoRectangulo" ng-click="Cargar()">
+          <img src="image/car/auto_derecha.jpg" class="autoRectangulo" id='fotoDerecha' ng-click="Cargar(rolPermiso[30].idDocumento)">
          </div>
          <div class="col-md-3" ng-hide="rolPermiso.FotoCostadoIzq == false" ng-show="rolPermiso.FotoCostadoIzq == true">
           <label for="fotoCostado2" class="control-label col-md-1"> Izquierda: </label>
-          <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" ng-click="Cargar()">
+          <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" id='fotoIzquierda' ng-click="Cargar(rolPermiso[29].idDocumento)">
          </div>
         <div class="col-md-3" ng-hide="rolPermiso.FotoTrasera == false" ng-show="rolPermiso.FotoTrasera == true">
           <label for="fotoTrasera" class="control-label col-md-1"> Trasera: </label>
-          <img src="image/car/auto_trasera.jpg" class="autoCuadro" ng-click="Cargar()">
+          <img src="image/car/auto_trasera.jpg" class="autoCuadro" id='fotoTrasera' ng-click="Cargar(rolPermiso[28].idDocumento)">
         </div>
     </div>       
     </form>

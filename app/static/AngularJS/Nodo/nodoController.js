@@ -10,6 +10,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     $scope.ocultarDocumento = true;
 
+    $scope.idDoc = 0;
+
     //Deshabilitamos el clic derecho en toda la aplicación
     //window.frames.document.oncontextmenu = function(){ alertFactory.error('Función deshabilitada en digitalización.'); return false; };
 
@@ -23,6 +25,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.init = function () {
         //Obtengo los datos del empleado loguado
         $scope.empleado = localStorageService.get('employeeLogged');
+        //Obtengo el idUsuario
+        $scope.idUsuario =  $scope.empleado.idUsuario;
+        localStorageService.set('idUsuario',$scope.idUsuario);
         //Obtenfo los datos del VIN
         $scope.unidad = localStorageService.get('currentVIN');
 
@@ -30,7 +35,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
 
-        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'))
+        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'),$scope.empleado.idUsuario)
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack);   
 
@@ -57,45 +62,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
-        $scope.rolPermiso = data;        
+        $scope.rolPermiso = data;
+        var idDoc = $scope.rolPermiso[24].idDocumento;
     };
 
-/*    var getEmpleadoSuccessCallback = function (data, status, headers, config) {
-        $rootScope.empleado = data;
-        //Obtenemos la lista de nodos completos
-        if($rootScope.empleado != null){
-            if(getParameterByName('id')){
-                //Obtengo el encabezado del expediente
-                nodoRepository.getHeader(getParameterByName('id'),$rootScope.empleado.idRol)
-                    .success(obtieneHeaderSuccessCallback)
-                    .error(errorCallBack);
-            }
-        }
-        else
-            alertFactory.error('El empleado no existe en el sistema.');
-        
-    };*/
-
-    //Success al obtener expediente
-  /*  var obtieneHeaderSuccessCallback = function (data, status, headers, config) {
-        //Asigno el objeto encabezado
-        $scope.expediente = data;
-        if($scope.expediente != null){
-            //Obtengo la información de los nodos
-            nodoRepository.getFasePermiso($rootScope.usuario.idRol)
-                .success(obtieneNodosSuccessCallback)
-                .error(errorCallBack);
-        }
-        else
-            alertFactory.error('No existe información para este expediente.');
-    };*/
-
-    //Muestra los nodos del perfil
-    /*$scope.mostrarNodos = function(idRol){
-        nodoRepository.getFasePermiso($scope.idRol)
-                .success(obtieneNodosSuccessCallback)
-                .error(errorCallBack);
-    }*/
     //Abre una orden padre o hijo
     $scope.VerOrdenPadre = function(exp){
         location.href = '/?id=' + exp.folioPadre + '&employee=1';
@@ -230,11 +200,13 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $scope.$apply();
     };
 
-    ///Carga dauto
-    $scope.Cargar = function(){
+    //Carga de Documento
+    $scope.Cargar = function(id){
         $('#frameUpload').attr('src', '/uploader')
         $('#modalUpload').modal('show');
         $rootScope.currentUpload = doc;
+        $scope.idDoc = id;
+        localStorageService.set('idDoc', $scope.idDoc);
     };
 
     $scope.mostrarAccesorio = function(){
@@ -280,9 +252,14 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         var doc = $rootScope.currentUpload;
         
         //Se guarda el archivo en el servidor
-        documentoRepository.saveFile(localStorageService.get('vin'),40, name)
+        documentoRepository.saveFile(localStorageService.get('vin'), localStorageService.get('idDoc'), name)
             .success(getSaveFileSuccessCallback)
             .error(errorCallBack);
+
+        //Inserta o actualiza el documento
+        unidadRepository.updateDocumento(localStorageService.get('vin'), localStorageService.get('idDoc'), name, localStorageService.get('idUsuario'))
+            .success(getSaveSuccessCallback)
+            .error(errorCallBack); 
     };
 
     
@@ -299,7 +276,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('#ready'+Control).hide();                 
         $('#loader'+Control).show();       
                                                       
-            unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, $scope.empleado.idUsuario)
+            unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
             .error(errorCallBack);         
         }                                                            
@@ -323,13 +300,21 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $scope.rutaNueva = data;   
         localStorageService.set('rutaDoc',$scope.rutaNueva)     
         var resu = $scope.rutaNueva.substring($scope.rutaNueva.length-3, $scope.rutaNueva.length)
-        if(resu == 'png')
+        if(resu == 'png' && rolPermiso[27].idDocumento == 27)
         {
             $('#fotoFrente').attr("src",data);    
         } 
+        else if(resu == 'png' && rolPermiso[28].idDocumento == 28)
+        {
+             $('#fotoTrasera').attr("src",data); 
+        } 
+        else if(resu == 'png' && rolPermiso[29].idDocumento == 29)
+        {
+             $('#fotoIzquierda').attr("src",data); 
+        }
         else
         {
-           $('#placaDoc').show();  
+             $('#fotoDerecha').attr("src",data); 
         }
         
         alertFactory.success('Imágen Guardada.');
