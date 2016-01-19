@@ -300,15 +300,15 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $scope.rutaNueva = data;   
         localStorageService.set('rutaDoc',$scope.rutaNueva)     
         var resu = $scope.rutaNueva.substring($scope.rutaNueva.length-3, $scope.rutaNueva.length)
-        if(resu == 'png' && $scope.rolPermiso[27].idDocumento == 27)
+        if(resu == 'png' && localStorageService.get('idDoc') == 27)
         {
             $('#fotoFrente').attr("src",data);    
         } 
-        else if(resu == 'png' && $scope.rolPermiso[28].idDocumento == 28)
+        else if(resu == 'png' && localStorageService.get('idDoc') == 28)
         {
              $('#fotoTrasera').attr("src",data); 
         } 
-        else if(resu == 'png' && $scope.rolPermiso[29].idDocumento == 29)
+        else if(resu == 'png' && localStorageService.get('idDoc') == 29)
         {
              $('#fotoIzquierda').attr("src",data); 
         }
