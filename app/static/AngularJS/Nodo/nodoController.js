@@ -1,7 +1,6 @@
 registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository, documentoRepository) {
 
     //Propiedades
-    $scope.isLoading = false;
     $scope.idProceso = 1;
     $scope.perfil = 1;
 
@@ -146,8 +145,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $scope.currentNode = $scope.listaNodos[page - 1];
         //Marco el nodo activo en NavBar
         SetActiveNav();
-        //Cargo el contenido de nodo
-        LoadActiveNode();
     };
 
     //Establece la clase de navegación del nodo actual
@@ -161,38 +158,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         //Ejecuto apply
         Apply();
     }
-
-    /////////////////////////////////////////////////////////////////////////
-    //Obtengo la lista de documentos disponibles por nodo
-    /////////////////////////////////////////////////////////////////////////
-    //Success de carga de alertas
-    var getAlertasSuccessCallback = function (data, status, headers, config) {
-        $scope.isLoading = false; 
-        $scope.listaAlertas = data;
-        Apply();
-    };
-
-    //Success de obtner documentos por nodo
-    var getDocumentosSuccessCallback = function (data, status, headers, config) {
-        $scope.listaDocumentos = data;
-        nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
-            .success(getAlertasSuccessCallback)
-            .error(errorCallBack);
-    };
-
-    //Carga los documentos del nodo activo
-    var LoadActiveNode = function(){
-        //if($scope.currentNode.estatus != 1){
-            $scope.isLoading = true;
-            Apply();
-            //Consulta el repositorio
-            nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
-                .success(getDocumentosSuccessCallback)
-                .error(errorCallBack);
-        //}
-        //else
-            //alertFactory.warning('El nodo ' + $scope.currentNode.idFase + ' aún no se activa para el expediente actual. No existen documentos para mostrar.')
-    };
 
     //Ejecuta un apply en funciones jQuery
     var Apply = function() {
