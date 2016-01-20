@@ -35,7 +35,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
 
-        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'),$scope.empleado.idUsuario)
+        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'))
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack);   
 
@@ -62,8 +62,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
-        $scope.rolPermiso = data;
-        var idDoc = $scope.rolPermiso[24].idDocumento;
+        $scope.listaDocumentos = data;
+        var idDoc = $scope.listaDocumentos[24].idDocumento;
     };
 
     //Abre una orden padre o hijo
@@ -185,10 +185,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         //if($scope.currentNode.estatus != 1){
             $scope.isLoading = true;
             Apply();
+            getAlertasSuccessCallback();
             //Consulta el repositorio
+            /*
             nodoRepository.getDocFasePermiso($scope.idRol, $scope.idFase)
                 .success(getDocumentosSuccessCallback)
-                .error(errorCallBack);
+                .error(errorCallBack);*/
         //}
         //else
             //alertFactory.warning('El nodo ' + $scope.currentNode.idFase + ' aún no se activa para el expediente actual. No existen documentos para mostrar.')
