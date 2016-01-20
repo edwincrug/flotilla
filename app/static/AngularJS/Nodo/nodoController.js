@@ -62,7 +62,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
         $scope.listaDocumentos = data;
-        var idDoc = $scope.rolPermiso[24].idDocumento;
+        var idDoc = $scope.listaDocumentos[24].idDocumento;
     };
 
     //Abre una orden padre o hijo
