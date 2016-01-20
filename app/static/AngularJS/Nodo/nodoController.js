@@ -61,7 +61,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
-        $scope.rolPermiso = data;
+        $scope.listaDocumentos = data;
         var idDoc = $scope.rolPermiso[24].idDocumento;
     };
 
