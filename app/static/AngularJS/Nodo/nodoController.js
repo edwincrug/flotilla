@@ -10,7 +10,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     $scope.ocultarDocumento = true;
 
-    $scope.idDoc = 0;
+    $scope.currentDocId = 0;
 
     //Deshabilitamos el clic derecho en toda la aplicación
     //window.frames.document.oncontextmenu = function(){ alertFactory.error('Función deshabilitada en digitalización.'); return false; };
@@ -205,8 +205,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('#frameUpload').attr('src', '/uploader')
         $('#modalUpload').modal('show');
         $rootScope.currentUpload = doc;
-        $scope.idDoc = id;
-        localStorageService.set('idDoc', $scope.idDoc);
+        $scope.currentDocId = id;
+        localStorageService.set('currentDocId', $scope.currentDocId);
     };
 
     $scope.mostrarAccesorio = function(){
@@ -252,12 +252,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         var doc = $rootScope.currentUpload;
         
         //Se guarda el archivo en el servidor
-        documentoRepository.saveFile(localStorageService.get('vin'), localStorageService.get('idDoc'), name)
+        documentoRepository.saveFile(localStorageService.get('vin'), localStorageService.get('currentDocId'), name)
             .success(getSaveFileSuccessCallback)
             .error(errorCallBack);
 
         //Inserta o actualiza el documento
-        unidadRepository.updateDocumento(localStorageService.get('vin'), localStorageService.get('idDoc'), name, localStorageService.get('idUsuario'))
+        unidadRepository.updateDocumento(localStorageService.get('vin'), localStorageService.get('currentDocId'), name, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
             .error(errorCallBack); 
     };
@@ -297,22 +297,21 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //Success de actualizacion de imagen
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
-        $scope.rutaNueva = data;   
-        localStorageService.set('rutaDoc',$scope.rutaNueva)     
-        var resu = $scope.rutaNueva.substring($scope.rutaNueva.length-3, $scope.rutaNueva.length)
-        if(resu == 'png' && localStorageService.get('idDoc') == 27)
+        $scope.rutaNueva = data;  
+        //Se valida el id de BD y se sustituye la imágen con la nueva ruta   
+        if(localStorageService.get('currentDocId') == 27)
         {
             $('#fotoFrente').attr("src",data);    
         } 
-        else if(resu == 'png' && localStorageService.get('idDoc') == 28)
+        if(localStorageService.get('currentDocId') == 28)
         {
              $('#fotoTrasera').attr("src",data); 
         } 
-        else if(resu == 'png' && localStorageService.get('idDoc') == 29)
+        if(localStorageService.get('currentDocId') == 29)
         {
              $('#fotoIzquierda').attr("src",data); 
         }
-        else
+        if(localStorageService.get('currentDocId') == 30)
         {
              $('#fotoDerecha').attr("src",data); 
         }

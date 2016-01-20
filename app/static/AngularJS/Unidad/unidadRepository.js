@@ -17,9 +17,6 @@ registrationModule.factory('unidadRepository', function ($http) {
         insertUnidad: function(unidad){
             return $http.post(unidadUrl, unidad);
         },
-        insertDocumento: function (vin, idDocumento , valor, idUsuario) {
-            return $http.post(unidadUrl + '1|' + vin + '|'+ idDocumento + '|' + valor +'|' + idUsuario);
-        },
         updateDocumento: function (vin, idDocumento , valor, idUsuario) {
             return $http.post(unidadUrl + '1|' + vin + '|'+ idDocumento + '|' + valor +'|' + idUsuario);
         }
