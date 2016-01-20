@@ -113,12 +113,12 @@
 </section>-->
 
 <section id="detail">
-  <div id="infoGral" class="container-fluid"ng-show="currentNode.idFase == 1" ng-hide="currentNode.idFase != 1">
+  <div id="infoGral" class="container-fluid"ng-show="currentNode.idFase == 1">
     <h4 align="center">Información General <span class="label label-default">1</span></h4>
     <hr>
         <form class="form-horizontal">              
        <div class="form-group">
-           <div ng-hide="listaDocumentos[10].permiso == 0" ng-show="listaDocumentos[10].permiso == 1">
+           <div ng-show="listaDocumentos[10].permiso == 1">
               <label for="numEconomico" class="control-label col-md-2"> #Econ Int: </label>
              <div class="col-md-2">
               <input type="text" ng-model="listaDocumentos[10].valor" class="form-control" ng-blur="Guardar(listaDocumentos[10].idDocumento, listaDocumentos[10].valor,1)">
@@ -130,7 +130,7 @@
             </div>
            </div>  
 
-          <div ng-hide="listaDocumentos[11].permiso == 0" ng-show="listaDocumentos[11].permiso == 1">
+          <div ng-show="listaDocumentos[11].permiso == 1">
             <label for="numEconomico2" class="control-label col-md-1"> #Econ Ext: </label>
             <div class="col-md-2">
               <input type="text" ng-model="listaDocumentos[11].valor" class="form-control" ng-blur="Guardar(listaDocumentos[11].idDocumento, listaDocumentos[11].valor,2)">
@@ -141,7 +141,7 @@
             </div>
           </div>  
 
-          <div ng-hide="listaDocumentos[14].permiso == 0" ng-show="listaDocumentos[14].permiso == 1">
+          <div ng-show="listaDocumentos[14].permiso == 1">
             <label for="marca" class="control-label col-md-1" ng-hide="listaDocumentos.PlacaNumero == false" ng-show="listaDocumentos.PlacaNumero == true">Placa: </label>
             <div class="col-md-2">
               <input type="text" ng-model="listaDocumentos[14].valor" class="form-control" ng-blur="Guardar(listaDocumentos[14].idDocumento, listaDocumentos[14].valor,3)">
@@ -155,7 +155,7 @@
         </br>
       </div>
       <div class="form-group">
-        <div ng-hide="listaDocumentos[19].permiso == 0" ng-show="listaDocumentos[19].permiso == 1">
+        <div ng-show="listaDocumentos[19].permiso == 1">
           <label for="modelo" class="control-label col-md-2" ng-hide="listaDocumentos.GPS == false" ng-show="listaDocumentos.GPS == true">GPS: </label>
           <div class="col-md-2">
             <input type="text" ng-model="listaDocumentos[19].valor" class="form-control" ng-blur="Guardar(listaDocumentos[19].idDocumento, listaDocumentos[19].valor,4)">
@@ -166,7 +166,7 @@
           </div>
         </div>
 
-        <div ng-hide="listaDocumentos[20].permiso == 0" ng-show="listaDocumentos[20].permiso == 1">
+        <div ng-show="listaDocumentos[20].permiso == 1">
           <label for="dirEntrega" class="control-label col-md-1">Dirección Entrega: </label>
           <div class="col-md-5">
            <textarea class="form-control" ng-model="listaDocumentos[20].valor" rows="3" ng-blur="Guardar(listaDocumentos[20].idDocumento, listaDocumentos[20].valor,5)"></textarea>
@@ -179,7 +179,7 @@
       </div> 
 
       <div class="form-group">
-        <div ng-hide="listaDocumentos[33].permiso == 0" ng-show="listaDocumentos[33].permiso == 1">
+        <div ng-show="listaDocumentos[33].permiso == 1">
           <label for="marca" class="control-label col-md-2">Accesorios: </label>
           <div class="col-md-2">
             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="mostrarAccesorio()">
@@ -195,12 +195,12 @@
    </form>
   </div>
 
-  <div id="doc" class="container-fluid" ng-show="currentNode.idFase==2" ng-hide="currentNode.idFase!=2">
+  <div id="doc" class="container-fluid" ng-show="currentNode.idFase==2">
     <h4 align="center">Documentación <span class="label label-default">2</span></h4>
     <hr>
     <form class="form-horizontal">
      <div class="form-group">
-        <div ng-show="listaDocumentos[13].permiso = 1" >
+        <div ng-show="listaDocumentos[13].permiso == 1" >
           <label for="factura" class="control-label col-md-2">Factura: </label>
           <div class="col-md-1">
           <button type="button" class="btn btn-default" ng-click="verFactura()" >
@@ -211,7 +211,7 @@
      </div>
 
      <div class="form-group">   
-        <div ng-hide="listaDocumentos[22].permiso" ng-show="listaDocumentos[22].permiso">
+        <div ng-show="listaDocumentos[22].permiso == 1">
           <label for="poliza" class="control-label col-md-2">Póliza de Seguros: </label>
             <div class="col-md-3">
               <input type="text" id="txtPolizaSeg" class="form-control"/>
@@ -223,7 +223,7 @@
           </div>
         </div> 
 
-        <div ng-hide="listaDocumentos[23].permiso" ng-show="listaDocumentos[23].permiso">
+        <div ng-show="listaDocumentos[23].permiso == 1">
             <label for="permisoEsp" class="control-label col-md-2">Permiso Especial: </label>
             <div class="col-md-3">
               <input type="text" id="txtPermisoEsp" class="form-control"/>
@@ -236,7 +236,7 @@
         </div>
     </div>
     <div class="form-group">
-      <div ng-hide="listaDocumentos[12].permiso" ng-show="listaDocumentos[12].permiso">
+      <div ng-show="listaDocumentos[12].permiso == 1">
            <label for="placas" class="control-label col-md-2">Placas: </label>
            <div class="col-md-3">
               <input type="text" id="txtPlacas" class="form-control"/>
@@ -250,7 +250,7 @@
             </button>
           </div>
       </div>
-      <div ng-hide="listaDocumentos[15].permiso" ng-show="listaDocumentos[15].permiso">
+      <div ng-show="listaDocumentos[15].permiso == 1">
           <label for="equipamiento" class="control-label col-sm-2">Equipamiento vehicular: </label>
           <div class="col-md-3">
               <input type="text" id="txtEqupamiento" class="form-control"/>
@@ -266,7 +266,7 @@
       </div>
     </div>
     <div class="form-group">
-      <div ng-hide="listaDocumentos[18].permiso" ng-show="listaDocumentos[18].permiso">
+      <div ng-show="listaDocumentos[18].permiso == 1">
           <label for="tarjetaCir" class="control-label col-md-2">Tarjeta de circulación: </label>
           <div class="col-md-3">
               <input type="text" id="txtTarjetaCir" class="form-control"/>
@@ -278,7 +278,7 @@
           </div>
       </div>
       
-      <div ng-hide="listaDocumentos[21].permiso" ng-show="listaDocumentos[21].permiso">
+      <div ng-show="listaDocumentos[21].permiso == 1">
           <label for="verificacion" class="control-label col-sm-2" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">Verificación: </label>
           <div class="col-md-3">
               <input type="text" id="txtVerificacion" class="form-control" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true"/>
@@ -293,12 +293,12 @@
     </form>
   </div>
 
-  <div is="entrega" class="container-fluid" ng-show="currentNode.idFase==3" ng-hide="currentNode.idFase!=3">
+  <div is="entrega" class="container-fluid" ng-show="currentNode.idFase==3">
     <h4 align="center">Entrega<span class="label label-default">3</span></h4>
     <hr>
     <form class="form-horizontal">
      <div class="form-group row">
-        <div ng-hide="listaDocumentos[24].permiso" ng-show="listaDocumentos[24].permiso">
+        <div ng-show="listaDocumentos[24].permiso == 1">
            <label for="fecha" class="control-label col-md-2">Fecha de entrega: </label>
            <div class="col-md-2">
             <input type="date" class="form-control">
@@ -313,7 +313,7 @@
     </br>
     </div>
     <div class="form-group">
-      <div ng-hide="listaDocumentos[16].permiso" ng-show="listaDocumentos[16].permiso">
+      <div ng-show="listaDocumentos[16].permiso == 1">
         <label for="acuseR" class="control-label col-md-2">Acuse de recibo: </label>
          <div class="col-md-3">
           <input type="text" id="txtAcuseR" class="form-control"/>
@@ -323,7 +323,7 @@
         </button>
       </div>
 
-      <div ng-hide="listaDocumentos[17].permiso" ng-show="listaDocumentos[17].permiso">
+      <div ng-show="listaDocumentos[17].permiso == 1">
         <label for="acuseE" class="control-label col-md-2">Acuse de entrega: </label>
          <div class="col-md-3">
           <input type="text" id="txtAcuseE" class="form-control"/>
@@ -335,23 +335,23 @@
       </br>
     </div>
     <div class="row">    
-        <div class="col-md-3" ng-hide="listaDocumentos[26].permiso" ng-show="listaDocumentos[26].permiso">
+        <div class="col-md-3" ng-show="listaDocumentos[26].permiso == 1">
           <label for="fotoFrente" class="control-label col-md-1"> Frente: </label>
           <img src="image/car/auto_delantera.jpg" class="autoCuadro" id='fotoFrente'
                ng-click="Cargar()">
         </div>      
       
-        <div class="col-md-3" ng-hide="listaDocumentos[29].permiso" ng-show="listaDocumentos[29].permiso">
+        <div class="col-md-3" ng-show="listaDocumentos[29].permiso == 1">
           <label for="fotoCostado1" class="control-label col-md-1"> Derecha: </label>
           <img src="image/car/auto_derecha.jpg" class="autoRectangulo" ng-click="Cargar()">
         </div>     
 
-        <div class="col-md-3" ng-hide="listaDocumentos[28].permiso" ng-show="listaDocumentos[28].permiso">
+        <div class="col-md-3" ng-show="listaDocumentos[28].permiso == 1">
           <label for="fotoCostado2" class="control-label col-md-1"> Izquierda: </label>
           <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" ng-click="Cargar()">
         </div>
 
-        <div class="col-md-3" ng-hide="listaDocumentos[27].permiso" ng-show="listaDocumentos[27].permiso">
+        <div class="col-md-3" ng-show="listaDocumentos[27].permiso == 1">
           <label for="fotoTrasera" class="control-label col-md-1"> Trasera: </label>
           <img src="image/car/auto_trasera.jpg" class="autoCuadro" ng-click="Cargar()">
         </div>
