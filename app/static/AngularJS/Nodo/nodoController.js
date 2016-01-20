@@ -23,12 +23,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //Grupo de funciones de inicio
     $scope.init = function () {
-        //Obtengo los datos del empleado loguado
+        //Obtengo los datos del empleado logueado
         $scope.empleado = localStorageService.get('employeeLogged');
         //Obtengo el idUsuario
         $scope.idUsuario =  $scope.empleado.idUsuario;
         localStorageService.set('idUsuario',$scope.idUsuario);
-        //Obtenfo los datos del VIN
+        //Obtengo los datos del VIN
         $scope.unidad = localStorageService.get('currentVIN');
 
         unidadRepository.getHeader($scope.unidad.vin)
@@ -247,6 +247,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         }                      
     });
 
+    ///Guardar Imagen
     $scope.FinishUpload = function(name){
         alertFactory.success('Imagen ' + name + ' guardada');
         var doc = $rootScope.currentUpload;
