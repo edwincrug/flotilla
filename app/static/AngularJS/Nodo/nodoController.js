@@ -10,6 +10,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.ocultarDocumento = true;
 
     $scope.currentDocId = 0;
+    $scope.listaDocumentos = null;
+    $scope.modificado = null;
 
     //Deshabilitamos el clic derecho en toda la aplicación
     //window.frames.document.oncontextmenu = function(){ alertFactory.error('Función deshabilitada en digitalización.'); return false; };
@@ -34,9 +36,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
 
-        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'),$scope.empleado.idUsuario)
-            .success(obtieneRolPermisoSuccesCallback)
-            .error(errorCallBack);   
+        getListaDocumentos();
 
         $('#placaDoc').hide(); 
         $('[data-toggle="popover"]').popover()  
@@ -60,9 +60,21 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
                 .error(errorCallBack);      
     };
 
+    var getListaDocumentos = function(){
+        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'))
+            .success(obtieneRolPermisoSuccesCallback)
+            .error(errorCallBack); 
+    }
+
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
-        $scope.listaDocumentos = data;
-        var idDoc = $scope.listaDocumentos[24].idDocumento;
+        //if($scope.listaDocumentos == null){
+            $scope.listaDocumentos = data;
+            var idDoc = $scope.listaDocumentos[24].idDocumento;
+        //}
+        /*else{
+            $scope.modificado = data;        
+        }*/
+        
     };
 
     //Abre una orden padre o hijo
@@ -185,18 +197,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
      $('[data-toggle="popover"]').popover();
     
     //animación de switches
-    $("[name='cbxGatoUni']").bootstrapSwitch();
-    $("[name='cbxLlaveTuerca']").bootstrapSwitch();
-    $("[name='cbxManeral']").bootstrapSwitch();
-    $("[name='cbxRefaccion']").bootstrapSwitch();
-    $("[name='cbxTapAlfombra']").bootstrapSwitch();
-    $("[name='cbxTapPlastico']").bootstrapSwitch();
-    $("[name='cbxTriSeguridad']").bootstrapSwitch();
-    $("[name='cbxBirlo']").bootstrapSwitch();
-    $("[name='cbxCable']").bootstrapSwitch();
-    $("[name='cbxExtintor']").bootstrapSwitch();    
-    $("[name='cbxOtro']").bootstrapSwitch();
-    
+    $(".switch").bootstrapSwitch();    
     
     $('#txtOtroAcc').hide($('#cbxOtroAcc').bootstrapSwitch('state'));
     $('#cbxOtroAcc').on('switchChange.bootstrapSwitch', function (event, state){ 
@@ -244,7 +245,17 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
                                                       
             unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
-            .error(errorCallBack);         
+            .error(errorCallBack); 
+
+            //if($scope.modificado != null){
+                /*var fechaMod = $scope.modificado[idDocumento-1].fechaMod;
+                var nombreUsuario = $scope.modificado[idDocumento-1].nombreUsuario;
+                var accion = $scope.modificado[idDocumento-1].accion;
+                $scope.listaDocumentos[idDocumento-1].fechaMod = fechaMod;
+                $scope.listaDocumentos[idDocumento-1].nombreUsuario = nombreUsuario;
+                $scope.listaDocumentos[idDocumento-1].accion = accion;*/
+                //$scope.listaDocumentos = $scope.modificado;
+            //}        
         }                                                            
     }
 
@@ -257,6 +268,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //success de insercción y actualización
     var getSaveSuccessCallback = function (data, status, headers, config) {
         alertFactory.success('Datos de la unidad guardados.');
+        getListaDocumentos();        
         $('#loader'+Control).hide(); 
         $('#ready'+Control).show();      
     };
