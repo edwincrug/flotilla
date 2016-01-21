@@ -215,15 +215,20 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     ///Guardar Imagen
     $scope.FinishUpload = function(name){
         alertFactory.success('Imagen ' + name + ' guardada');
+        $scope.file = name;
         var doc = $rootScope.currentUpload;
+        var currentIdDoc = localStorageService.get('currentDocId');
+        var res = $scope.file.substring($scope.file.length-4, $scope.file.length)
+        var nombreArchivo = currentIdDoc + res;
+
         
         //Se guarda el archivo en el servidor
-        documentoRepository.saveFile(localStorageService.get('vin'), localStorageService.get('currentDocId'), name)
+        documentoRepository.saveFile(localStorageService.get('vin'), currentIdDoc, nombreArchivo)
             .success(getSaveFileSuccessCallback)
             .error(errorCallBack);
 
         //Inserta o actualiza el documento
-        unidadRepository.updateDocumento(localStorageService.get('vin'), localStorageService.get('currentDocId'), name, localStorageService.get('idUsuario'))
+        unidadRepository.updateDocumento(localStorageService.get('vin'), currentIdDoc, nombreArchivo, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
             .error(errorCallBack); 
     };
@@ -295,8 +300,13 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         alertFactory.success('Archivo Guardado.');
     }
 
-    $scope.verDocumento = function(){
-        window.open(localStorageService.get('rutaDoc'));
+    $scope.verDocumento = function(id){
+        var w = 600;
+        var h = 550;
+        var left = Number((screen.width/2)-(w/2));
+        var tops = Number((screen.height/2)-(h/2));
+        var ruta = global_settings.downloadPath + localStorageService.get('vin') + '/'+ id + '.pdf';
+        window.open(ruta, 'Archivos', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
     }
 
     $scope.verFactura = function() {

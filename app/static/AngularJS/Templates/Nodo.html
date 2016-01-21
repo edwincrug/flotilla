@@ -196,10 +196,15 @@
               <input type="text" id="txtPolizaSeg" class="form-control"/>
             </div>
             <div class="col-md-1">
-              <button type="button" class="btn btn-default" ng-click="Cargar()">
-            <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+              <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[22].idDocumento)">
+                <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
             </button>
-          </div>
+            </div>
+            <div class="col-md-1" ng-hide="listaDocumentos[22].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[22].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
+            </div>      
         </div> 
 
         <div ng-show="listaDocumentos[23].permiso == 1">
@@ -208,9 +213,14 @@
               <input type="text" id="txtPermisoEsp" class="form-control"/>
             </div>
             <div class="col-md-1">
-              <button type="button" class="btn btn-default" ng-click="Cargar()">
+              <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[23].idDocumento)">
               <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
               </button>
+              <div class="col-md-1" ng-hide="listaDocumentos[23].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[23].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
+          </div>
             </div>
         </div>
     </div>
@@ -221,12 +231,14 @@
               <input type="text" id="txtPlacas" class="form-control"/>
            </div>
           <div class="col-md-1">
-              <button type="button" class="btn btn-default " ng-click="Cargar()" id="buttonPlacas">
+              <button type="button" class="btn btn-default " ng-click="Cargar(listaDocumentos[12].idDocumento)" id="buttonPlacas">
               <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
            </button>
-              <button type="button" class="btn btn-default" ng-click="verDocumento()" id="placaDoc"> 
-              <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-            </button>
+              <div class="col-md-1" ng-hide="listaDocumentos[12].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[12].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
+          </div>
           </div>
       </div>
       <div ng-show="listaDocumentos[15].permiso == 1">
@@ -235,12 +247,14 @@
               <input type="text" id="txtEqupamiento" class="form-control"/>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn btn-default" ng-click="Cargar()">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[15].idDocumento)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-          <button type="button" class="btn btn-default col-md-1" ng-click="verDocumento()" id="equipamientoDoc" ng-hide="true"> 
-            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-            </button>
+          <div class="col-md-1" ng-hide="listaDocumentos[15].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[15].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
+          </div>
           </div>
       </div>
     </div>
@@ -251,9 +265,14 @@
               <input type="text" id="txtTarjetaCir" class="form-control"/>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn btn-default" ng-click="Cargar()">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[18].idDocumento)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
+          </div>
+          <div class="col-md-1" ng-hide="listaDocumentos[18].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[18].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
           </div>
       </div>
       
@@ -263,9 +282,14 @@
               <input type="text" id="txtVerificacion" class="form-control" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true"/>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn btn-default" ng-click="Cargar()" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[21].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
+          </div>
+          <div class="col-md-1" ng-hide="listaDocumentos[21].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[21].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
           </div>
       </div>
     </div>
@@ -297,9 +321,16 @@
          <div class="col-md-3">
           <input type="text" id="txtAcuseR" class="form-control"/>
         </div>
-        <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-          <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-        </button>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[16].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
+            <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+          </button>
+          </div>
+        <div class="col-md-1" ng-hide="listaDocumentos[16].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[16].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
+          </div>
       </div>
 
       <div ng-show="listaDocumentos[17].permiso == 1">
@@ -307,9 +338,16 @@
          <div class="col-md-3">
           <input type="text" id="txtAcuseE" class="form-control"/>
         </div>
-        <button type="button" class="btn btn-default col-md-1" ng-click="Cargar()">
-          <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-        </button>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[17].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
+            <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+          </button>
+          </div>
+        <div class="col-md-1" ng-hide="listaDocumentos[17].valor == ''">
+            <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[17].idDocumento)">
+              <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            </button>
+        </div>
       </div>
       </br>
     </div>
