@@ -21,7 +21,7 @@ registrationModule.factory('unidadRepository', function ($http) {
             return $http({
                 url: unidadUrl,
                 method: "POST",
-                params: { id: '1|' + vin + '|' + idDocumento + '|' + valor + '|' + name + idUsuario }
+                params: { id: '1|' + vin + '|' + idDocumento + '|' + valor + '|' + idUsuario }
             });
         }
     };
