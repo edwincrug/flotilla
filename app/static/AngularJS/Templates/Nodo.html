@@ -104,7 +104,7 @@
               
               <div class="loader">
                 <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-                <div id="ready1"><span class="glyphicon glyphicon-ok ready" aria-hidden="true" data-toggle="popover" title="Última modificación" data-content="Héctor Lozano 18/01 12:50"></span></div>
+                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[10].fechaMod}}  {{listaDocumentos[10].accion}}" ng-hide="listaDocumentos[10].valor == ''" ></span></div>
               </div>
             </div>
            </div>  
@@ -114,19 +114,19 @@
             <div class="col-md-2">
               <input type="text" ng-model="listaDocumentos[11].valor" class="form-control" ng-blur="Guardar(listaDocumentos[11].idDocumento, listaDocumentos[11].valor,2)">
                <div class="loader">
-                <div class="showCtrl" id="loader2"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-                <div id="ready2"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
+                <div class="showCtrl" id="loader2"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[11].valor == ''"></div>
+                <div id="ready2"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[11].fechaMod}}  {{listaDocumentos[11].accion}}" ng-hide="listaDocumentos[11].valor == ''" ></span></div>
               </div>
             </div>
           </div>  
 
           <div ng-show="listaDocumentos[14].permiso == 1">
-            <label for="marca" class="control-label col-md-1" ng-hide="listaDocumentos.PlacaNumero == false" ng-show="listaDocumentos.PlacaNumero == true">Placa: </label>
+            <label for="marca" class="control-label col-md-1">Placa: </label>
             <div class="col-md-2">
               <input type="text" ng-model="listaDocumentos[14].valor" class="form-control" ng-blur="Guardar(listaDocumentos[14].idDocumento, listaDocumentos[14].valor,3)">
               <div class="loader">
-                <div class="showCtrl" id="loader3"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-                <div id="ready3"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
+                <div class="showCtrl" id="loader3"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[14].valor == ''"></div>
+                <div id="ready3"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[14].fechaMod}}  {{listaDocumentos[14].accion}}" ng-hide="listaDocumentos[14].valor == ''" ></span></div>
               </div>
             </div>
           </div>  
@@ -135,12 +135,12 @@
       </div>
       <div class="form-group">
         <div ng-show="listaDocumentos[19].permiso == 1">
-          <label for="modelo" class="control-label col-md-2" ng-hide="listaDocumentos.GPS == false" ng-show="listaDocumentos.GPS == true">GPS: </label>
+          <label for="modelo" class="control-label col-md-2">GPS: </label>
           <div class="col-md-2">
             <input type="text" ng-model="listaDocumentos[19].valor" class="form-control" ng-blur="Guardar(listaDocumentos[19].idDocumento, listaDocumentos[19].valor,4)">
             <div class="loader">
-              <div class="showCtrl" id="loader4"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-              <div id="ready4"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
+              <div class="showCtrl" id="loader4"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[19].valor == ''"></div>
+              <div id="ready4"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[19].fechaMod}}  {{listaDocumentos[19].accion}}" ng-hide="listaDocumentos[19].valor == ''" ></span></div>
             </div>
           </div>
         </div>
@@ -150,8 +150,8 @@
           <div class="col-md-5">
            <textarea class="form-control" ng-model="listaDocumentos[20].valor" rows="3" ng-blur="Guardar(listaDocumentos[20].idDocumento, listaDocumentos[20].valor,5)"></textarea>
            <div class="loader">
-            <div class="showCtrl" id="loader5"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-            <div id="ready5"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
+            <div class="showCtrl" id="loader5"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[20].valor == ''"></div>
+            <div id="ready5"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[20].fechaMod}}  {{listaDocumentos[20].accion}}" ng-hide="listaDocumentos[20].valor == ''" ></span></div>
           </div>
           </div>          
         </div>        
@@ -164,10 +164,6 @@
             <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="mostrarAccesorio()">
                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
             </button>
-            <div class="loader">
-              <div class="showCtrl" id="loader6"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-              <div id="ready6"><span class="glyphicon glyphicon-ok ready" aria-hidden="true"></span></div>
-            </div>  
           </div>  
         </div>              
       </div> 
@@ -277,12 +273,30 @@
       </div>
       
       <div ng-show="listaDocumentos[21].permiso == 1">
-          <label for="verificacion" class="control-label col-sm-2" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">Verificación: </label>
+          <label for="verificacion" class="control-label col-sm-2">Verificación: </label>
           <div class="col-md-3">
-              <input type="text" id="txtVerificacion" class="form-control" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true"/>
+              <input type="text" id="txtVerificacion" class="form-control"/>
           </div>
           <div class="col-md-1">
+            <button type="button" class="btn btn-default" ng-click="Cargar()">
+            <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+          </button>
+          </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div ng-show="listaDocumentos[30].permiso == 1">
+          <label for="tenencia" class="control-label col-md-2">Tenencia: </label>
+          <div class="col-md-3">
+              <input type="text" id="txtTenencia" class="form-control"/>
+          </div>
+          <div class="col-md-1">
+<<<<<<< HEAD
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[21].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
+=======
+            <button type="button" class="btn btn-default" ng-click="Cargar()">
+>>>>>>> aee96c5e0e4201fb6775f88e529cb0a821ff91dd
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
           </div>
@@ -307,12 +321,16 @@
             <input type="date" class="form-control">
            </div>
         </div>
-        <div>
-          <label for="recibido" class="control-label col-md-2">Recibido por: </label>
-          <div class="col-md-4">
-            <input type="text" id="txtRecibido" class="form-control">
-          </div> 
-        </div>           
+        <div ng-show="listaDocumentos[25].permiso == 1">
+           <label for="recibidoPor" class="control-label col-md-2"> Recibido por: </label>
+          <div class="col-md-2">
+            <input type="text" ng-model="listaDocumentos[25].valor" class="form-control" ng-blur="Guardar(listaDocumentos[25].idDocumento, listaDocumentos[25].valor,7)">
+            <div class="loader">
+              <div class="showCtrl" id="loader7"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[25].valor != ''"></div>
+              <div id="ready7"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[25].fechaMod}}  {{listaDocumentos[25].accion}}" ng-hide="listaDocumentos[25].valor == ''" ></span></div>
+            </div>
+          </div>
+       </div>          
     </br>
     </div>
     <div class="form-group">
@@ -387,7 +405,7 @@
               <label for="gatoUni">Gato de unidad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxGatoUni" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxGatoUni" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr>
           <tr>
@@ -395,7 +413,7 @@
               <label for="tuercaUni">Llave de tuercas de unidad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxLlaveTuerca" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxLlaveTuerca" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr> 
           <tr>
@@ -403,7 +421,7 @@
               <label for="maneral">Maneral de gato: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxManeral" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxManeral" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr> 
           <tr>
@@ -411,7 +429,7 @@
               <label for="refaccion">Llanta de refacción: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxRefaccion" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxRefaccion" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr> 
           <tr>
@@ -419,7 +437,7 @@
               <label for="tapAlfombra">Tapetes de alfombra: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxTapAlfombra" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxTapAlfombra" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr> 
           <tr>
@@ -427,7 +445,7 @@
               <label for="tapPlastico">Tapetes plástico: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxTapPlastico" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxTapPlastico" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr> 
           <tr>
@@ -435,7 +453,7 @@
               <label for="triSeguridad">Triángulos de seguridad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxTriSeguridad" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxTriSeguridad" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr> 
           <tr>
@@ -443,7 +461,7 @@
               <label for="birlo">Tuerca y/o birlo de seguridad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxBirlo" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxBirlo" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr>
           <tr>
@@ -451,7 +469,7 @@
               <label for="cable">Cables pasa corriente: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxCable" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxCable" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr>
           <tr>
@@ -459,7 +477,7 @@
               <label for="extintor">Extintor: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxExtintor" class="form-control" data-on-text="Si" data-off-text="No">
+              <input type="checkbox" name="cbxExtintor" class="switch" data-on-text="Si" data-off-text="No">
             </td>
           </tr>
           <tr>
@@ -467,7 +485,7 @@
               <label for="otroAccesorio">Otro Accesorio: </label>
             </td>
             <td>
-              <input id="cbxOtroAcc" type="checkbox" name="cbxOtro" data-on-text="Si" data-off-text="No">
+              <input id="cbxOtroAcc" type="checkbox" name="cbxOtro" class="switch" data-on-text="Si" data-off-text="No">
             </td>            
           </tr>          
         </table>
