@@ -3,15 +3,16 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //Propiedades
     $scope.idProceso = 1;
     $scope.perfil = 1;
-
     $scope.idRol = 20;
     $scope.idFase = 1;
-
-    $scope.ocultarDocumento = true;
-
     $scope.currentDocId = 0;
     $scope.listaDocumentos = null;
     $scope.modificado = null;
+    $scope.url = null;
+    $scope.frente = null;
+    $scope.costadoDer = null;
+    $scope.costadoIzq = null;
+    $scope.trasera = null;
 
     //Deshabilitamos el clic derecho en toda la aplicación
     //window.frames.document.oncontextmenu = function(){ alertFactory.error('Función deshabilitada en digitalización.'); return false; };
@@ -41,7 +42,29 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         getListaDocumentos();
 
         $('#placaDoc').hide(); 
-        $('[data-toggle="popover"]').popover()  
+        $('[data-toggle="popover"]').popover()
+
+        //Se cargan las imagenes de autos
+        if(localStorageService.get('frente') != null)
+        {
+            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('frente');
+            $('#fotoFrente').attr("src",url);    
+        } 
+        if(localStorageService.get('trasera') != null)
+        {
+            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('trasera');
+            $('#fotoTrasera').attr("src",url); 
+        } 
+        if(localStorageService.get('costadoIzq') != null)
+        {
+            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('costadoIzq');
+             $('#fotoIzquierda').attr("src",url); 
+        }
+        if(localStorageService.get('costadoDer') != null)
+        {
+            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('costadoDer');
+            $('#fotoDerecha').attr("src",url); 
+        }
     };
 
     /////////////////////
@@ -72,6 +95,14 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         //if($scope.listaDocumentos == null){
             $scope.listaDocumentos = data;
             var idDoc = $scope.listaDocumentos[24].idDocumento;
+            $scope.frente = $scope.listaDocumentos[26].valor;
+            $scope.costadoDer = $scope.listaDocumentos[29].valor;
+            $scope.costadoIzq = $scope.listaDocumentos[28].valor;
+            $scope.trasera = $scope.listaDocumentos[27].valor;
+            localStorageService.set('frente',$scope.frente);
+            localStorageService.set('costadoDer',$scope.costadoDer);
+            localStorageService.set('costadoIzq',$scope.costadoIzq);
+            localStorageService.set('trasera',$scope.trasera);
         //}
         /*else{
             $scope.modificado = data;        
