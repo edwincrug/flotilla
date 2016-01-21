@@ -28,7 +28,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $scope.empleado = localStorageService.get('employeeLogged');
         //Obtengo el idUsuario
         $scope.idUsuario =  $scope.empleado.idUsuario;
+        $scope.idRol = $scope.empleado.idRol;
         localStorageService.set('idUsuario',$scope.idUsuario);
+        localStorageService.set('idRol', $scope.idRol);
         //Obtengo los datos del VIN
         $scope.unidad = localStorageService.get('currentVIN');
 
@@ -61,7 +63,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     var getListaDocumentos = function(){
-        nodoRepository.getRolPermiso($scope.empleado.idRol, localStorageService.get('vin'))
+        nodoRepository.getRolPermiso(localStorageService.get('idRol'), localStorageService.get('vin'))
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack); 
     }

@@ -115,7 +115,7 @@
               <input type="text" ng-model="listaDocumentos[11].valor" class="form-control" ng-blur="Guardar(listaDocumentos[11].idDocumento, listaDocumentos[11].valor,2)">
                <div class="loader">
                 <div class="showCtrl" id="loader2"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[11].valor == ''"></div>
-                <div id="ready2"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[11].fechaMod}}  {{listaDocumentos[11].accion}}" ng-hide="listaDocumentos[11].valor == ''" ></span></div>
+                <div id="ready2"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="listaDocumentos[11].accion" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[11].fechaMod | date:'medium'}}" ng-hide="listaDocumentos[11].valor == ''" ></span></div>
               </div>
             </div>
           </div>  
