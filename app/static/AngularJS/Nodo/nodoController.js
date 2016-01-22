@@ -339,4 +339,16 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.verFactura = function() {
         window.open('http://192.168.20.9/Documentos/factura.pdf');
     }
+
+    //oculta los popovers al dar clic en el body
+    $('[data-toggle="popover"]').popover();
+
+    $('body').on('click', function (e) {
+        $('[data-toggle="popover"]').each(function () {
+           
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                $(this).popover('hide');
+            }
+        });
+    });
 });
