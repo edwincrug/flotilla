@@ -47,22 +47,22 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         //Se cargan las imagenes de autos
         if(localStorageService.get('frente') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('frente');
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('frente');
             $('#fotoFrente').attr("src",url);    
         } 
         if(localStorageService.get('trasera') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('trasera');
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('trasera');
             $('#fotoTrasera').attr("src",url); 
         } 
         if(localStorageService.get('costadoIzq') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('costadoIzq');
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('costadoIzq');
              $('#fotoIzquierda').attr("src",url); 
         }
         if(localStorageService.get('costadoDer') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('vin') + '/' + localStorageService.get('costadoDer');
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('costadoDer');
             $('#fotoDerecha').attr("src",url); 
         }
     };
@@ -74,9 +74,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var obtieneHeaderSuccessCallback = function (data, status, headers, config) {
        $scope.unidadHeader = data;
        $scope.valVin = $scope.unidadHeader.vin;
-       //Obtengo los datos del empleado logueado
-       localStorageService.set('vin', $scope.valVin);
-       
+       //Obtengo los datos del empleado logueado       
        $scope.currentPage = $scope.unidadHeader.faseActual;
       
        //Obtengo la lista de fases
@@ -250,12 +248,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         
         //Se guarda el archivo en el servidor
-        documentoRepository.saveFile(localStorageService.get('vin'), currentIdDoc, name)
+        documentoRepository.saveFile(localStorageService.get('currentVIN').vin, currentIdDoc, name)
             .success(getSaveFileSuccessCallback)
             .error(errorCallBack);
 
         //Inserta o actualiza el documento
-        unidadRepository.updateDocumento(localStorageService.get('vin'), currentIdDoc, name, localStorageService.get('idUsuario'))
+        unidadRepository.updateDocumento(localStorageService.get('currentVIN').vin, currentIdDoc, name, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
             .error(errorCallBack); 
     };
@@ -354,15 +352,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         alertFactory.success('Archivo Guardado.');
     }
 
-    $scope.verDocumento = function(id){
-        var w = 600;
-        var h = 550;
-        var left = Number((screen.width/2)-(w/2));
-        var tops = Number((screen.height/2)-(h/2));
-        var ruta = global_settings.downloadPath + localStorageService.get('vin') + '/'+ id + '.pdf';
-        window.open(ruta, 'Archivos', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+tops+', left='+left);
-    }
-
     $scope.verFactura = function() {
         window.open('http://192.168.20.9/Documentos/factura.pdf');
     }
@@ -378,4 +367,18 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             }
         });
     });
+
+    //Método para mostrar documento PDF
+    $scope.VerDocumento = function(idDoc, valor) {  
+        var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + '.pdf';
+        var pdf_link = ruta;
+        var titulo = localStorageService.get('currentVIN').vin + ' :: ' + valor;
+        var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
+        $.createModal({
+            title: titulo,
+            message: iframe,
+            closeButton: false,
+            scrollable: false
+        });        
+    };
 });

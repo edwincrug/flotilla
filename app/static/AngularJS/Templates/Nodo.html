@@ -197,9 +197,13 @@
             </button>
             </div>
             <div class="col-md-1" ng-hide="listaDocumentos[22].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[22].idDocumento)">
+              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[22].idDocumento, listaDocumentos[22].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
+            </div>
+            <div class="loader">
+                <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[22].accion}}" data-content="{{listaDocumentos[22].nombreUsuario}} el {{listaDocumentos[22].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[22].accion == null" ></span></div>
             </div>      
         </div> 
 
@@ -213,11 +217,15 @@
               <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
               </button>
               <div class="col-md-1" ng-hide="listaDocumentos[23].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[23].idDocumento)">
+              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[23].idDocumento,listaDocumentos[23].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
-          </div>
+              </div>
             </div>
+            <div class="loader">
+                <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[23].accion}}" data-content="{{listaDocumentos[23].nombreUsuario}} el {{listaDocumentos[23].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[23].accion == null" ></span></div>
+              </div>
         </div>
     </div>
     <div class="form-group">
@@ -231,10 +239,14 @@
               <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
            </button>
               <div class="col-md-1" ng-hide="listaDocumentos[12].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[12].idDocumento)">
+              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[12].idDocumento,listaDocumentos[12].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
           </div>
+          </div>
+          <div class="loader">
+              <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+              <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[12].accion}}" data-content="{{listaDocumentos[12].nombreUsuario}} el {{listaDocumentos[12].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[12].accion == null" ></span></div>
           </div>
       </div>
       <div ng-show="listaDocumentos[15].permiso == 1">
@@ -243,11 +255,11 @@
               <input type="text" id="txtEqupamiento" ng-model="listaDocumentos[15].valor" class="form-control" disabled/>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[15].idDocumento)">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[15].idDocumento,listaDocumentos[15].valor)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
           <div class="col-md-1" ng-hide="listaDocumentos[15].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[15].idDocumento)">
+              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[15].idDocumento)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
           </div>
@@ -266,40 +278,52 @@
           </button>
           </div>
           <div class="col-md-1" ng-hide="listaDocumentos[18].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[18].idDocumento)">
+              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[18].idDocumento,listaDocumentos[18].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
+          </div>
+          <div class="loader">
+              <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+              <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[18].accion}}" data-content="{{listaDocumentos[18].nombreUsuario}} el {{listaDocumentos[18].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[18].accion == null" ></span></div>
           </div>
       </div>
       
       <div ng-show="listaDocumentos[21].permiso == 1">
           <label for="verificacion" class="control-label col-sm-2">Verificación: </label>
           <div class="col-md-3">
-              <input type="text" id="txtVerificacion" ng-model="listaDocumentos[18].valor" class="form-control" disabled/>
+              <input type="text" id="txtVerificacion" ng-model="listaDocumentos[21].valor" class="form-control" disabled/>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[18].idDocumento)">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[21].idDocumento)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
+          </div>
+          <div class="loader">
+              <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+              <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[21].accion}}" data-content="{{listaDocumentos[21].nombreUsuario}} el {{listaDocumentos[21].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[21].accion == null" ></span></div>
           </div>
       </div>
     </div>
 
     <div class="form-group">
-      <div ng-show="listaDocumentos[18].permiso == 1">
+      <div ng-show="listaDocumentos[30].permiso == 1">
           <label for="tenencia" class="control-label col-md-2">Tenencia: </label>
           <div class="col-md-3">
-              <input type="text" id="txtTenencia" ng-model="listaDocumentos[18].valor" class="form-control" disabled/>
+              <input type="text" id="txtTenencia" ng-model="listaDocumentos[30].valor" class="form-control" disabled/>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[21].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[30].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
           </div>
-          <div class="col-md-1" ng-hide="listaDocumentos[21].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[21].idDocumento)">
+          <div class="col-md-1" ng-hide="listaDocumentos[30].valor == ''">
+              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[30].idDocumento,listaDocumentos[30].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
+          </div>
+          <div class="loader">
+              <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+              <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[30].accion}}" data-content="{{listaDocumentos[30].nombreUsuario}} el {{listaDocumentos[30].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[30].accion == null" ></span></div>
           </div>
       </div>
     </div>
@@ -341,10 +365,14 @@
           </button>
           </div>
         <div class="col-md-1" ng-hide="listaDocumentos[16].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[16].idDocumento)">
+              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[16].idDocumento,listaDocumentos[16].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
-          </div>
+        </div>
+        <div class="loader">
+          <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+          <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[16].accion}}" data-content="{{listaDocumentos[16].nombreUsuario}} el {{listaDocumentos[16].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[16].accion == null" ></span></div>
+        </div>
       </div>
 
       <div ng-show="listaDocumentos[17].permiso == 1">
@@ -358,10 +386,14 @@
           </button>
           </div>
         <div class="col-md-1" ng-hide="listaDocumentos[17].valor == ''">
-            <button type="button" class="btn btn-default" ng-click="verDocumento(listaDocumentos[17].idDocumento)">
+            <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[17].idDocumento,listaDocumentos[17].valor)">
               <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
             </button>
         </div>
+        <div class="loader">
+            <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+            <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[17].accion}}" data-content="{{listaDocumentos[17].nombreUsuario}} el {{listaDocumentos[17].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[17].accion == null" ></span></div>
+            </div>
       </div>
       </br>
     </div>
