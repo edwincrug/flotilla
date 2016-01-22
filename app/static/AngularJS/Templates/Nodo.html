@@ -189,7 +189,7 @@
         <div ng-show="listaDocumentos[22].permiso == 1">
           <label for="poliza" class="control-label col-md-2">Póliza de Seguros: </label>
             <div class="col-md-3">
-              <input type="text" id="txtPolizaSeg" class="form-control"/>
+              <input type="text" id="txtPolizaSeg" ng-model="listaDocumentos[22].valor" class="form-control" disabled/>
             </div>
             <div class="col-md-1">
               <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[22].idDocumento)">
@@ -206,7 +206,7 @@
         <div ng-show="listaDocumentos[23].permiso == 1">
             <label for="permisoEsp" class="control-label col-md-2">Permiso Especial: </label>
             <div class="col-md-3">
-              <input type="text" id="txtPermisoEsp" class="form-control"/>
+              <input type="text" id="txtPermisoEsp" ng-model="listaDocumentos[23].valor" class="form-control" disabled/>
             </div>
             <div class="col-md-1">
               <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[23].idDocumento)">
@@ -224,7 +224,7 @@
       <div ng-show="listaDocumentos[12].permiso == 1">
            <label for="placas" class="control-label col-md-2">Placas: </label>
            <div class="col-md-3">
-              <input type="text" id="txtPlacas" class="form-control"/>
+              <input type="text" id="txtPlacas" ng-model="listaDocumentos[12].valor" class="form-control" disabled/>
            </div>
           <div class="col-md-1">
               <button type="button" class="btn btn-default " ng-click="Cargar(listaDocumentos[12].idDocumento)" id="buttonPlacas">
@@ -240,7 +240,7 @@
       <div ng-show="listaDocumentos[15].permiso == 1">
           <label for="equipamiento" class="control-label col-sm-2">Equipamiento vehicular: </label>
           <div class="col-md-3">
-              <input type="text" id="txtEqupamiento" class="form-control"/>
+              <input type="text" id="txtEqupamiento" ng-model="listaDocumentos[15].valor" class="form-control" disabled/>
           </div>
           <div class="col-md-1">
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[15].idDocumento)">
@@ -258,7 +258,7 @@
       <div ng-show="listaDocumentos[18].permiso == 1">
           <label for="tarjetaCir" class="control-label col-md-2">Tarjeta de circulación: </label>
           <div class="col-md-3">
-              <input type="text" id="txtTarjetaCir" class="form-control"/>
+              <input type="text" id="txtTarjetaCir" ng-model="listaDocumentos[18].valor" class="form-control" disabled/>
           </div>
           <div class="col-md-1">
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[18].idDocumento)">
@@ -275,10 +275,10 @@
       <div ng-show="listaDocumentos[21].permiso == 1">
           <label for="verificacion" class="control-label col-sm-2">Verificación: </label>
           <div class="col-md-3">
-              <input type="text" id="txtVerificacion" class="form-control"/>
+              <input type="text" id="txtVerificacion" ng-model="listaDocumentos[18].valor" class="form-control" disabled/>
           </div>
           <div class="col-md-1">
-            <button type="button" class="btn btn-default" ng-click="Cargar()">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[18].idDocumento)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
           </div>
@@ -286,10 +286,10 @@
     </div>
 
     <div class="form-group">
-      <div ng-show="listaDocumentos[30].permiso == 1">
+      <div ng-show="listaDocumentos[18].permiso == 1">
           <label for="tenencia" class="control-label col-md-2">Tenencia: </label>
           <div class="col-md-3">
-              <input type="text" id="txtTenencia" class="form-control"/>
+              <input type="text" id="txtTenencia" ng-model="listaDocumentos[18].valor" class="form-control" disabled/>
           </div>
           <div class="col-md-1">
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[21].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
@@ -333,7 +333,7 @@
       <div ng-show="listaDocumentos[16].permiso == 1">
         <label for="acuseR" class="control-label col-md-2">Acuse de recibo: </label>
          <div class="col-md-3">
-          <input type="text" id="txtAcuseR" class="form-control"/>
+          <input type="text" id="txtAcuseR" ng-model="listaDocumentos[16].valor" class="form-control" disabled/>
         </div>
         <div class="col-md-1">
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[16].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
@@ -350,7 +350,7 @@
       <div ng-show="listaDocumentos[17].permiso == 1">
         <label for="acuseE" class="control-label col-md-2">Acuse de entrega: </label>
          <div class="col-md-3">
-          <input type="text" id="txtAcuseE" class="form-control"/>
+          <input type="text" id="txtAcuseE" ng-model="listaDocumentos[17].valor" class="form-control" disabled/>
         </div>
         <div class="col-md-1">
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[17].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">

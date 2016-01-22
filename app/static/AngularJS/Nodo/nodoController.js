@@ -94,7 +94,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
         //if($scope.listaDocumentos == null){
             $scope.listaDocumentos = data;
-            var idDoc = $scope.listaDocumentos[24].idDocumento;
+            //var idDoc = $scope.listaDocumentos[24].idDocumento;
             $scope.frente = $scope.listaDocumentos[26].valor;
             $scope.costadoDer = $scope.listaDocumentos[29].valor;
             $scope.costadoIzq = $scope.listaDocumentos[28].valor;
@@ -257,12 +257,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         
         //Se guarda el archivo en el servidor
-        documentoRepository.saveFile(localStorageService.get('vin'), currentIdDoc, nombreArchivo)
+        documentoRepository.saveFile(localStorageService.get('vin'), currentIdDoc, name)
             .success(getSaveFileSuccessCallback)
             .error(errorCallBack);
 
         //Inserta o actualiza el documento
-        unidadRepository.updateDocumento(localStorageService.get('vin'), currentIdDoc, nombreArchivo, localStorageService.get('idUsuario'))
+        unidadRepository.updateDocumento(localStorageService.get('vin'), currentIdDoc, name, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
             .error(errorCallBack); 
     };
@@ -339,9 +339,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         location.href='/busqueda';
     };
 
-    //Success de actualizacion de imagen
+    //Success de actualizacion de PDF
     var getSavePdfSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;
+        getListaDocumentos();
         alertFactory.success('Archivo Guardado.');
     }
 
