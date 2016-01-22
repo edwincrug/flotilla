@@ -86,7 +86,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     };
 
     var getListaDocumentos = function(){
-        nodoRepository.getRolPermiso(localStorageService.get('idRol'), localStorageService.get('vin'))
+        nodoRepository.getRolPermiso(localStorageService.get('idRol'), localStorageService.get('currentVIN').vin)
             .success(obtieneRolPermisoSuccesCallback)
             .error(errorCallBack); 
     }
@@ -264,13 +264,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $('.showCtrl').hide();  
     var Control = 0;   
     //insert o actualizar el documento
-     $scope.Guardar = function(idDocumento, valor, idControl){
-
-        Control = idControl;
+     $scope.Guardar = function(idDocumento, valor){        
 
         if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){        
-        $('#ready'+Control).hide();                 
-        $('#loader'+Control).show();       
+            Control = idDocumento;
+            $('#ready'+Control).hide();                 
+            $('#loader'+Control).show();       
                                                       
             unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
@@ -278,6 +277,34 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         }                                                            
     }
 
+    
+    /*$(function(){
+        $('.switch').on('switchChange.bootstrapSwitch', function (event, state){
+
+        });
+    });*/
+    
+    /*$('.switch' ).on( 'click', function() {
+        if( $(this).is(':checked') ){
+            // Hacer algo si el checkbox ha sido seleccionado
+            alert("El checkbox con valor " + $(this).val() + " ha sido seleccionado");
+        } else {
+            // Hacer algo si el checkbox ha sido deseleccionado
+            alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
+        }
+    });*/
+
+    $('.switch').on('switchChange.bootstrapSwitch', function (event, state){
+        if(state == true){
+            $('.switch option:selected').text();
+            //$("#miselect option:selected").text()
+            alert("El checkbox con valor ha sido seleccionado");
+        }
+        else{
+            //alert("El checkbox con valor ha sido seleccionado"+$('.switch').val());
+        }
+    }); 
+        
     //success para validar si existe el documento
     var getExisteDocumentoSuccessCallback = function (data, status, headers, config) {
         $scope.existeDocumento = data;
