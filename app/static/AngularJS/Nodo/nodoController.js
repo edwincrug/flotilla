@@ -92,9 +92,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
-        //if($scope.listaDocumentos == null){
             $scope.listaDocumentos = data;
-            //var idDoc = $scope.listaDocumentos[24].idDocumento;
             $scope.frente = $scope.listaDocumentos[26].valor;
             $scope.costadoDer = $scope.listaDocumentos[29].valor;
             $scope.costadoIzq = $scope.listaDocumentos[28].valor;
@@ -102,12 +100,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             localStorageService.set('frente',$scope.frente);
             localStorageService.set('costadoDer',$scope.costadoDer);
             localStorageService.set('costadoIzq',$scope.costadoIzq);
-            localStorageService.set('trasera',$scope.trasera);
-        //}
-        /*else{
-            $scope.modificado = data;        
-        }*/
-        
+            localStorageService.set('trasera',$scope.trasera);        
     };
 
     //Abre una orden padre o hijo
@@ -271,29 +264,17 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $('.showCtrl').hide();  
     var Control = 0;   
     //insert o actualizar el documento
-    $scope.Guardar = function(idDocumento, valor, idControl){
+     $scope.Guardar = function(idDocumento, valor, idControl){
 
         Control = idControl;
-        if(valor == null){
-            valor = '';
-        }
-        if(idDocumento != null && valor != ''){        
+
+        if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){        
         $('#ready'+Control).hide();                 
         $('#loader'+Control).show();       
                                                       
             unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
-            .error(errorCallBack); 
-
-            //if($scope.modificado != null){
-                /*var fechaMod = $scope.modificado[idDocumento-1].fechaMod;
-                var nombreUsuario = $scope.modificado[idDocumento-1].nombreUsuario;
-                var accion = $scope.modificado[idDocumento-1].accion;
-                $scope.listaDocumentos[idDocumento-1].fechaMod = fechaMod;
-                $scope.listaDocumentos[idDocumento-1].nombreUsuario = nombreUsuario;
-                $scope.listaDocumentos[idDocumento-1].accion = accion;*/
-                //$scope.listaDocumentos = $scope.modificado;
-            //}        
+            .error(errorCallBack);       
         }                                                            
     }
 

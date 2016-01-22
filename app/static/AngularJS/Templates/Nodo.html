@@ -92,7 +92,7 @@
 </section>
 
 <section id="detail">
-  <div id="infoGral" class="container-fluid"ng-show="currentNode.idFase == 1">
+<div id="infoGral" class="container-fluid"ng-show="currentNode.idFase == 1">
     <h4 align="center">Información General <span class="label label-default">1</span></h4>
     <hr>
         <form class="form-horizontal">              
@@ -100,11 +100,11 @@
            <div ng-show="listaDocumentos[10].permiso == 1">
               <label for="numEconomico" class="control-label col-md-2"> #Econ Int: </label>
              <div class="col-md-2">
-              <input type="text" ng-model="listaDocumentos[10].valor" class="form-control" ng-blur="Guardar(listaDocumentos[10].idDocumento, listaDocumentos[10].valor,1)">
+              <input id="txt1" type="text" ng-model="listaDocumentos[10].valor" class="form-control" ng-blur="Guardar(listaDocumentos[10].idDocumento, listaDocumentos[10].valor,1)">
               
               <div class="loader">
                 <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
-                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[10].fechaMod}}  {{listaDocumentos[10].accion}}" ng-hide="listaDocumentos[10].valor == ''" ></span></div>
+                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[10].accion}}" data-content="{{listaDocumentos[10].nombreUsuario}} el {{listaDocumentos[10].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[10].accion == null" ></span></div>
               </div>
             </div>
            </div>  
@@ -115,7 +115,7 @@
               <input type="text" ng-model="listaDocumentos[11].valor" class="form-control" ng-blur="Guardar(listaDocumentos[11].idDocumento, listaDocumentos[11].valor,2)">
                <div class="loader">
                 <div class="showCtrl" id="loader2"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[11].valor == ''"></div>
-                <div id="ready2"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="listaDocumentos[11].accion" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[11].fechaMod | date:'medium'}}" ng-hide="listaDocumentos[11].valor == ''" ></span></div>
+                <div id="ready2"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[11].accion}}" data-content="{{listaDocumentos[11].nombreUsuario}} el {{listaDocumentos[11].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[11].accion == null" ></span></div>
               </div>
             </div>
           </div>  
@@ -126,7 +126,7 @@
               <input type="text" ng-model="listaDocumentos[14].valor" class="form-control" ng-blur="Guardar(listaDocumentos[14].idDocumento, listaDocumentos[14].valor,3)">
               <div class="loader">
                 <div class="showCtrl" id="loader3"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[14].valor == ''"></div>
-                <div id="ready3"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[14].fechaMod}}  {{listaDocumentos[14].accion}}" ng-hide="listaDocumentos[14].valor == ''" ></span></div>
+                <div id="ready3"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[14].accion}}" data-content="{{listaDocumentos[14].nombreUsuario}} el {{listaDocumentos[14].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[14].accion == null" ></span></div>
               </div>
             </div>
           </div>  
@@ -140,7 +140,7 @@
             <input type="text" ng-model="listaDocumentos[19].valor" class="form-control" ng-blur="Guardar(listaDocumentos[19].idDocumento, listaDocumentos[19].valor,4)">
             <div class="loader">
               <div class="showCtrl" id="loader4"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[19].valor == ''"></div>
-              <div id="ready4"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[19].fechaMod}}  {{listaDocumentos[19].accion}}" ng-hide="listaDocumentos[19].valor == ''" ></span></div>
+              <div id="ready4"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[19].accion}}" data-content="{{listaDocumentos[19].nombreUsuario}} el {{listaDocumentos[19].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[19].accion == null" ></span></div>
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@
            <textarea class="form-control" ng-model="listaDocumentos[20].valor" rows="3" ng-blur="Guardar(listaDocumentos[20].idDocumento, listaDocumentos[20].valor,5)"></textarea>
            <div class="loader">
             <div class="showCtrl" id="loader5"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[20].valor == ''"></div>
-            <div id="ready5"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[20].fechaMod}}  {{listaDocumentos[20].accion}}" ng-hide="listaDocumentos[20].valor == ''" ></span></div>
+            <div id="ready5"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[20].accion}}" data-content="{{listaDocumentos[20].nombreUsuario}} el {{listaDocumentos[20].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[20].accion == null" ></span></div>
           </div>
           </div>          
         </div>        
@@ -323,7 +323,7 @@
             <input type="text" ng-model="listaDocumentos[25].valor" class="form-control" ng-blur="Guardar(listaDocumentos[25].idDocumento, listaDocumentos[25].valor,7)">
             <div class="loader">
               <div class="showCtrl" id="loader7"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[25].valor != ''"></div>
-              <div id="ready7"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" title="Última modificación" data-content="{{listaDocumentos[10].nombreUsuario}}  {{listaDocumentos[25].fechaMod}}  {{listaDocumentos[25].accion}}" ng-hide="listaDocumentos[25].valor == ''" ></span></div>
+              <div id="ready7"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[25].accion}}" data-content="{{listaDocumentos[25].nombreUsuario}} el {{listaDocumentos[25].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[25].accion == null" ></span></div>
             </div>
           </div>
        </div>          
