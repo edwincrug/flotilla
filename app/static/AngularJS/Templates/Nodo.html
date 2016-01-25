@@ -188,44 +188,41 @@
      <div class="form-group">   
         <div ng-show="listaDocumentos[22].permiso == 1">
           <label for="poliza" class="control-label col-md-2">Póliza de Seguros: </label>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <input type="text" id="txtPolizaSeg" ng-model="listaDocumentos[22].valor" class="form-control" disabled/>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
               <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[22].idDocumento)">
                 <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
             </button>
-            </div>
-            <div class="col-md-1" ng-hide="listaDocumentos[22].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[22].idDocumento, listaDocumentos[22].valor)">
+             <button type="button" ng-hide="listaDocumentos[22].valor == ''" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[22].idDocumento, listaDocumentos[22].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
-            </div>
-            <div class="loader">
+               <div class="loader">
                 <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
                 <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[22].accion}}" data-content="{{listaDocumentos[22].nombreUsuario}} el {{listaDocumentos[22].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[22].accion == null" ></span></div>
-            </div>      
+            </div>     
+            </div>    
         </div> 
 
         <div ng-show="listaDocumentos[23].permiso == 1">
             <label for="permisoEsp" class="control-label col-md-2">Permiso Especial: </label>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <input type="text" id="txtPermisoEsp" ng-model="listaDocumentos[23].valor" class="form-control" disabled/>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
               <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[23].idDocumento)">
               <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
               </button>
-              <div class="col-md-1" ng-hide="listaDocumentos[23].valor == ''">
-              <button type="button" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[23].idDocumento,listaDocumentos[23].valor)">
+              <button type="button" ng-hide="listaDocumentos[23].valor == ''" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[23].idDocumento,listaDocumentos[23].valor)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
-              </div>
-            </div>
-            <div class="loader">
+              <div class="loader">
                 <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
                 <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[23].accion}}" data-content="{{listaDocumentos[23].nombreUsuario}} el {{listaDocumentos[23].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[23].accion == null" ></span></div>
               </div>
+            </div>
+
         </div>
     </div>
     <div class="form-group">

@@ -103,7 +103,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             var ext = ObtenerExtArchivo(localStorageService.get('costadoDer'));
             url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoDer + 1) + ext;
             $('#fotoDerecha').attr("src",url); 
-        }       
+        } 
+
+		Apply();     
     };
 
     //Abre una orden padre o hijo
@@ -319,7 +321,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         alertFactory.success('Datos de la unidad guardados.');
         getListaDocumentos();        
         $('#loader'+Control).hide(); 
-        $('#ready'+Control).show();      
+        $('#ready'+Control).show();    
+
     };
 
     //Success de actualizacion de imagen
