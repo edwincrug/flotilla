@@ -69,41 +69,41 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
-            $scope.listaDocumentos = data;
-            $scope.frente = $scope.listaDocumentos[$scope.idFrente].valor;
-            $scope.costadoDer = $scope.listaDocumentos[$scope.idCostadoDer].valor;
-            $scope.costadoIzq = $scope.listaDocumentos[$scope.idCostadoIzq].valor;
-            $scope.trasera = $scope.listaDocumentos[$scope.idTrasera].valor;
-            localStorageService.set('frente',$scope.frente);
-            localStorageService.set('costadoDer',$scope.costadoDer);
-            localStorageService.set('costadoIzq',$scope.costadoIzq);
-            localStorageService.set('trasera',$scope.trasera);
+        $scope.listaDocumentos = data;
+        $scope.frente = $scope.listaDocumentos[$scope.idFrente].valor;
+        $scope.costadoDer = $scope.listaDocumentos[$scope.idCostadoDer].valor;
+        $scope.costadoIzq = $scope.listaDocumentos[$scope.idCostadoIzq].valor;
+        $scope.trasera = $scope.listaDocumentos[$scope.idTrasera].valor;
+        localStorageService.set('frente',$scope.frente);
+        localStorageService.set('costadoDer',$scope.costadoDer);
+        localStorageService.set('costadoIzq',$scope.costadoIzq);
+        localStorageService.set('trasera',$scope.trasera);
 
-            //Se cargan las imagenes de autos
-            if(localStorageService.get('frente') != null)
-            {
-                var ext = ObtenerExtArchivo(localStorageService.get('frente'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idFrente + 1) + ext;
-                $('#fotoFrente').attr("src",url);    
-            } 
-            if(localStorageService.get('trasera') != null)
-            {
-                var ext = ObtenerExtArchivo(localStorageService.get('trasera'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idTrasera + 1) + ext;
-                $('#fotoTrasera').attr("src",url); 
-            } 
-            if(localStorageService.get('costadoIzq') != null)
-            {
-                var ext = ObtenerExtArchivo(localStorageService.get('costadoIzq'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoIzq + 1) + ext;
-                $('#fotoIzquierda').attr("src",url); 
-            }
-            if(localStorageService.get('costadoDer') != null)
-            {
-                var ext = ObtenerExtArchivo(localStorageService.get('costadoDer'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoDer + 1) + ext;
-                $('#fotoDerecha').attr("src",url); 
-            }       
+        //Se cargan las imagenes de autos
+        if(localStorageService.get('frente') != null)
+        {
+            var ext = ObtenerExtArchivo(localStorageService.get('frente'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idFrente + 1) + ext;
+            $('#fotoFrente').attr("src",url);    
+        } 
+        if(localStorageService.get('trasera') != null)
+        {
+            var ext = ObtenerExtArchivo(localStorageService.get('trasera'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idTrasera + 1) + ext;
+            $('#fotoTrasera').attr("src",url); 
+        } 
+        if(localStorageService.get('costadoIzq') != null)
+        {
+            var ext = ObtenerExtArchivo(localStorageService.get('costadoIzq'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoIzq + 1) + ext;
+            $('#fotoIzquierda').attr("src",url); 
+        }
+        if(localStorageService.get('costadoDer') != null)
+        {
+            var ext = ObtenerExtArchivo(localStorageService.get('costadoDer'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoDer + 1) + ext;
+            $('#fotoDerecha').attr("src",url); 
+        }       
     };
 
     //Abre una orden padre o hijo
