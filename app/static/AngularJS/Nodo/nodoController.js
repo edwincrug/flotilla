@@ -13,9 +13,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.costadoDer = null;
     $scope.costadoIzq = null;
     $scope.trasera = null;
-
-    //Deshabilitamos el clic derecho en toda la aplicación
-    //window.frames.document.oncontextmenu = function(){ alertFactory.error('Función deshabilitada en digitalización.'); return false; };
+    $scope.idFrente = 26;
+    $scope.idTrasera = 27;
+    $scope.idCostadoIzq = 28;
+    $scope.idCostadoDer = 29;    
 
     //Mensajes en caso de error
     var errorCallBack = function (data, status, headers, config) {
@@ -69,10 +70,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
             $scope.listaDocumentos = data;
-            $scope.frente = $scope.listaDocumentos[26].valor;
-            $scope.costadoDer = $scope.listaDocumentos[29].valor;
-            $scope.costadoIzq = $scope.listaDocumentos[28].valor;
-            $scope.trasera = $scope.listaDocumentos[27].valor;
+            $scope.frente = $scope.listaDocumentos[$scope.idFrente].valor;
+            $scope.costadoDer = $scope.listaDocumentos[$scope.idCostadoDer].valor;
+            $scope.costadoIzq = $scope.listaDocumentos[$scope.idCostadoIzq].valor;
+            $scope.trasera = $scope.listaDocumentos[$scope.idTrasera].valor;
             localStorageService.set('frente',$scope.frente);
             localStorageService.set('costadoDer',$scope.costadoDer);
             localStorageService.set('costadoIzq',$scope.costadoIzq);
@@ -81,26 +82,26 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             //Se cargan las imagenes de autos
             if(localStorageService.get('frente') != null)
             {
-                var ext = obtenerExtArchivo(localStorageService.get('frente'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 27+ ext;
+                var ext = ObtenerExtArchivo(localStorageService.get('frente'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idFrente + 1) + ext;
                 $('#fotoFrente').attr("src",url);    
             } 
             if(localStorageService.get('trasera') != null)
             {
-                var ext = obtenerExtArchivo(localStorageService.get('trasera'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 28 + ext;
+                var ext = ObtenerExtArchivo(localStorageService.get('trasera'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idTrasera + 1) + ext;
                 $('#fotoTrasera').attr("src",url); 
             } 
             if(localStorageService.get('costadoIzq') != null)
             {
-                var ext = obtenerExtArchivo(localStorageService.get('costadoIzq'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 29 + ext;
+                var ext = ObtenerExtArchivo(localStorageService.get('costadoIzq'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoIzq + 1) + ext;
                 $('#fotoIzquierda').attr("src",url); 
             }
             if(localStorageService.get('costadoDer') != null)
             {
-                var ext = obtenerExtArchivo(localStorageService.get('costadoDer'));
-                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 30 + ext;
+                var ext = ObtenerExtArchivo(localStorageService.get('costadoDer'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoDer + 1) + ext;
                 $('#fotoDerecha').attr("src",url); 
             }       
     };
@@ -246,7 +247,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         alertFactory.success('Imagen ' + name + ' guardada');
         var doc = $rootScope.currentUpload;
         var currentIdDoc = localStorageService.get('currentDocId');
-        var ext = obtenerExtArchivo(name);
+        var ext = ObtenerExtArchivo(name);
         var nombreArchivo = currentIdDoc + ext;
 
         
@@ -324,19 +325,19 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;  
         //Se valida el id de BD y se sustituye la imágen con la nueva ruta   
-        if(localStorageService.get('currentDocId') == 26)
+        if(localStorageService.get('currentDocId') == $scope.idFrente)
         {
             $('#fotoFrente').attr("src",data);    
         } 
-        if(localStorageService.get('currentDocId') == 27)
+        if(localStorageService.get('currentDocId') == $scope.idTrasera)
         {
              $('#fotoTrasera').attr("src",data); 
         } 
-        if(localStorageService.get('currentDocId') == 28)
+        if(localStorageService.get('currentDocId') == $scope.idCostadoIzq)
         {
              $('#fotoIzquierda').attr("src",data); 
         }
-        if(localStorageService.get('currentDocId') == 29)
+        if(localStorageService.get('currentDocId') == $scope.idCostadoDer)
         {
              $('#fotoDerecha').attr("src",data); 
         }
@@ -344,6 +345,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         alertFactory.success('Imágen Guardada.');
     }
 
+    //Botón regresar
     $scope.Regresar = function(campo) {
         location.href='/busqueda';
     };
@@ -385,7 +387,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         });        
     };
 
-    var obtenerExtArchivo = function(file){
+    //Método para obtener la extension del archivo
+    var ObtenerExtArchivo = function(file){
         $scope.file = file;
         var res = $scope.file.substring($scope.file.length-4, $scope.file.length)
         return res;
