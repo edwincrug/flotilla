@@ -47,22 +47,26 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         //Se cargan las imagenes de autos
         if(localStorageService.get('frente') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('frente');
+            var ext = obtenerExtArchivo(localStorageService.get('frente'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 27+ ext;
             $('#fotoFrente').attr("src",url);    
         } 
         if(localStorageService.get('trasera') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('trasera');
+            var ext = obtenerExtArchivo(localStorageService.get('trasera'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 28 + ext;
             $('#fotoTrasera').attr("src",url); 
         } 
         if(localStorageService.get('costadoIzq') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('costadoIzq');
-             $('#fotoIzquierda').attr("src",url); 
+            var ext = obtenerExtArchivo(localStorageService.get('costadoIzq'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 29 + ext;
+            $('#fotoIzquierda').attr("src",url); 
         }
         if(localStorageService.get('costadoDer') != null)
         {
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + localStorageService.get('costadoDer');
+            var ext = obtenerExtArchivo(localStorageService.get('costadoDer'));
+            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 30 + ext;
             $('#fotoDerecha').attr("src",url); 
         }
     };
@@ -240,11 +244,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     ///Guardar Imagen
     $scope.FinishUpload = function(name){
         alertFactory.success('Imagen ' + name + ' guardada');
-        $scope.file = name;
         var doc = $rootScope.currentUpload;
         var currentIdDoc = localStorageService.get('currentDocId');
-        var res = $scope.file.substring($scope.file.length-4, $scope.file.length)
-        var nombreArchivo = currentIdDoc + res;
+        var ext = obtenerExtArchivo(name);
+        var nombreArchivo = currentIdDoc + ext;
 
         
         //Se guarda el archivo en el servidor
@@ -321,19 +324,19 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;  
         //Se valida el id de BD y se sustituye la imágen con la nueva ruta   
-        if(localStorageService.get('currentDocId') == 27)
+        if(localStorageService.get('currentDocId') == 26)
         {
             $('#fotoFrente').attr("src",data);    
         } 
-        if(localStorageService.get('currentDocId') == 28)
+        if(localStorageService.get('currentDocId') == 27)
         {
              $('#fotoTrasera').attr("src",data); 
         } 
-        if(localStorageService.get('currentDocId') == 29)
+        if(localStorageService.get('currentDocId') == 28)
         {
              $('#fotoIzquierda').attr("src",data); 
         }
-        if(localStorageService.get('currentDocId') == 30)
+        if(localStorageService.get('currentDocId') == 29)
         {
              $('#fotoDerecha').attr("src",data); 
         }
@@ -381,4 +384,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             scrollable: false
         });        
     };
+
+    var obtenerExtArchivo = function(file){
+        $scope.file = file;
+        var res = $scope.file.substring($scope.file.length-4, $scope.file.length)
+        return res;
+    }
 });
