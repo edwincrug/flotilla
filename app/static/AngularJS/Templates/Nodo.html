@@ -159,14 +159,14 @@
 
       <div class="form-group">
         <div ng-show="listaDocumentos[33].permiso == 1">
-          <label for="marca" class="control-label col-md-2">Accesorios: </label>
+          <label for="accesorio" class="control-label col-md-2">Accesorios: </label>
           <div class="col-md-2">
-            <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="mostrarAccesorio()">
+            <button id="btnAccesorio" type="button" class="btn btn-default" aria-label="Left Align" ng-click="mostrarAccesorio()">
                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
             </button>
           </div>  
         </div>              
-      </div> 
+      </div>  
    </form>
   </div>
 
@@ -426,18 +426,19 @@
       <div class="modal-header">        
         <h4 class="modal-title">Accesorios</h4>
       </div>
-      <div class="modal-body">
+      <div id="divSwitchAcc" class="modal-body">
         <table>
           <tr>
             <td>
               <label for="gatoUni">Gato de unidad: </label>
             </td>
             <td>
-              <input id="cbx1" type="checkbox" name="cbxGatoUni" class="switch" data-on-text="Si" data-off-text="No">
-              <div class="loader">
-                <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader" ng-show="listaDocumentos[0].valor == ''"></div>
-                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[0].accion}}" data-content="{{listaDocumentos[0].nombreUsuario}} el {{listaDocumentos[0].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[0].accion == null" ></span></div>
-              </div>
+              <input id="1" type="checkbox" name="cbxGatoUni" class="switch" data-on-text="Si" data-off-text="No">              
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[0].accion}}" data-content="{{listaDocumentos[0].nombreUsuario}} el {{listaDocumentos[0].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[0].accion == null" ></span>
+                </div>
             </td>
           </tr>
           <tr>
@@ -445,7 +446,12 @@
               <label for="tuercaUni">Llave de tuercas de unidad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxLlaveTuerca" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="2" type="checkbox" name="cbxLlaveTuerca" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader2"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready2"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[1].accion}}" data-content="{{listaDocumentos[1].nombreUsuario}} el {{listaDocumentos[1].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[1].accion == null" ></span>
+                </div>
             </td>
           </tr> 
           <tr>
@@ -453,7 +459,12 @@
               <label for="maneral">Maneral de gato: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxManeral" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="3" type="checkbox" name="cbxManeral" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader3"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready3"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[2].accion}}" data-content="{{listaDocumentos[2].nombreUsuario}} el {{listaDocumentos[2].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[2].accion == null" ></span>
+                </div>
             </td>
           </tr> 
           <tr>
@@ -461,7 +472,12 @@
               <label for="refaccion">Llanta de refacción: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxRefaccion" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="4" type="checkbox" name="cbxRefaccion" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader4"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready4"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[3].accion}}" data-content="{{listaDocumentos[3].nombreUsuario}} el {{listaDocumentos[3].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[3].accion == null" ></span>
+                </div>
             </td>
           </tr> 
           <tr>
@@ -469,7 +485,12 @@
               <label for="tapAlfombra">Tapetes de alfombra: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxTapAlfombra" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="5" type="checkbox" name="cbxTapAlfombra" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader5"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready5"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[4].accion}}" data-content="{{listaDocumentos[4].nombreUsuario}} el {{listaDocumentos[4].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[4].accion == null" ></span>
+                </div>
             </td>
           </tr> 
           <tr>
@@ -477,7 +498,12 @@
               <label for="tapPlastico">Tapetes plástico: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxTapPlastico" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="6" type="checkbox" name="cbxTapPlastico" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader6"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready6"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[5].accion}}" data-content="{{listaDocumentos[5].nombreUsuario}} el {{listaDocumentos[5].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[5].accion == null" ></span>
+                </div>
             </td>
           </tr> 
           <tr>
@@ -485,7 +511,12 @@
               <label for="triSeguridad">Triángulos de seguridad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxTriSeguridad" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="7" type="checkbox" name="cbxTriSeguridad" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader7"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready7"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[6].accion}}" data-content="{{listaDocumentos[6].nombreUsuario}} el {{listaDocumentos[6].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[6].accion == null" ></span>
+                </div>
             </td>
           </tr> 
           <tr>
@@ -493,7 +524,12 @@
               <label for="birlo">Tuerca y/o birlo de seguridad: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxBirlo" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="8" type="checkbox" name="cbxBirlo" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader8"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready8"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[7].accion}}" data-content="{{listaDocumentos[7].nombreUsuario}} el {{listaDocumentos[7].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[7].accion == null" ></span>
+                </div>
             </td>
           </tr>
           <tr>
@@ -501,7 +537,12 @@
               <label for="cable">Cables pasa corriente: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxCable" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="9" type="checkbox" name="cbxCable" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader9"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready9"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[8].accion}}" data-content="{{listaDocumentos[8].nombreUsuario}} el {{listaDocumentos[8].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[8].accion == null" ></span>
+                </div>
             </td>
           </tr>
           <tr>
@@ -509,7 +550,12 @@
               <label for="extintor">Extintor: </label>
             </td>
             <td>
-              <input type="checkbox" name="cbxExtintor" class="switch" data-on-text="Si" data-off-text="No">
+              <input id="10" type="checkbox" name="cbxExtintor" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader10"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready10"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[9].accion}}" data-content="{{listaDocumentos[9].nombreUsuario}} el {{listaDocumentos[9].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[9].accion == null" ></span>
+                </div>
             </td>
           </tr>
           <tr>
@@ -517,17 +563,22 @@
               <label for="otroAccesorio">Otro Accesorio: </label>
             </td>
             <td>
-              <input id="cbxOtroAcc" type="checkbox" name="cbxOtro" class="switch" data-on-text="Si" data-off-text="No">
-            </td>            
+              <input id="33" type="checkbox" name="cbxOtro" class="switch" data-on-text="Si" data-off-text="No">
+            </td>
+            <td>                                 
+                <div class="showCtrl" id="loader33"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready33"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[32].accion}}" data-content="{{listaDocumentos[32].nombreUsuario}} el {{listaDocumentos[32].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[34].accion == null" ></span>
+                </div>
+            </td>                     
           </tr>          
         </table>
         </br>
         <div>
-          <textarea id="txtOtroAcc" class="form-control" rows="2"></textarea> 
+          <textarea id="35" class="form-control" rows="2" ng-model="listaDocumentos[34].valor" ng-blur="Guardar(listaDocumentos[34].idDocumento, listaDocumentos[34].valor)"></textarea>
         </div>              
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default" type="button" id="btnCancelarAcc" ng-click="ocultarAccesorio()">Aceptar</button>              
+        <button class="btn btn-default" type="button" id="btnAceptarAcc" ng-click="ocultarAccesorio()">Aceptar</button>              
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
