@@ -325,19 +325,19 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     var getSaveFileSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;  
         //Se valida el id de BD y se sustituye la imágen con la nueva ruta   
-        if(localStorageService.get('currentDocId') == $scope.idFrente)
+        if(localStorageService.get('currentDocId') == ($scope.idFrente + 1))
         {
             $('#fotoFrente').attr("src",data);    
         } 
-        if(localStorageService.get('currentDocId') == $scope.idTrasera)
+        if(localStorageService.get('currentDocId') == ($scope.idTrasera + 1))
         {
              $('#fotoTrasera').attr("src",data); 
         } 
-        if(localStorageService.get('currentDocId') == $scope.idCostadoIzq)
+        if(localStorageService.get('currentDocId') == ($scope.idCostadoIzq + 1))
         {
              $('#fotoIzquierda').attr("src",data); 
         }
-        if(localStorageService.get('currentDocId') == $scope.idCostadoDer)
+        if(localStorageService.get('currentDocId') == ($scope.idCostadoDer + 1))
         {
              $('#fotoDerecha').attr("src",data); 
         }
