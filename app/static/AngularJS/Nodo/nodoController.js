@@ -43,32 +43,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         $('#placaDoc').hide(); 
         $('[data-toggle="popover"]').popover()
-
-        //Se cargan las imagenes de autos
-        if(localStorageService.get('frente') != null)
-        {
-            var ext = obtenerExtArchivo(localStorageService.get('frente'));
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 27+ ext;
-            $('#fotoFrente').attr("src",url);    
-        } 
-        if(localStorageService.get('trasera') != null)
-        {
-            var ext = obtenerExtArchivo(localStorageService.get('trasera'));
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 28 + ext;
-            $('#fotoTrasera').attr("src",url); 
-        } 
-        if(localStorageService.get('costadoIzq') != null)
-        {
-            var ext = obtenerExtArchivo(localStorageService.get('costadoIzq'));
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 29 + ext;
-            $('#fotoIzquierda').attr("src",url); 
-        }
-        if(localStorageService.get('costadoDer') != null)
-        {
-            var ext = obtenerExtArchivo(localStorageService.get('costadoDer'));
-            url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 30 + ext;
-            $('#fotoDerecha').attr("src",url); 
-        }
     };
 
     /////////////////////
@@ -102,7 +76,33 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             localStorageService.set('frente',$scope.frente);
             localStorageService.set('costadoDer',$scope.costadoDer);
             localStorageService.set('costadoIzq',$scope.costadoIzq);
-            localStorageService.set('trasera',$scope.trasera);        
+            localStorageService.set('trasera',$scope.trasera);
+
+            //Se cargan las imagenes de autos
+            if(localStorageService.get('frente') != null)
+            {
+                var ext = obtenerExtArchivo(localStorageService.get('frente'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 27+ ext;
+                $('#fotoFrente').attr("src",url);    
+            } 
+            if(localStorageService.get('trasera') != null)
+            {
+                var ext = obtenerExtArchivo(localStorageService.get('trasera'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 28 + ext;
+                $('#fotoTrasera').attr("src",url); 
+            } 
+            if(localStorageService.get('costadoIzq') != null)
+            {
+                var ext = obtenerExtArchivo(localStorageService.get('costadoIzq'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 29 + ext;
+                $('#fotoIzquierda').attr("src",url); 
+            }
+            if(localStorageService.get('costadoDer') != null)
+            {
+                var ext = obtenerExtArchivo(localStorageService.get('costadoDer'));
+                url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + 30 + ext;
+                $('#fotoDerecha').attr("src",url); 
+            }       
     };
 
     //Abre una orden padre o hijo
@@ -272,7 +272,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $('#ready'+Control).hide();                 
             $('#loader'+Control).show();       
                                                       
-            unidadRepository.updateDocumento(localStorageService.get('vin'), idDocumento, valor, localStorageService.get('idUsuario'))
+            unidadRepository.updateDocumento(localStorageService.get('currentVIN'), idDocumento, valor, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
             .error(errorCallBack);       
         }                                                            
