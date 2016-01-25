@@ -228,16 +228,17 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //animación de switches
     $(".switch").bootstrapSwitch();    
     
-    $('#txtOtroAcc').hide($('#cbxOtroAcc').bootstrapSwitch('state'));
-    $('#cbxOtroAcc').on('switchChange.bootstrapSwitch', function (event, state){ 
+    $('#35').hide($('#33').bootstrapSwitch('state'));
+    $('#33').on('switchChange.bootstrapSwitch', function (event, state){ 
         if(state == true){
-            $('#txtOtroAcc').show(1000,function(){
-                $('#cbxOtroAcc').bootstrapSwitch('state');
+            $('#35').show(1000,function(){
+                $('#33').bootstrapSwitch('state');
             });
         }
-        else{
-            $('#txtOtroAcc').hide(1000,function(){
-                $('#cbxOtroAcc').bootstrapSwitch('state');
+        else{            
+            $scope.Guardar(35, '');
+            $('#35').hide(1000,function(){
+                $('#33').bootstrapSwitch('state');                
             });
         }                      
     });
@@ -273,39 +274,39 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $('#ready'+Control).hide();                 
             $('#loader'+Control).show();       
                                                       
-            unidadRepository.updateDocumento(localStorageService.get('currentVIN'), idDocumento, valor, localStorageService.get('idUsuario'))
+            unidadRepository.updateDocumento(localStorageService.get('currentVIN').vin, idDocumento, valor, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
-            .error(errorCallBack);       
+            .error(errorCallBack);  
+
+            if(idDocumento == 35){
+                $scope.Guardar(33, $('#33').bootstrapSwitch('state'));
+            }     
         }                                                            
     }
 
-    
-    /*$(function(){
-        $('.switch').on('switchChange.bootstrapSwitch', function (event, state){
-
-        });
-    });*/
-    
-    /*$('.switch' ).on( 'click', function() {
-        if( $(this).is(':checked') ){
-            // Hacer algo si el checkbox ha sido seleccionado
-            alert("El checkbox con valor " + $(this).val() + " ha sido seleccionado");
-        } else {
-            // Hacer algo si el checkbox ha sido deseleccionado
-            alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
-        }
-    });*/
-
+    //actualiza o inserta el accesorio para la unidad(accesorio)
     $('.switch').on('switchChange.bootstrapSwitch', function (event, state){
-        if(state == true){
-            $('.switch option:selected').text();
-            //$("#miselect option:selected").text()
-            alert("El checkbox con valor ha sido seleccionado");
-        }
-        else{
-            //alert("El checkbox con valor ha sido seleccionado"+$('.switch').val());
-        }
+        Control = this.id    
+        if(this.id != 33 ){
+            unidadRepository.updateDocumento(localStorageService.get('currentVIN').vin, this.id , state, localStorageService.get('idUsuario'))
+            .success(getSaveSuccessCallback)
+            .error(errorCallBack);
+        }        
     }); 
+        
+    //recorre los switches para obtener los estados en los que se guardaron
+    var switchState = false;
+    $('#btnAccesorio').click(function(){        
+        $('#divSwitchAcc input:checkbox').each(function(index){   
+            switchState = $scope.listaDocumentos[this.id-1].valor; 
+            if(switchState == 'true'){
+            $('#'+this.id-1).bootstrapSwitch('state','true');
+            }
+            else{
+                $('#'+this.id-1).bootstrapSwitch('state','false');
+            }                            
+        });
+    });
         
     //success para validar si existe el documento
     var getExisteDocumentoSuccessCallback = function (data, status, headers, config) {
