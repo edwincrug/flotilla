@@ -44,6 +44,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         $('#placaDoc').hide(); 
         $('[data-toggle="popover"]').popover()
+        $scope.desabilitaBtnCerrar();
     };
 
     /////////////////////
@@ -408,4 +409,26 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         var res = $scope.file.substring($scope.file.length-4, $scope.file.length)
         return res;
     }
+
+    //deshabilitar botón de cerrar licitación
+    $scope.desabilitaBtnCerrar = function(){
+        var subidos = parseInt(localStorageService.get('currentVIN').subidos);
+        var total = parseInt(localStorageService.get('currentVIN').total);
+        if(subidos == total)
+            return false;
+        else
+            return true;
+    }
+
+    //cierra documentación final del automóvil de la licitación
+    $scope.cierraLicitacionVIN = function(){
+        unidadRepository.updateLicitacionVIN(localStorageService.get('currentVIN').vin, localStorageService.get('currentVIN').idLicitacion,'Cerrado')
+        .success(getUpdLicitacionVINSuccessCallback)
+        .error(errorCallBack);
+
+    }
+
+    var getUpdLicitacionVINSuccessCallback = function (data, status, headers, config) {
+        alertFactory.success('Estatus de licitación del automóvil Cerrado.');            
+    };
 });
