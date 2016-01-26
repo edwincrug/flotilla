@@ -411,18 +411,34 @@
        <div class="col-md-3" ng-show="listaDocumentos[26].permiso == 1">
         <label for="fotoFrente" class="control-label col-md-1"> Frente: </label>
         <img src="image/car/auto_delantera.jpg" class="autoCuadro" id='fotoFrente' ng-click="Cargar(listaDocumentos[26].idDocumento)">
+        <div class="loader">
+        <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+        <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[26].accion}}" data-content="{{listaDocumentos[26].nombreUsuario}} el {{listaDocumentos[26].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[26].accion == null" ></span></div>
+        </div>
        </div>
        <div class="col-md-3" ng-show="listaDocumentos[29].permiso == 1">
         <label for="fotoCostado1" class="control-label col-md-1"> Derecha: </label>
         <img src="image/car/auto_derecha.jpg" class="autoRectangulo" id='fotoDerecha' ng-click="Cargar(listaDocumentos[29].idDocumento)">
+        <div class="loader">
+        <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+        <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[29].accion}}" data-content="{{listaDocumentos[29].nombreUsuario}} el {{listaDocumentos[29].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[29].accion == null" ></span></div>
+        </div>
        </div>
        <div class="col-md-3" ng-show="listaDocumentos[28].permiso == 1" ng-show="listaDocumentos.FotoCostadoIzq == true">
         <label for="fotoCostado2" class="control-label col-md-1"> Izquierda: </label>
         <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" id='fotoIzquierda' ng-click="Cargar(listaDocumentos[28].idDocumento)">
+        <div class="loader">
+        <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+        <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[28].accion}}" data-content="{{listaDocumentos[28].nombreUsuario}} el {{listaDocumentos[28].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[28].accion == null" ></span></div>
+        </div>
        </div>
-      <div class="col-md-3" ng-show="listaDocumentos[27].permiso == 1">
+      <div class="col-md-2" ng-show="listaDocumentos[27].permiso == 1">
         <label for="fotoTrasera" class="control-label col-md-1"> Trasera: </label>
         <img src="image/car/auto_trasera.jpg" class="autoCuadro" id='fotoTrasera' ng-click="Cargar(listaDocumentos[27].idDocumento)">
+        <div class="loader">
+        <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+        <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[27].accion}}" data-content="{{listaDocumentos[27].nombreUsuario}} el {{listaDocumentos[27].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[27].accion == null" ></span></div>
+        </div>
       </div>
     </div>       
     </form>

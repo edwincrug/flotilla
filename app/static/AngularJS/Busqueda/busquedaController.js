@@ -15,12 +15,14 @@
             $scope.vin = localStorageService.get('vin');
             if(localStorageService.get('factura') == null){
                 $scope.factura = '';
-            } else if(localStorageService.get('vin') == null){
+            }
+            if(localStorageService.get('vin') == null){
                 $scope.vin = '';    
             }
             busquedaRepository.getFlotilla($scope.factura, $scope.vin)
                 .success(getFlotillaSuccessCallback)
                 .error(errorCallBack);
+            $('#vinLbl').val($scope.vin);
         }
     };
 
@@ -54,7 +56,7 @@
         $rootScope.listaUnidades = data;
         localStorageService.set('factura', $scope.factura);
         localStorageService.set('vin', $scope.vin);
-        
+        localStorageService.set('busqueda', data);
         alertFactory.success('Datos de flotillas cargados.');
     };
     
