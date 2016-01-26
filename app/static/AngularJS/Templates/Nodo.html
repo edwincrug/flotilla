@@ -284,7 +284,7 @@
       </div>
       
       <div ng-show="listaDocumentos[21].permiso == 1">
-          <label for="verificacion" class="control-label col-sm-2">Verificación: </label>
+          <label for="verificacion" class="control-label col-sm-2">Pago Verificación: </label>
           <div class="col-md-2">
               <input type="text" id="txtVerificacion" ng-model="listaDocumentos[21].valor" class="form-control" disabled/>
           </div>
@@ -321,6 +321,24 @@
               <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[30].accion}}" data-content="{{listaDocumentos[30].nombreUsuario}} el {{listaDocumentos[30].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[30].accion == null" ></span></div>
           </div>
           </div>            
+      </div>
+      <div ng-show="listaDocumentos[35].permiso == 1">
+          <label for="verificacion" class="control-label col-sm-2">Verificación: </label>
+          <div class="col-md-2">
+              <input type="text" id="txtVerificacion" ng-model="listaDocumentos[35].valor" class="form-control" disabled/>
+          </div>
+          <div class="col-md-2">
+            <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[35].idDocumento)">
+            <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+          </button>
+          <button type="button" ng-hide="listaDocumentos[35].valor == ''" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[35].idDocumento,listaDocumentos[35].valor)">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+          </button>
+          <div class="loader">
+              <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+              <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[35].accion}}" data-content="{{listaDocumentos[35].nombreUsuario}} el {{listaDocumentos[35].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[35].accion == null" ></span></div>
+          </div>
+          </div>          
       </div>
     </div>
     </form>
@@ -390,23 +408,23 @@
       </br>
     </div>
     <div class="row">
-       <div class="col-md-3" ng-hide="listaDocumentos.FotoFrente == false" ng-show="listaDocumentos.FotoFrente == true">
+       <div class="col-md-3" ng-show="listaDocumentos[26].permiso == 1">
         <label for="fotoFrente" class="control-label col-md-1"> Frente: </label>
         <img src="image/car/auto_delantera.jpg" class="autoCuadro" id='fotoFrente' ng-click="Cargar(listaDocumentos[26].idDocumento)">
        </div>
-       <div class="col-md-3" ng-hide="listaDocumentos.FotoCostadoDerecho == false" ng-show="listaDocumentos.FotoCostadoDerecho == true">
+       <div class="col-md-3" ng-show="listaDocumentos[29].permiso == 1">
         <label for="fotoCostado1" class="control-label col-md-1"> Derecha: </label>
         <img src="image/car/auto_derecha.jpg" class="autoRectangulo" id='fotoDerecha' ng-click="Cargar(listaDocumentos[29].idDocumento)">
        </div>
-       <div class="col-md-3" ng-hide="listaDocumentos.FotoCostadoIzq == false" ng-show="listaDocumentos.FotoCostadoIzq == true">
+       <div class="col-md-3" ng-show="listaDocumentos[28].permiso == 1" ng-show="listaDocumentos.FotoCostadoIzq == true">
         <label for="fotoCostado2" class="control-label col-md-1"> Izquierda: </label>
         <img src="image/car/auto_izquierda.jpg" class="autoRectangulo" id='fotoIzquierda' ng-click="Cargar(listaDocumentos[28].idDocumento)">
        </div>
-      <div class="col-md-3" ng-hide="listaDocumentos.FotoTrasera == false" ng-show="listaDocumentos.FotoTrasera == true">
+      <div class="col-md-3" ng-show="listaDocumentos[27].permiso == 1">
         <label for="fotoTrasera" class="control-label col-md-1"> Trasera: </label>
         <img src="image/car/auto_trasera.jpg" class="autoCuadro" id='fotoTrasera' ng-click="Cargar(listaDocumentos[27].idDocumento)">
       </div>
-    </div>        
+    </div>       
     </form>
   </div>
 </section>

@@ -247,7 +247,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     ///Guardar Imagen
     $scope.FinishUpload = function(name){
-        alertFactory.success('Imagen ' + name + ' guardada');
         var doc = $rootScope.currentUpload;
         var currentIdDoc = localStorageService.get('currentDocId');
         var ext = ObtenerExtArchivo(name);
@@ -262,7 +261,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         //Inserta o actualiza el documento
         unidadRepository.updateDocumento(localStorageService.get('currentVIN').vin, currentIdDoc, name, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
-            .error(errorCallBack); 
+            .error(errorCallBack);
+
+        alertFactory.success('Imagen ' + name + ' guardada');
     };
 
     
@@ -298,14 +299,15 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         
     //recorre los switches para obtener los estados en los que se guardaron
     var switchState = false;
-    $('#btnAccesorio').click(function(){        
+    $('#btnAccesorio').click(function(){
+        getListaDocumentos();      
         $('#divSwitchAcc input:checkbox').each(function(index){   
             switchState = $scope.listaDocumentos[this.id-1].valor; 
             if(switchState == 'true'){
-            $('#'+this.id-1).bootstrapSwitch('state','true');
+            $('#'+this.id-1).bootstrapSwitch('state',true);
             }
             else{
-                $('#'+this.id-1).bootstrapSwitch('state','false');
+                $('#'+this.id-1).bootstrapSwitch('state',false);
             }                            
         });
     });
@@ -362,7 +364,13 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }
 
     $scope.verFactura = function() {
-        window.open('http://192.168.20.9/Documentos/factura.pdf');
+        var pdf_link = 'http://192.168.20.9/Documentos/factura.pdf';
+        var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
+        $.createModal({
+            message: iframe,
+            closeButton: false,
+            scrollable: false
+        });  
     }
 
     //oculta los popovers al dar clic en el body

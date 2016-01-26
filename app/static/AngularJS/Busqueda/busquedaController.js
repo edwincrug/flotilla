@@ -11,9 +11,16 @@
 
         if(localStorageService.get('busqueda') != null)
         {
-            $rootScope.listaUnidades = localStorageService.get('busqueda');
             $scope.factura = localStorageService.get('factura');
             $scope.vin = localStorageService.get('vin');
+            if(localStorageService.get('factura') == null){
+                $scope.factura = '';
+            } else if(localStorageService.get('vin') == null){
+                $scope.vin = '';    
+            }
+            busquedaRepository.getFlotilla($scope.factura, $scope.vin)
+                .success(getFlotillaSuccessCallback)
+                .error(errorCallBack);
         }
     };
 
@@ -44,8 +51,7 @@
     var getFlotillaSuccessCallback = function (data, status, headers, config) {
         //regreso el objeto a su estado original
         $('#btnBuscar').button('reset');  
-        $rootScope.listaUnidades = data;        
-        localStorageService.set('busqueda', data);
+        $rootScope.listaUnidades = data;
         localStorageService.set('factura', $scope.factura);
         localStorageService.set('vin', $scope.vin);
         
