@@ -1,4 +1,4 @@
-registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository, documentoRepository) {
+registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository, documentoRepository, busquedaRepository) {
 
     //Propiedades
     $scope.idProceso = 1;
@@ -44,7 +44,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         $('#placaDoc').hide(); 
         $('[data-toggle="popover"]').popover()
-        $scope.desabilitaBtnCerrar();
+        //$scope.desabilitaBtnCerrar();
     };
 
     /////////////////////
@@ -273,7 +273,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //insert o actualizar el documento
      $scope.Guardar = function(idDocumento, valor){        
 
-        if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){        
+        if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){                   
             Control = idDocumento;
             $('#ready'+Control).hide();                 
             $('#loader'+Control).show();       
@@ -284,7 +284,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
             if(idDocumento == 35){
                 $scope.Guardar(33, $('#33').bootstrapSwitch('state'));
-            }     
+            } 
+            var subidos = parseInt(localStorageService.get('currentVIN').subidos);     
         }                                                            
     }
 
@@ -324,10 +325,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //success de insercción y actualización
     var getSaveSuccessCallback = function (data, status, headers, config) {
-        alertFactory.success('Datos de la unidad guardados.');
+        alertFactory.success('Datos de la unidad guardados.');        
         getListaDocumentos();        
         $('#loader'+Control).hide(); 
-        $('#ready'+Control).show();    
+        $('#ready'+Control).show();
+        actualizaPropiedadUnidad();
+        //$scope.desabilitaBtnCerrar();    
 
     };
 
@@ -412,23 +415,45 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //deshabilitar botón de cerrar licitación
     $scope.desabilitaBtnCerrar = function(){
-        var subidos = parseInt(localStorageService.get('currentVIN').subidos);
-        var total = parseInt(localStorageService.get('currentVIN').total);
-        if(subidos == total)
-            return false;
+        if($scope.numDocumento != null){
+            var subidos = parseInt($scope.numDocumento[0].subidos);
+            var total = parseInt($scope.numDocumento[0].total);
+            if(subidos == total)
+                return false;
+            else
+                return true;
+        }
         else
             return true;
+        
     }
 
     //cierra documentación final del automóvil de la licitación
     $scope.cierraLicitacionVIN = function(){
+        $('#btnCerrarUnidad').button('loading');
         unidadRepository.updateLicitacionVIN(localStorageService.get('currentVIN').vin, localStorageService.get('currentVIN').idLicitacion,'Cerrado')
         .success(getUpdLicitacionVINSuccessCallback)
         .error(errorCallBack);
 
     }
 
+    //mensaje de éxito del cierre de entrega de documentos del vehículo para una licitación determinada
     var getUpdLicitacionVINSuccessCallback = function (data, status, headers, config) {
-        alertFactory.success('Estatus de licitación del automóvil Cerrado.');            
+        alertFactory.success('Estatus de licitación del automóvil Cerrado.');
+        $('#btnCerrarUnidad').button('reset');                
     };
+
+    //actualiza los datos del localStorage de la unidad
+    var actualizaPropiedadUnidad = function(){
+        busquedaRepository.getFlotilla(localStorageService.get('currentVIN').factura, localStorageService.get('currentVIN').vin)
+                .success(getFlotillaSuccessCallback)
+                .error(errorCallBack);
+    }
+
+     //Succes obtiene lista de objetos de las flotillas
+    var getFlotillaSuccessCallback = function (data, status, headers, config) {
+        $scope.numDocumento = data;
+        alertFactory.success('Datos de flotillas cargados.');
+    };
+    
 });

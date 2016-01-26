@@ -23,6 +23,9 @@ registrationModule.factory('unidadRepository', function ($http) {
                 method: "POST",
                 params: { id: '1|' + vin + '|' + idDocumento + '|' + valor + '|' + idUsuario }
             });
+        },
+        updateLicitacionVIN: function (vin, idLicitacion, estatus){
+            return $http.post(unidadUrl + '2|' + vin + '|'+ idLicitacion+ '|' +estatus);
         }
     };
 });

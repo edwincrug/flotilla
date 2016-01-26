@@ -90,7 +90,9 @@
   </div>
   <hr />
 </section>
-
+<section align="right">
+  <button type="button" class="btn btn-info btnBuscar" ng-click="cierraLicitacionVIN()" id="btnCerrarUnidad" data-loading-text="Cerrando..." ng-disabled="desabilitaBtnCerrar()">Cerrar Unidad</button>
+</section>
 <section id="detail">
 <div id="infoGral" class="container-fluid"ng-show="currentNode.idFase == 1">
     <h4 align="center">Información General <span class="label label-default">1</span></h4>
@@ -426,9 +428,6 @@
       </div>
     </div>       
     </form>
-  </div>
-  <div>
-    <button type="button" class="btn btn-info btnBuscar" ng-click="cierraLicitacionVIN()" id="btnBuscar" data-loading-text="Cerrando..." ng-disabled="desabilitaBtnCerrar()">Cerrar Licitación</button>
   </div>
 </section>
 
