@@ -217,7 +217,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         localStorageService.set('currentDocId', $scope.currentDocId);
     };
 
-    $scope.mostrarAccesorio = function(){
+    $scope.mostrarAccesorio = function(){        
         $('#viewAccesorio').modal('show');
     }
 
@@ -290,7 +290,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //actualiza o inserta el accesorio para la unidad(accesorio)
     $('.switch').on('switchChange.bootstrapSwitch', function (event, state){
         Control = this.id    
-        if(this.id != 33 ){
+        if(this.id != 33 && initSwitches != 0){
             unidadRepository.updateDocumento(localStorageService.get('currentVIN').vin, this.id , state, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
             .error(errorCallBack);
@@ -298,18 +298,21 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }); 
         
     //recorre los switches para obtener los estados en los que se guardaron
-    var switchState = false;
-    $('#btnAccesorio').click(function(){
+    var switchState = false; 
+    var initSwitches;   
+    $('#btnAccesorio').click(function(){  
+        initSwitches = 0;     
         getListaDocumentos();      
         $('#divSwitchAcc input:checkbox').each(function(index){   
             switchState = $scope.listaDocumentos[this.id-1].valor; 
             if(switchState == 'true'){
-            $('#'+this.id-1).bootstrapSwitch('state',true);
+            $('#'+this.id).bootstrapSwitch('state',true);
             }
             else{
-                $('#'+this.id-1).bootstrapSwitch('state',false);
-            }                            
-        });
+                $('#'+this.id).bootstrapSwitch('state',false);
+            }                                 
+        });       
+        initSwitches = 1; 
     });
         
     //success para validar si existe el documento
