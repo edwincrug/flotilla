@@ -296,15 +296,16 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         
     //recorre los switches para obtener los estados en los que se guardaron
     var switchState = false;
-    $('#btnAccesorio').click(function(){        
+    $('#btnAccesorio').click(function(){
+        getListaDocumentos();        
         $('#divSwitchAcc input:checkbox').each(function(index){   
             switchState = $scope.listaDocumentos[this.id-1].valor; 
             if(switchState == 'true'){
-            $('#'+this.id-1).bootstrapSwitch('state','true');
+                $('#'+this.id).bootstrapSwitch('state', true);
             }
             else{
-                $('#'+this.id-1).bootstrapSwitch('state','false');
-            }                            
+                $('#'+this.id).bootstrapSwitch('state', false);
+            }                           
         });
     });
         
