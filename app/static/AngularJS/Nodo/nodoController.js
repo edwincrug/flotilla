@@ -36,7 +36,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         //Obtengo los datos del VIN
         $scope.unidad = localStorageService.get('currentVIN');
 
-        unidadRepository.getHeader($scope.unidad.vin)
+        unidadRepository.getHeader(localStorageService.get('currentVIN').vin)
             .success(obtieneHeaderSuccessCallback)
             .error(errorCallBack);
 
@@ -44,7 +44,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
         $('#placaDoc').hide(); 
         $('[data-toggle="popover"]').popover()
-        //$scope.desabilitaBtnCerrar();
+        $scope.desabilitaBtnCerrar();
     };
 
     /////////////////////
@@ -71,6 +71,11 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
         $scope.listaDocumentos = data;
+        $scope.fechaEntregaUni = {
+         value: new Date($scope.listaDocumentos[24].valor)
+        };
+        $scope.listaDocumentos[24].valor = $scope.fechaEntregaUni.value;
+       
         $scope.frente = $scope.listaDocumentos[$scope.idFrente].valor;
         $scope.costadoDer = $scope.listaDocumentos[$scope.idCostadoDer].valor;
         $scope.costadoIzq = $scope.listaDocumentos[$scope.idCostadoIzq].valor;
@@ -273,7 +278,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //insert o actualizar el documento
      $scope.Guardar = function(idDocumento, valor){        
 
-        if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){                   
+        if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){ 
             Control = idDocumento;
             $('#ready'+Control).hide();                 
             $('#loader'+Control).show();       
@@ -284,8 +289,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
             if(idDocumento == 35){
                 $scope.Guardar(33, $('#33').bootstrapSwitch('state'));
-            } 
-            var subidos = parseInt(localStorageService.get('currentVIN').subidos);     
+            }             
         }                                                            
     }
 
@@ -330,7 +334,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('#loader'+Control).hide(); 
         $('#ready'+Control).show();
         actualizaPropiedadUnidad();
-        //$scope.desabilitaBtnCerrar();    
+        $scope.desabilitaBtnCerrar();    
 
     };
 
@@ -415,13 +419,22 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //deshabilitar botón de cerrar licitación
     $scope.desabilitaBtnCerrar = function(){
-        if($scope.numDocumento != null){
-            var subidos = parseInt($scope.numDocumento[0].subidos);
-            var total = parseInt($scope.numDocumento[0].total);
+        var subidos, total;
+        if(localStorageService.get('currentVIN').estatus != 'Cerrado'){
+            if($scope.numDocumento == null){
+                subidos = parseInt(localStorageService.get('currentVIN').subidos);
+                total = parseInt(localStorageService.get('currentVIN').total);
+            }
+            else{
+                subidos = parseInt($scope.numDocumento[0].subidos);
+                total = parseInt($scope.numDocumento[0].total);
+            }
+                
             if(subidos == total)
                 return false;
             else
-                return true;
+                return true;  
+
         }
         else
             return true;
@@ -440,6 +453,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //mensaje de éxito del cierre de entrega de documentos del vehículo para una licitación determinada
     var getUpdLicitacionVINSuccessCallback = function (data, status, headers, config) {
         alertFactory.success('Estatus de licitación del automóvil Cerrado.');
+        $scope.unidadHeader.estatus = 'Cerrado';
         $('#btnCerrarUnidad').button('reset');                
     };
 
@@ -453,7 +467,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
      //Succes obtiene lista de objetos de las flotillas
     var getFlotillaSuccessCallback = function (data, status, headers, config) {
         $scope.numDocumento = data;
-        alertFactory.success('Datos de flotillas cargados.');
     };
     
 });
