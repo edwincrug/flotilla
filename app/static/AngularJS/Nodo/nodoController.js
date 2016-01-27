@@ -71,6 +71,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
         $scope.listaDocumentos = data;
+        if(localStorageService.get('currentDocId') != null){
+            getListaDocumentos(); 
+            $('#btnDoc'+localStorageService.get('currentDocId')).show();   
+        }
         $scope.fechaEntregaUni = {
          value: new Date($scope.listaDocumentos[24].valor)
         };
@@ -110,8 +114,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             url = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + ($scope.idCostadoDer + 1) + ext;
             $('#fotoDerecha').attr("src",url); 
         } 
-
-		Apply();     
     };
 
     //Abre una orden padre o hijo
@@ -219,8 +221,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('#frameUpload').attr('src', '/uploader')
         $('#modalUpload').modal('show');
         $rootScope.currentUpload = doc;
-        $scope.currentDocId = id;
-        localStorageService.set('currentDocId', $scope.currentDocId);
+        localStorageService.set('currentDocId', id);
     };
 
     $scope.mostrarAccesorio = function(){        
