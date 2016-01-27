@@ -9,16 +9,16 @@
     </section>
     <div id="contenedor">
         <form class="form-horizontal" role="form" ng-controller="busquedaController">
-          <div class="form-group">
+          <div class="form-group" ng-init="factura = factura2">
             <label for="facturaL" class="col-md-2 control-label">Factura</label>
             <div class="col-md-2">
-              <input type="text" class="form-control" ng-model="factura" id="factura">
+              <input id="txtFactura"type="text" class="form-control" ng-model="factura">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" ng-init="vin = vin2">
             <label for="vinL" class="col-md-2 control-label">VIN</label>
             <div class="col-md-2">
-              <input type="text" class="form-control" ng-model="vin" id="vin">
+              <input id="txtVIN" type="text" class="form-control" ng-model="vin">
             </div>
           </div>
               <button type="button" class="btn btn-info btnBuscar" ng-click="BuscarFlotilla(factura,vin)" id="btnBuscar" data-loading-text="Buscando...">Buscar</button>

@@ -8,24 +8,27 @@
     $scope.init = function () {
         //Obtengo los datos del empleado logueado
         $rootScope.empleado = localStorageService.get('employeeLogged');
-
+        //Se valida si existe una busqueda previa
         if(localStorageService.get('busqueda') != null)
         {
-            $scope.factura = localStorageService.get('factura');
-            $scope.vin = localStorageService.get('vin');
+            $scope.factura2 = localStorageService.get('factura');
+            $scope.vin2 = localStorageService.get('vin');
             if(localStorageService.get('factura') == null){
-                $scope.factura = '';
+                $scope.factura2 = '';
             }
             if(localStorageService.get('vin') == null){
-                $scope.vin = '';    
+                $scope.vin2 = '';    
             }
-            busquedaRepository.getFlotilla($scope.factura, $scope.vin)
+            //Se realiza la busqueda con los parametros iniciales
+            busquedaRepository.getFlotilla($scope.factura2, $scope.vin2)
                 .success(getFlotillaSuccessCallback)
                 .error(errorCallBack);
-            $('#vinLbl').val($scope.vin);
+            //Se asigna el valor de la busqueda
+            $('#txtVIN').val($scope.vin2);
+            $('#txtFactura').val($scope.factura2);
         }
     };
-
+    
     //Botón obtener la flotilla dependiendo de la factura o vin
     $scope.BuscarFlotilla = function(factura,vin){
         $('#btnBuscar').button('loading');
