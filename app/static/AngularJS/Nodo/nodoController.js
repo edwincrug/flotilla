@@ -71,6 +71,11 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
         $scope.listaDocumentos = data;
+        $scope.fechaEntregaUni = {
+         value: new Date($scope.listaDocumentos[24].valor)
+        };
+        $scope.listaDocumentos[24].valor = $scope.fechaEntregaUni.value;
+       
         $scope.frente = $scope.listaDocumentos[$scope.idFrente].valor;
         $scope.costadoDer = $scope.listaDocumentos[$scope.idCostadoDer].valor;
         $scope.costadoIzq = $scope.listaDocumentos[$scope.idCostadoIzq].valor;
@@ -273,7 +278,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //insert o actualizar el documento
      $scope.Guardar = function(idDocumento, valor){        
 
-        if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){                   
+        if(idDocumento != null && ($scope.listaDocumentos[idDocumento-1].accion != null || valor != '')){ 
             Control = idDocumento;
             $('#ready'+Control).hide();                 
             $('#loader'+Control).show();       
@@ -284,8 +289,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
             if(idDocumento == 35){
                 $scope.Guardar(33, $('#33').bootstrapSwitch('state'));
-            } 
-            var subidos = parseInt(localStorageService.get('currentVIN').subidos);     
+            }             
         }                                                            
     }
 
@@ -463,7 +467,6 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
      //Succes obtiene lista de objetos de las flotillas
     var getFlotillaSuccessCallback = function (data, status, headers, config) {
         $scope.numDocumento = data;
-        alertFactory.success('Datos de flotillas cargados.');
     };
     
 });
