@@ -173,7 +173,11 @@
   text-align: center; }
 
 #mnuAvatar {
-  width: 250px; }
+  width: 500px;
+  text-align: right; }
+
+.userName {
+  margin-right: 30px; }
 
 #imgNothing {
   padding-left: 60px; }
@@ -333,9 +337,8 @@
   color: #003571; }
 
 .ready {
-  color: rgba(0, 53, 113, 0.62);
-  font-size: 22px; 
-  cursor: pointer;}
+  color: green;
+  font-size: 22px; }
 
 .loader {
   width: 50px;
