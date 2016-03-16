@@ -1,9 +1,80 @@
 <link rel="stylesheet" type="text/css" href="../../css/reporte.css" />
 
 <div cg-busy="myPromise" ng-init="Init()" class="container">
-    <h1 id="titulo1" class="encabezado">Página reporte</h1>
+    <header>
+        <h1>Reporte <span> Sincronización </span></h1>
+    </header>
+    </br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Fecha Inicial:</label>
+                            <input type="date" ng-model="fechaInicio" class="form-control" id="fehcaInicial" placeholder="dd/mm/yyyy">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Fecha Final:</label>
+                            <input type="date" ng-model="fechaFinal" class="form-control" id="fechaFinal" placeholder="dd/mm/yyyy">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="btnBuscar" type="button" class="btn btn-primary" data-loading-text="Buscando..." ng-click="buscaSincronizacion(fechaInicio, fechaFinal)">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </br>
+    <div class="row tablaBusqueda tablaAlign">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Elementos Sincronizados</th>
+                    <th>Ver</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="elemento in listaSincronizacion">
+                    <td>{{ elemento.nombreCompleto }}</td>
+                    <td>{{ elemento.fecha}}</td>
+                    <td>{{ elemento.cantidad}}</td>
+                    <td>
+                        <button class="btn btn-primary" type="button" id="btnEnviar">
+                            <span class="glyphicon glyphicon-hand-left" aria-hidden="true" data-toggle="modal" ng-click="mostrar(elemento.idSincronizacion)"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="myModal" class="modal" role="dialog">
+    <div class="modal-dialog">
 
-    <div class="encabezado">
-      ghjkojjghjklñkgjjp
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Documentos</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group" ng-repeat="(vin, nombre) in groups">
+                    <a href="#" class="list-group-item active" ng-click="Detalle(vin)">
+                    {{vin}}
+                    </a>
+                    <li class="list-group-item" ng-repeat="documentos in nombre">{{documentos.nombre}}</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
     </div>
 </div>
