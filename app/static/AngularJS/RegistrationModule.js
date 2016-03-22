@@ -21,6 +21,11 @@
         controller: 'activacionController'
     });
 
+    $routeProvider.when('/reporte', {
+        templateUrl: '/AngularJS/Templates/Reporte.html',
+        controller: 'reporteController'
+    });
+
     $locationProvider.html5Mode(true);
 });
 

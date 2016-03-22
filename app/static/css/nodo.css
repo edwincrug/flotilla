@@ -196,8 +196,11 @@
 }
 
 #mnuAvatar {
-  width: 250px;
-}
+  width: 500px;
+  text-align: right; }
+
+.userName {
+  margin-right: 30px; }
 
 #imgNothing {
   padding-left: 60px;
@@ -386,8 +389,12 @@
 
 .ready {
   color: green;
+<<<<<<< HEAD
   font-size: 22px;
 }
+=======
+  font-size: 22px; }
+>>>>>>> 4c1c92b6e35302d8a6f78dff4f2aa21ee9e3a67e
 
 .loader {
   width: 50px;

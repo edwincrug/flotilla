@@ -67,11 +67,12 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown" id="mnuAvatar">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="blanco"> {{ empleado.nombreCompleto + ' - ' +  empleado.rol }} </span>  
+              <span class="blanco userName"> {{ empleado.nombreCompleto + ' - ' +  empleado.rol }} </span>  
               <img src="image/profile/man.jpg" id="avatar">
               <span class="caret blanco"></span>
             </a>
             <ul class="dropdown-menu">
+              <li class="seleccionable"><a href="/reporte">Reporte Sincronización</a></li>
               <li class="seleccionable"><a ng-click="Salir()">Salir</a></li>
             </ul>
           </li>
@@ -140,6 +141,7 @@ function getName(){
 
 <!--Librería para realizar querys-->
 <script src="js/linq.js"></script>
+<script src="js/underscore-min.js"></script>
 
 <!--Librerias de aplicación angular-->
 <script src="AngularJS/RegistrationModule.js"></script>
@@ -156,6 +158,8 @@ function getName(){
 <!--Controllers-->
 
 
+<script src="AngularJS/Reporte/reporteRepository.js"></script>
+<script src="AngularJS/Reporte/reporteController.js"></script>
 <script src="AngularJS/Nodo/nodoRepository.js"></script>
 <script src="AngularJS/Nodo/nodoController.js"></script>
 <script src="AngularJS/RolPermiso/rolPermisoRepository.js"></script>
