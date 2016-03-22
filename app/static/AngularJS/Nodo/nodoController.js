@@ -397,12 +397,21 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         });
     });
 
-    //Método para mostrar documento PDF
-    $scope.VerDocumento = function(idDoc, valor) {  
-        var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + '.pdf';
+    //Método para mostrar documento PDF, JPG o PNG
+    $scope.VerDocumento = function(idDoc, valor) {
+        var ext = ObtenerExtArchivo(valor);
+        var type = '';
+        if(ext == '.jpg'){
+            type = "image/jpg";
+        } else if(ext == '.png'){
+            type = "image/png";
+        } else{
+            type = "application/pdf";
+        }
+        var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
         var pdf_link = ruta;
         var titulo = localStorageService.get('currentVIN').vin + ' :: ' + valor;
-        var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
+        var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
         $.createModal({
             title: titulo,
             message: iframe,

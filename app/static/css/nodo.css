@@ -13,7 +13,8 @@
   padding: 4px;
   font-size: 11px;
   border-radius: 5px 0px 0px 5px;
-  margin-top: 47px; }
+  margin-top: 47px;
+}
 
 #header {
   position: absolute;
@@ -25,7 +26,8 @@
   margin-left: calc(50% - 200px);
   border: 1px solid #96969B;
   background-color: #96969B;
-  border-radius: 0px 0px 5px 5px; }
+  border-radius: 0px 0px 5px 5px;
+}
 
 #depends {
   position: absolute;
@@ -43,7 +45,8 @@
   text-align: center;
   color: rgba(56, 56, 56, 0.85);
   font-weight: 300;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 #extends {
   position: absolute;
@@ -61,7 +64,8 @@
   text-align: center;
   color: rgba(56, 56, 56, 0.85);
   font-weight: 300;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 #folio {
   font-size: 16px;
@@ -71,7 +75,8 @@
   color: white;
   padding-left: 0;
   padding-right: 0;
-  text-align: center; }
+  text-align: center;
+}
 
 #estatus {
   background-color: #f1f2f3;
@@ -84,35 +89,43 @@
   position: absolute;
   right: 0;
   color: #96969b;
-  text-align: center; }
+  text-align: center;
+}
 
 .etiqueta {
   font-size: 14px;
   font-weight: 700;
-  color: #38424E; }
+  color: #38424E;
+}
 
 .texto {
   color: #828282;
   font-weight: 300;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 /* Contenedores */
 #navigator {
-  padding-top: 16px; }
+  padding-top: 16px;
+}
 
 /* Clases generales */
 .linea {
   padding-left: 15px;
-  padding-right: 15px; }
+  padding-right: 15px;
+}
 
 .progresoBarra {
-  margin-top: 10px; }
+  margin-top: 10px;
+}
 
 .documento {
-  width: 350px; }
+  width: 350px;
+}
 
 .botonera {
-  float: right; }
+  float: right;
+}
 
 .alerta {
   position: absolute;
@@ -128,18 +141,22 @@
   padding-top: 7px;
   font-weight: bold;
   font-size: 14px;
-  z-index: 1; }
+  z-index: 1;
+}
 
 .logotipo {
-  padding-top: 10px; }
+  padding-top: 10px;
+}
 
 .nombre {
   color: rgba(56, 66, 78, 0.8);
-  margin-top: 5px; }
+  margin-top: 5px;
+}
 
 .descripcion {
   color: rgba(56, 66, 78, 0.51);
-  margin-top: -7px; }
+  margin-top: -7px;
+}
 
 .numero {
   color: rgba(56, 66, 78, 0.51);
@@ -149,46 +166,57 @@
   left: 0;
   padding-left: 10px;
   padding-top: 10px;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 #menu {
   font-size: 24px;
-  margin-top: -4px; }
+  margin-top: -4px;
+}
 
 #avatar {
   width: 42px;
   border-radius: 20px;
   position: absolute;
   margin-top: -10px;
-  right: 0; }
+  right: 0;
+}
 
 .navHeader {
   background-color: #003571;
-  border-color: #38424E; }
+  border-color: #38424E;
+}
 
 .blanco {
-  color: white; }
+  color: white;
+}
 
 #navigate {
-  text-align: center; }
+  text-align: center;
+}
 
 #mnuAvatar {
-  width: 250px; }
+  width: 250px;
+}
 
 #imgNothing {
-  padding-left: 60px; }
+  padding-left: 60px;
+}
 
 .anavigatorNode {
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .nodoDisabled {
   background-color: #eeeeee !important;
-  color: rgba(128, 128, 128, 0.71) !important; }
+  color: rgba(128, 128, 128, 0.71) !important;
+}
 
 .botoneraDocumento {
-  float: right; }
+  float: right;
+}
 
-/*Estilos para el visor de documentos */
+/*Estilos para el visor de documentos*/
 #hideFullMenu {
   background-color: transparent;
   height: 43px;
@@ -198,22 +226,27 @@
   bottom: 0;
   margin-bottom: 30px;
   width: 272px;
-  z-index: 2147483647; }
+  z-index: 2147483647;
+}
 
 #hideFullContent {
-  position: relative; }
+  position: relative;
+}
 
 #ifDocument {
   width: 100%;
-  height: 500px; }
+  height: 500px;
+}
 
 .docDownload {
-  display: none; }
+  display: none;
+}
 
 /* Controles Upload */
 .btn-file {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .btn-file input[type=file] {
   position: absolute;
@@ -228,35 +261,42 @@
   outline: none;
   background: white;
   cursor: inherit;
-  display: block; }
+  display: block;
+}
 
 /*  iFrame de upload */
 #frameUpload {
   width: 100%;
-  height: 108px; }
+  height: 108px;
+}
 
 #labelArchivo {
   margin-left: 16px;
   margin-bottom: 6px;
-  width: 89%; }
+  width: 89%;
+}
 
 #progressDiv {
   width: 89%;
   margin-left: 15px;
-  margin-top: 10px; }
+  margin-top: 10px;
+}
 
 #alertaSuccess {
-  width: 100%; }
+  width: 100%;
+}
 
 #iconSuccess {
   font-size: 30px;
   display: block;
   float: right;
-  margin-right: -10px; }
+  margin-right: -10px;
+}
 
 .cerrado {
   background-color: rgba(51, 122, 183, 0.25) !important;
-  z-index: 100 !important; }
+  z-index: 100 !important;
+}
 
 .cerradoLabel {
   position: absolute;
@@ -272,17 +312,21 @@
   padding-top: 0;
   padding-right: 0;
   font-weight: 100;
-  border-radius: 0px 5px 0px 5px; }
+  border-radius: 0px 5px 0px 5px;
+}
 
 .cerradoCompletado {
-  background-color: rgba(56, 66, 78, 0.91); }
+  background-color: rgba(56, 66, 78, 0.91);
+}
 
 .cerradoPendiente {
   background-color: rgba(185, 185, 185, 0.18);
-  color: rgba(128, 128, 128, 0.67); }
+  color: rgba(128, 128, 128, 0.67);
+}
 
 .oculto {
-  display: none; }
+  display: none;
+}
 
 .desdeLabel {
   position: absolute;
@@ -291,12 +335,14 @@
   font-weight: 200;
   padding-bottom: 1px;
   padding-left: 2px;
-  display: inline-block; }
+  display: inline-block;
+}
 
 .desdeTexto {
   padding-left: 2px;
   display: inline-block;
-  font-size: 11px; }
+  font-size: 11px;
+}
 
 .hastaLabel {
   position: absolute;
@@ -304,45 +350,68 @@
   bottom: 0;
   font-weight: 200;
   padding-bottom: 1px;
-  padding-left: 2px; }
+  padding-left: 2px;
+}
 
 #image {
   position: absolute;
   left: 0;
   top: 0;
   margin-top: -10px;
-  margin-left: 70px; }
+  margin-left: 70px;
+}
 
 #imageLogin {
   position: absolute;
   left: 0;
   top: 0;
   margin-top: 10px;
-  margin-left: 400px; }
+  margin-left: 400px;
+}
 
 #imageLogo {
-  width: 65px; }
+  width: 65px;
+}
 
 #return {
   position: absolute;
   left: 0;
   top: 0;
-  margin-left: 10px; }
+  margin-left: 10px;
+}
 
 #btnRegresar {
-  color: #003571; }
+  color: #003571;
+}
 
 .ready {
-  color: rgba(0, 53, 113, 0.62);
-  font-size: 22px; 
-  cursor: pointer;}
+  color: green;
+  font-size: 22px;
+}
 
 .loader {
   width: 50px;
   position: absolute;
   right: 0;
   margin-right: -38px;
-  margin-top: -32px; }
+  margin-top: -32px;
+}
 
 .gifLoader {
-  width: 30px; }
+  width: 30px;
+}
+
+.alignArrow {
+  width: 50px;
+  position: absolute;
+  margin-right: -38px;
+  margin-top: -32px;
+  margin-left: 90px;
+}
+
+.alignArrowPhoto {
+  width: 50px;
+  position: absolute;
+  right: 0;
+  margin-right: 110px;
+}
