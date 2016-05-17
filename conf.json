@@ -1,4 +1,4 @@
 {
 	"port": 3400,
-	"cnnSQL": "Data Source=173.192.85.206;Initial Catalog=smart;user id=asp_user;password=zenttre"
+	"cnnSQL": "Data Source=192.168.20.9;Initial Catalog=flotilla;user id=sa;password=S0p0rt3"
 } 
