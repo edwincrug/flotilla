@@ -7,7 +7,8 @@ registrationModule.controller("headerController", function ($scope, $rootScope, 
     };
 
     $scope.Salir = function() {
-        localStorageService.set('employeeLogged', null);  
+        localStorageService.set('employeeLogged', null); 
+        localStorageService.set('busqueda', null);
         location.href = '/';
     };
 

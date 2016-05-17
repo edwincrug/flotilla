@@ -32,12 +32,17 @@
     //Botón obtener la flotilla dependiendo de la factura o vin
     $scope.BuscarFlotilla = function(factura,vin){
         $('#btnBuscar').button('loading');
-	 if(factura == null){
-		factura = '';
-	  }
-	if(vin == null){
-		vin = '';
-	  }
+		if(factura == null){
+			factura = '';
+		}
+		if(vin == null){
+			vin = '';
+		}
+        var datoFactura = $("#txtFactura").val();
+        var datoVin = $("#txtVIN").val();
+        factura = datoFactura;
+        vin = datoVin;
+
         if(factura == '' && vin == '')
         {
             alertFactory.warning('Seleccione al menos un criterio de búsqueda');

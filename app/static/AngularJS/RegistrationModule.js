@@ -1,4 +1,4 @@
-﻿var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGrid", "cgBusy", "ngAnimate", "ui.bootstrap", "LocalStorageModule"])
+﻿var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGrid", "cgBusy", "ngAnimate", "ui.bootstrap", "LocalStorageModule", "mobiscroll-form"])
 .config(function ($routeProvider, $locationProvider) {
 
     $routeProvider.when('/', {

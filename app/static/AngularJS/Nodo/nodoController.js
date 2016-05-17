@@ -45,6 +45,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('#placaDoc').hide(); 
         $('[data-toggle="popover"]').popover()
         $scope.desabilitaBtnCerrar();
+        localStorageService.set('currentDocId', null);
     };
 
     /////////////////////
@@ -71,6 +72,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     var obtieneRolPermisoSuccesCallback = function(data, status, headers, config){
         $scope.listaDocumentos = data;
+        if(localStorageService.get('currentDocId') != null){
+            $('#btnDoc'+ localStorageService.get('currentDocId')).show();
+            $('#ready'+ localStorageService.get('currentDocId')).show(); 
+        }
         $scope.fechaEntregaUni = {
          value: new Date($scope.listaDocumentos[24].valor)
         };
@@ -219,8 +224,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('#frameUpload').attr('src', '/uploader')
         $('#modalUpload').modal('show');
         $rootScope.currentUpload = doc;
-        $scope.currentDocId = id;
-        localStorageService.set('currentDocId', $scope.currentDocId);
+        localStorageService.set('currentDocId', id);
     };
 
     $scope.mostrarAccesorio = function(){        
@@ -400,6 +404,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.VerDocumento = function(idDoc, valor) {
         var ext = ObtenerExtArchivo(valor);
         var type = '';
+
         if(ext == '.jpg'){
             type = "image/jpg";
         } else if(ext == '.png'){
@@ -407,9 +412,10 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         } else{
             type = "application/pdf";
         }
+        
         var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
         var pdf_link = ruta;
-        var titulo = localStorageService.get('currentVIN').vin + ' :: ' + valor;
+        var titulo = ' :: ' + localStorageService.get('currentVIN').vin + ' :: ';
         var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
         $.createModal({
             title: titulo,
