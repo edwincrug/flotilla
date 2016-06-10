@@ -201,14 +201,16 @@
               <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[22].idDocumento)">
                 <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
               </button>
-              <button id="btnDoc23" type="button" ng-class="{ 'oculto': listaDocumentos[22].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[22].idDocumento, listaDocumentos[22].valor)">
+              
+              <button id="btnDoc23" type="button" ng-class="{ 'oculto': listaDocumentos[22].valor == ''}" class="btn btn-default" data-original-title="Documentos" ng-click="showModal(listaDocumentos[22].idDocumento)" data-toggle="popover" data-template="Documentos.html" bs-popover data-html="true" ng-model="documentos">    
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
+             
               <div class="alignArrow">
                 <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
                 <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[22].accion}}" data-content="{{listaDocumentos[22].nombreUsuario}} el {{listaDocumentos[22].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[22].accion == null" ></span></div>
               </div>     
-            </div>    
+            </div>
         </div> 
 
         <div ng-show="listaDocumentos[37].permiso == 1">
@@ -224,7 +226,7 @@
               <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[23].idDocumento)">
               <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
               </button>
-              <button id="btnDoc24" type="button" ng-class="{ 'oculto': listaDocumentos[23].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[23].idDocumento,listaDocumentos[23].valor)">
+              <button id="btnDoc24" type="button" ng-class="{ 'oculto': listaDocumentos[23].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[23].idDocumento)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
               <div class="alignArrow">
@@ -249,7 +251,7 @@
               <button type="button" class="btn btn-default " ng-click="Cargar(listaDocumentos[12].idDocumento)" id="buttonPlacas">
               <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
            </button>
-           <button id="btnDoc13" type="button" ng-class="{ 'oculto': listaDocumentos[12].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[12].idDocumento,listaDocumentos[12].valor)">
+           <button id="btnDoc13" type="button" ng-class="{ 'oculto': listaDocumentos[12].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[12].idDocumento)">
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
               </button>
               <div class="alignArrow">
@@ -271,7 +273,7 @@
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[15].idDocumento,listaDocumentos[15].valor)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-          <button id="btnDoc16" type="button" ng-class="{ 'oculto': listaDocumentos[15].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[15].idDocumento)">
+          <button id="btnDoc16" type="button" ng-class="{ 'oculto': listaDocumentos[15].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[15].idDocumento)">
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
           </button>
           <div class="alignArrow">
@@ -295,7 +297,7 @@
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[18].idDocumento)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-          <button id="btnDoc19" type="button" ng-class="{ 'oculto': listaDocumentos[18].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[18].idDocumento,listaDocumentos[18].valor)">
+          <button id="btnDoc19" type="button" ng-class="{ 'oculto': listaDocumentos[18].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[18].idDocumento)">
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
           </button>
           <div class="alignArrow">
@@ -318,7 +320,7 @@
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[21].idDocumento)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-          <button id="btnDoc22" type="button" ng-class="{ 'oculto': listaDocumentos[21].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[21].idDocumento,listaDocumentos[21].valor)">
+          <button id="btnDoc22" type="button" ng-class="{ 'oculto': listaDocumentos[21].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[21].idDocumento)">
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
           </button>
           <div class="alignArrow">
@@ -343,7 +345,7 @@
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[30].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-          <button id="btnDoc31" type="button" ng-class="{ 'oculto': listaDocumentos[30].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[30].idDocumento,listaDocumentos[30].valor)">
+          <button id="btnDoc31" type="button" ng-class="{ 'oculto': listaDocumentos[30].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[30].idDocumento)">
               <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
             </button>
           <div class="alignArrow">
@@ -365,7 +367,7 @@
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[35].idDocumento)">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-          <button id="btnDoc36" type="button" ng-class="{ 'oculto': listaDocumentos[35].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[35].idDocumento,listaDocumentos[35].valor)">
+          <button id="btnDoc36" type="button" ng-class="{ 'oculto': listaDocumentos[35].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[35].idDocumento)">
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
           </button>
           <div class="alignArrow">
@@ -638,6 +640,48 @@
       <div class="modal-footer">
         <button class="btn btn-default" type="button" id="btnCerrarrAcc" ng-click="ocultarAccesorio()">Cerrar</button>              
       </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->  
+
+<!--Modal Documentos-->
+<div class="modal fade" tabindex="-1" id="documentosModal">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <h4 class="modal-title">Documentos</h4>
+      </div>
+      <div id="divSwitchAcc" class="modal-body">
+        <table class="table table-striped table-bordered table-hover"> 
+             <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Fecha</th>
+                    <th>Ver</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="docs in documentos">
+                    <td>{{docs.valor}}</td>
+                    <td>{{docs.fecha | date:'dd-MM-yyyy HH:mm'}}</td>
+                    <td>
+                        <button class="btn btn-info" type="button" id="btnEliminar" ng-click="VerDocumento(docs.idDocumento, docs.valor)">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" type="button" id="btnEliminar" ng-click="eliminar(docs)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>      
+        </table>            
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->  

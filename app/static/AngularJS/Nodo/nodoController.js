@@ -16,7 +16,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.idFrente = 26;
     $scope.idTrasera = 27;
     $scope.idCostadoIzq = 28;
-    $scope.idCostadoDer = 29;    
+    $scope.idCostadoDer = 29;
+    var listaDocumentos = [];
+    $scope.documentos = [];
 
     //Mensajes en caso de error
     var errorCallBack = function (data, status, headers, config) {
@@ -46,6 +48,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('[data-toggle="popover"]').popover()
         $scope.desabilitaBtnCerrar();
         localStorageService.set('currentDocId', null);
+        
     };
 
     /////////////////////
@@ -379,7 +382,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     }
 
     $scope.verFactura = function() {
-        var pdf_link = 'http://192.168.20.9/Documentos/factura.pdf';
+        var pdf_link = 'http://192.168.20.18/Documentos/' + localStorageService.get('currentVIN').vin + 'factura.pdf';
         var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
         $.createModal({
             message: iframe,
@@ -402,6 +405,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
 
     //Método para mostrar documento PDF, JPG o PNG
     $scope.VerDocumento = function(idDoc, valor) {
+        $('#documentosModal').appendTo("body").modal('hide');
         var ext = ObtenerExtArchivo(valor);
         var type = '';
 
@@ -484,4 +488,37 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $scope.numDocumento = data;
     };
     
+    //Muestra la modal de los documentos
+    $scope.showModal = function(idDocumento){
+        listaDocumentos = [];
+        $('#documentosModal').appendTo("body").modal('show');
+        $scope.documentos = obtenerDocumentos(idDocumento);
+    }
+    
+    //Se obtienen los documentos por idDocumento
+    var obtenerDocumentos = function(idDocumento){
+        $scope.listaDocumentos.forEach(function(item,i){
+           if(item.idDocumento == idDocumento){
+               listaDocumentos.push({idDocumento: item.idDocumento, valor: item.valor, fecha: item.fechaMod});
+           } 
+        });
+        return listaDocumentos;
+    }
+    
+    //eliminar elemento de unidad propiedad
+    $scope.eliminar = function(documento){
+        if(confirm('¿Seguro que desea eliminar este documento?')) {
+             unidadRepository.deleteUnidadPropiedad(
+               localStorageService.get('currentVIN').vin,documento.idDocumento,documento.valor)
+                        .success(getDeleteSuccessCallback)
+                        .error(errorCallBack);
+        }
+    }
+    
+    //Succes de eliminar elemento
+    var getDeleteSuccessCallback = function (data, status, headers, config) {
+        alertFactory.success('Archivo eliminado');
+        $('#documentosModal').appendTo("body").modal('hide');
+        getListaDocumentos();
+    }
 });
