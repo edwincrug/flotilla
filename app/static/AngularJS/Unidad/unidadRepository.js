@@ -27,12 +27,15 @@ registrationModule.factory('unidadRepository', function ($http) {
         updateLicitacionVIN: function (vin, idLicitacion, estatus){
             return $http.post(unidadUrl + '2|' + vin + '|'+ idLicitacion+ '|' +estatus);
         },
-        deleteUnidadPropiedad: function (vin, idDocumento, valor){
+        deleteUnidadPropiedad: function (vin, idDocumento, valor,consecutivo){
             return $http({
                 url: unidadUrl,
                 method: "POST",
-                params: { id: '3|' + vin + '|' + idDocumento + '|' + valor}
+                params: { id: '3|' + vin + '|' + idDocumento + '|' + valor + '|' + consecutivo}
             });
+        },
+        getListaDocumentos: function (vin, idDocumento) {
+            return $http.get(unidadUrl + '6|' + vin + '|' + idDocumento);
         }
     };
 });

@@ -15,6 +15,21 @@ registrationModule.factory('reporteRepository', function ($http) {
                 method: "GET",
                 params: { id: '2|' + idSincronizacion }
             });
+        },
+        getReporte: function (idCliente) {
+            return $http({
+                url: reporteUrl,
+                method: "GET",
+                params: { id: '3|' + idCliente }
+            });
+        },
+        getCliente: function () {
+            return $http({
+                url: reporteUrl,
+                method: "GET",
+                params: { id: '4|' }
+            });
         }
+        
     };
 });

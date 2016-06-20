@@ -1,4 +1,4 @@
-﻿var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGrid", "cgBusy", "ngAnimate", "ui.bootstrap", "LocalStorageModule"])
+var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGrid", "cgBusy", "ngAnimate", "ui.bootstrap", "LocalStorageModule"])
 .config(function ($routeProvider, $locationProvider) {
 
     $routeProvider.when('/', {
@@ -24,6 +24,11 @@
     $routeProvider.when('/reporte', {
         templateUrl: '/AngularJS/Templates/Reporte.html',
         controller: 'reporteController'
+    });
+    
+    $routeProvider.when('/reportedocumentos', {
+        templateUrl: '/AngularJS/Templates/ReporteDocumentos.html',
+        controller: 'reporteDocumentoController'
     });
 
     $locationProvider.html5Mode(true);

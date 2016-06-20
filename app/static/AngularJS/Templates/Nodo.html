@@ -176,17 +176,42 @@
     <h4 align="center">Documentación <span class="label label-default">2</span></h4>
     <hr>
     <form class="form-horizontal">
-     <div class="form-group">
+    
+    <div class="form-group">   
         <div ng-show="listaDocumentos[13].permiso == 1" >
           <label for="factura" class="control-label col-md-2">Factura: </label>
-          <div class="col-md-1">
+          <div class="col-md-4">
           <button type="button" class="btn btn-default" ng-click="verFactura()" >
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
           </button>
           </div>
-        </div>        
-     </div>
+        </div> 
 
+        <div ng-show="listaDocumentos[45].permiso == 1">
+            <label for="permisoEsp" class="control-label col-md-2">Actas de Entrega: </label>
+            <div class="col-md-2">
+              <input type="text" id="txtPermisoEsp" ng-model="listaDocumentos[45].valor" class="form-control" ng-blur="Guardar(listaDocumentos[45].idDocumento, listaDocumentos[45].valor)"/>
+              <div class="alignArrow">
+                <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[45].accion}}" data-content="{{listaDocumentos[45].nombreUsuario}} el {{listaDocumentos[37].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[45].accion == null" ></span></div>
+              </div> 
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[46].idDocumento)">
+              <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+              </button>
+              <button id="btnDoc46" type="button" ng-class="{ 'oculto': listaDocumentos[46].valor == ''}" class="btn btn-default" ng-click="showModal(listaDocumentos[46].idDocumento)">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+              </button>
+              <div class="alignArrow">
+                <div class="showCtrl" id="loader1"><img src="image/gif/arrows.gif" class="gifLoader"></div>
+                <div id="ready1"><span class="glyphicon glyphicon-ok ready" data-toggle="popover" data-original-title="{{listaDocumentos[46].accion}}" data-content="{{listaDocumentos[46].nombreUsuario}} el {{listaDocumentos[46].fechaMod | date:'MM/dd/yyyy hh:mm:ss'}}" ng-hide="listaDocumentos[46].accion == null" ></span></div>
+              </div>
+            </div>
+
+        </div>
+    </div>
+    
      <div class="form-group">   
         <div ng-show="listaDocumentos[36].permiso == 1">
           <label for="poliza" class="control-label col-md-2">Póliza de Seguros: </label>
@@ -414,7 +439,7 @@
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[16].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-          <button id="btnDoc17" type="button" ng-class="{ 'oculto': listaDocumentos[16].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[16].idDocumento,listaDocumentos[16].valor)">
+          <button id="btnDoc17" type="button" ng-class="{ 'oculto': listaDocumentos[16].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[16].idDocumento,listaDocumentos[16].valor,null)">
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
           </button>
         <div class="alignArrow">
@@ -430,7 +455,7 @@
             <button type="button" class="btn btn-default" ng-click="Cargar(listaDocumentos[17].idDocumento)" ng-hide="listaDocumentos.Verificacion == false" ng-show="listaDocumentos.Verificacion == true">
             <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
           </button>
-           <button id="btnDoc18" type="button" ng-class="{ 'oculto': listaDocumentos[17].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[17].idDocumento,listaDocumentos[17].valor)">
+           <button id="btnDoc18" type="button" ng-class="{ 'oculto': listaDocumentos[17].valor == ''}" class="btn btn-default" ng-click="VerDocumento(listaDocumentos[17].idDocumento,listaDocumentos[17].valor,null)">
               <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
             </button>
           <div class="alignArrow">
@@ -656,17 +681,17 @@
              <thead>
                 <tr>
                     <th>Documento</th>
-                    <th>Fecha</th>
+                    <!-- <th>Fecha</th> -->
                     <th>Ver</th>
                     <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="docs in documentos">
+                <tr ng-repeat="docs in listaDocumentosMultiple">
                     <td>{{docs.valor}}</td>
-                    <td>{{docs.fecha | date:'dd-MM-yyyy HH:mm'}}</td>
+                    <!-- <td>{{docs.fecha | date:'dd-MM-yyyy HH:mm'}}</td> -->
                     <td>
-                        <button class="btn btn-info" type="button" id="btnEliminar" ng-click="VerDocumento(docs.idDocumento, docs.valor)">
+                        <button class="btn btn-info" type="button" id="btnEliminar" ng-click="VerDocumento(docs.idDocumento, docs.valor, docs.consecutivo)">
                             <span class="glyphicon glyphicon-file"></span>
                         </button>
                     </td>
@@ -680,7 +705,7 @@
         </table>            
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

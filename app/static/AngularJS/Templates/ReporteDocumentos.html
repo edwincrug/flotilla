@@ -1,0 +1,147 @@
+<link rel="stylesheet" type="text/css" href="../../css/reporte.css" />
+
+<div cg-busy="myPromise" ng-init="Init()" class="container">
+    <header>
+        <h1>Reporte <span> Documentos </span></h1>
+    </header>
+    </br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="row">
+                    <div class="col-md-3">
+                            <select class="form-control" name="cliente" ng-model="selectedCliente" ng-options="cliente.descripcion for cliente in clientes">
+                                <option value="">Seleccionar cliente</option><!--default option -->
+                            </select>
+                    </div>
+                    <div class="col-md-1">
+                        <button id="btnBuscar" type="button" class="btn btn-primary" data-loading-text="Buscando..." ng-click="getReportePoliza(selectedCliente.idLicitacion)">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+     <div class="panel panel-default" ng-hide="total == '' || total == null">
+        <div class="panel-body">
+            <form class="form-inline">
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Poliza de Seguros</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance23}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie23"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Placas</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance13}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie13"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Tarjeta de Circulación</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance19}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie19"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Tenencia</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance31}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie31"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Actas de Entrega</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance46}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie46"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Permiso Especial</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance24}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie24"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Eq. Vehicular</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance16}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie16"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Pago Verificación</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance22}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie22"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h4><b>Verificación</b></h4>
+                            <h5 class="color"><b>Documentos: {{avance36}}/{{total}}</b></h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div id="pie36"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </form>
+        </div>
+    </div>
+    

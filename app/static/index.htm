@@ -43,6 +43,10 @@
   <script src="js/switch/bootstrap-switch.min.js"></script> 
 
   <base href='/'>
+  
+  <!-- c3 Charts -->
+  <link href="css/inspinia/c3/c3.min.css" rel="stylesheet">
+
 </head>
 <body ng-app="registrationModule">
 
@@ -73,6 +77,7 @@
             </a>
             <ul class="dropdown-menu">
               <li class="seleccionable"><a href="/reporte">Reporte Sincronización</a></li>
+              <li class="seleccionable"><a href="/reportedocumentos">Reporte Documentos</a></li>
               <li class="seleccionable"><a ng-click="Salir()">Salir</a></li>
             </ul>
           </li>
@@ -157,7 +162,6 @@ function getName(){
 
 <!--Controllers-->
 
-
 <script src="AngularJS/Reporte/reporteRepository.js"></script>
 <script src="AngularJS/Reporte/reporteController.js"></script>
 <script src="AngularJS/Nodo/nodoRepository.js"></script>
@@ -173,10 +177,20 @@ function getName(){
 <script src="AngularJS/Busqueda/busquedaController.js"></script>
 <script src="AngularJS/Busqueda/busquedaRepository.js"></script>
 <script src="AngularJS/Documento/documentoRepository.js"></script>
+<script src="AngularJS/Reporte/reporteDocumentoController.js"></script>
 
 <!--Sidebars-->
 <script src="js/sidebar/classie.js"></script>
 <script src="js/sidebar/sidebarEffects.js"></script>
+
+<!-- Inspinia -->
+<script src="js/inspinia/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/inspinia/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- d3 and c3 charts -->
+<script src="js/inspinia/d3/d3.min.js"></script>
+<script src="js/inspinia/c3/c3.min.js"></script>
+
 
 </body>
 </html>

@@ -17,9 +17,12 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     $scope.idTrasera = 27;
     $scope.idCostadoIzq = 28;
     $scope.idCostadoDer = 29;
-    var listaDocumentos = [];
-    $scope.documentos = [];
-
+    $scope.listaDocumentosMultiple = '';
+    $scope.consecutivo = '';
+    var ruta =  '';
+    $scope.nombreArchivo = '';
+    $scope.consecutivoEliminar = '';
+    
     //Mensajes en caso de error
     var errorCallBack = function (data, status, headers, config) {
         $('#btnEnviar').button('reset');
@@ -263,14 +266,9 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         var doc = $rootScope.currentUpload;
         var currentIdDoc = localStorageService.get('currentDocId');
         var ext = ObtenerExtArchivo(name);
-        var nombreArchivo = currentIdDoc + ext;
-
+        $scope.nombreArchivo = currentIdDoc + ext;
+        $scope.nombre = name;
         
-        //Se guarda el archivo en el servidor
-        documentoRepository.saveFile(localStorageService.get('currentVIN').vin, currentIdDoc, name)
-            .success(getSaveFileSuccessCallback)
-            .error(errorCallBack);
-
         //Inserta o actualiza el documento
         unidadRepository.updateDocumento(localStorageService.get('currentVIN').vin, currentIdDoc, name, localStorageService.get('idUsuario'))
             .success(getSaveSuccessCallback)
@@ -341,7 +339,15 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         $('#loader'+Control).hide(); 
         $('#ready'+Control).show();
         actualizaPropiedadUnidad();
-        $scope.desabilitaBtnCerrar();    
+        $scope.desabilitaBtnCerrar();
+        if(data != null)
+        {
+            $scope.consecutivo = data;
+            //Se guarda el archivo en el servidor
+            documentoRepository.saveFile(localStorageService.get('currentVIN').vin, localStorageService.get('currentDocId'), $scope.nombre, $scope.consecutivo)
+            .success(getSaveFileSuccessCallback)
+            .error(errorCallBack);
+        }
 
     };
 
@@ -377,8 +383,8 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     //Success de actualizacion de PDF
     var getSavePdfSuccessCallback = function (data, status, headers, config) {
         $scope.rutaNueva = data;
-        getListaDocumentos();
         alertFactory.success('Archivo Guardado.');
+        getListaDocumentos();
     }
 
     $scope.verFactura = function() {
@@ -404,7 +410,7 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     });
 
     //Método para mostrar documento PDF, JPG o PNG
-    $scope.VerDocumento = function(idDoc, valor) {
+    $scope.VerDocumento = function(idDoc, valor, consecutivo) {
         $('#documentosModal').appendTo("body").modal('hide');
         var ext = ObtenerExtArchivo(valor);
         var type = '';
@@ -417,7 +423,13 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             type = "application/pdf";
         }
         
-        var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+        if(consecutivo == null || consecutivo == '')
+        {
+            ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/' + idDoc + ext;
+        } else{
+            ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + '_' + consecutivo +  ext;
+        }
+        
         var pdf_link = ruta;
         var titulo = ' :: ' + localStorageService.get('currentVIN').vin + ' :: ';
         var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
@@ -490,26 +502,35 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
     
     //Muestra la modal de los documentos
     $scope.showModal = function(idDocumento){
-        listaDocumentos = [];
+        listaDocumentosMultiple = [];
         $('#documentosModal').appendTo("body").modal('show');
-        $scope.documentos = obtenerDocumentos(idDocumento);
+        obtenerDocumentos(idDocumento);
     }
     
     //Se obtienen los documentos por idDocumento
     var obtenerDocumentos = function(idDocumento){
-        $scope.listaDocumentos.forEach(function(item,i){
-           if(item.idDocumento == idDocumento){
-               listaDocumentos.push({idDocumento: item.idDocumento, valor: item.valor, fecha: item.fechaMod});
-           } 
-        });
-        return listaDocumentos;
+        unidadRepository.getListaDocumentos(localStorageService.get('currentVIN').vin,
+                                           idDocumento)
+                .success(getListaDocumentosSuccessCallback)
+                .error(errorCallBack);
+    }
+    
+    //Success de los documentos del vin por idDocumento
+    var getListaDocumentosSuccessCallback = function(data,status,headers,config){
+         alertFactory.success('Documentos cargados');
+         $scope.listaDocumentosMultiple = data;
     }
     
     //eliminar elemento de unidad propiedad
     $scope.eliminar = function(documento){
+        if(documento.consecutivo == null){
+            $scope.consecutivoEliminar = 0;
+        } else{
+            $scope.consecutivoEliminar = documento.consecutivo;
+        }
         if(confirm('¿Seguro que desea eliminar este documento?')) {
-             unidadRepository.deleteUnidadPropiedad(
-               localStorageService.get('currentVIN').vin,documento.idDocumento,documento.valor)
+             unidadRepository.deleteUnidadPropiedad(               localStorageService.get('currentVIN').vin,documento.idDocumento,documento.valor,
+                        $scope.consecutivoEliminar)
                         .success(getDeleteSuccessCallback)
                         .error(errorCallBack);
         }
