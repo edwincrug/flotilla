@@ -82,10 +82,20 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
             $('#btnDoc'+ localStorageService.get('currentDocId')).show();
             $('#ready'+ localStorageService.get('currentDocId')).show(); 
         }
-        $scope.fechaEntregaUni = {
-         value: new Date($scope.listaDocumentos[24].valor)
-        };
-        $scope.listaDocumentos[24].valor = $scope.fechaEntregaUni.value;
+        $scope.fechaEntrega = $scope.listaDocumentos[24].valor;
+        var dia = $scope.fechaEntrega.substring(0,2);
+        var mes = $scope.fechaEntrega.substring(3,5);
+        var anio = $scope.fechaEntrega.substring(6,$scope.fechaEntrega.length);
+        var date = new Date(Date.UTC(anio,mes,dia));
+        
+        if(date == 'Invalid Date'){
+            $scope.fechaEntregaUni = {
+                value: new Date($scope.listaDocumentos[24].valor)
+            };
+           $scope.listaDocumentos[24].valor = $scope.fechaEntregaUni.value;
+        } else{
+           $scope.listaDocumentos[24].valor = date;
+        }      
        
         $scope.frente = $scope.listaDocumentos[$scope.idFrente].valor;
         $scope.costadoDer = $scope.listaDocumentos[$scope.idCostadoDer].valor;
