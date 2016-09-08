@@ -1,4 +1,4 @@
-registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository, documentoRepository, busquedaRepository) {
+registrationModule.controller("nodoController", function ($scope, $rootScope, localStorageService, alertFactory, nodoRepository, unidadRepository, documentoRepository, busquedaRepository,Utils) {
 
     //Propiedades
     $scope.idProceso = 1;
@@ -397,15 +397,31 @@ registrationModule.controller("nodoController", function ($scope, $rootScope, lo
         getListaDocumentos();
     }
 
-    $scope.verFactura = function() {
-        var pdf_link = 'http://192.168.20.18/Documentos/' + localStorageService.get('currentVIN').vin + 'factura.pdf';
-        var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
+    $scope.verFactura = function(vin) {
+        //var pdf_link = 'http://192.168.20.18/Documentos/' + localStorageService.get('currentVIN').vin + 'factura.pdf';
+        //var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
+        var iframe = '<div class="modal-body"><div id="pdfInvoceContent"><div ng-show="loadingOrder" class="sk-spinner sk-spinner-double-bounce"><div class="sk-double-bounce1"></div><div class="sk-double-bounce2"></div></div></div></div>';
         $.createModal({
             message: iframe,
             closeButton: false,
             scrollable: false
-        });  
+        });
+        getPdf(vin); 
+
     }
+    var getPdf = function(vin) {
+    nodoRepository.getPdf(vin).then(function(d) {
+        if (d.data.mensajeresultadoField == "") {
+            var pdf = URL.createObjectURL(Utils.b64toBlob(d.data.arrFacturasField, "application/pdf"))
+            console.log(pdf)
+            $("<object class='filesInvoce' data='" + pdf + "' width='100%' height='500px' >").appendTo('#pdfInvoceContent');
+        } else {
+            $("<h2 class='filesInvoce'>" + d.data.mensaje + "</h2>").appendTo('#pdfInvoceContent');
+        }
+        $scope.loadingOrder = false;
+    })
+}
+
 
     //oculta los popovers al dar clic en el body
     $('[data-toggle="popover"]').popover();
